@@ -40,6 +40,10 @@ const store = new Vuex.Store({
 // require('./store');
 require('./global');
 require('./parts');
+require('./plugins');
+
+require('./lists');
+require('./infos');
 
 window.Event = new Vue();
 
@@ -55,5 +59,42 @@ const app = new Vue({
     return {
 
     }
+  },
+  created(){
+    Event.$on('init-datatable', (tableid) => {
+      this.datatableThis(tableid);
+    });
+  },
+  methods:{
+    /**
+    * DataTables Functions
+    *
+    **/
+    datatableThis(tableid){
+      $('#datatable').DataTable({
+        "bDestroy": true,
+        dom: 'Bfrtip',
+        buttons: [
+           'excel', 'pdf',
+           // { extend: 'pageLength', text:'Nombre de lignes'},
+           { extend: 'print', text:'<i class="fa fa-print"></i>'}
+        ],
+        "language": {
+              "lengthMenu": "Afficher _MENU_ lignes par page",
+              "sSearch":         "Recherche&nbsp;:",
+              "zeroRecords": "Aucun enregistrement pour le moment. ",
+              "info": "Page _PAGE_ de _PAGES_",
+              "infoEmpty": "Pas d'enregistrement.",
+              "infoFiltered": "( _MAX_ enregistrements filtrés)",
+              "oPaginate": {
+                  "sFirst":      "Premier",
+                  "sPrevious":   "Pr&eacute;c&eacute;dent",
+                  "sNext":       "Suivant",
+                  "sLast":       "Dernier"
+              },
+          }
+      });
+      //this.loadTooltips();
+    },
   }
 }).$mount('#app');

@@ -6,6 +6,7 @@
     <div class="right-sidebar-backdrop"></div>
 	  <div class="page-wrapper">
       <div class="container-fluid pt-25">
+        <global-pagetitle></global-pagetitle>
         <router-view></router-view>
       </div>
       <global-footer></global-footer>
@@ -15,6 +16,11 @@
 
 <script>
 export default {
+  data(){
+    return {
+
+    }
+  }
 }
 </script>
 

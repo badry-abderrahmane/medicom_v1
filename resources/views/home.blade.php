@@ -25,10 +25,19 @@
       <full-app></full-app>
     </div>
 
-    <script src="/js/app.js" charset="utf-8"></script>
     <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Data table JavaScript -->
+    <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+
+    <script src="/js/app.js" charset="utf-8"></script>
     <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	  <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="dist/js/jquery.slimscroll.js"></script>
 	  <script src="vendors/bower_components/moment/min/moment.min.js"></script>
     <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
@@ -44,5 +53,6 @@
     <script src="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
 	  <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
   	<script src="dist/js/init.js"></script>
+
 
 </html>

@@ -6,7 +6,7 @@
         <i class="zmdi zmdi-more"></i>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/` })" :class="$route.name == 'Tableau de bord' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Tableau de bord</span>
@@ -19,7 +19,7 @@
         <i class="zmdi zmdi-more"></i>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/clients` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/clients` })" :class="$route.name == 'Clients' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Clients</span>
@@ -28,7 +28,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/prospects` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/prospects` })" :class="$route.name == 'Prospects' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Prospects</span>
@@ -37,7 +37,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/devis` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/devis` })" :class="$route.name == 'Devis' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Devis</span>
@@ -46,7 +46,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/commandes` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/commandes` })" :class="$route.name == 'Commandes' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Commandes</span>
@@ -55,7 +55,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/factures` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/factures` })" :class="$route.name == 'Factures' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Factures</span>
@@ -68,7 +68,7 @@
         <i class="zmdi zmdi-more"></i>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/fournisseurs` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/fournisseurs` })" :class="$route.name == 'Fournisseurs' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Fournisseurs</span>
@@ -77,7 +77,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/produits` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/produits` })" :class="$route.name == 'Produits' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Produits</span>
@@ -86,10 +86,10 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/bondecommande` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/bondecommandes` })" :class="$route.name == 'Bon de commandes' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
-            <span class="right-nav-text">Bon de commande</span>
+            <span class="right-nav-text">Bon de commandes</span>
           </div>
           <div class="clearfix"></div>
         </a>
@@ -100,7 +100,7 @@
         <i class="zmdi zmdi-more"></i>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/rendezvous` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/rendezvous` })" :class="$route.name == 'Rendez-vous' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Rendez-vous</span>
@@ -109,7 +109,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/visites` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/visites` })" :class="$route.name == 'Visites' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Visites</span>
@@ -118,7 +118,7 @@
         </a>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/calendrier` })">
+        <a style="cursor:pointer;" @click="$router.push({ path: `/calendrier` })" :class="$route.name == 'Calendrier' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
             <span class="right-nav-text">Calendrier</span>
