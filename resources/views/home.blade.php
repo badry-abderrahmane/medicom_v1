@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
+    <link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/app.css">
+    <title></title>
+  </head>
+  <body>
+
+
+    <!-- Preloader -->
+  	<div class="preloader-it">
+  		<div class="la-anim-1"></div>
+  	</div>
+  	<!-- /Preloader -->
+    <div id="app">
+      <full-app></full-app>
+    </div>
+
+    <script src="/js/app.js" charset="utf-8"></script>
+    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	  <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="dist/js/jquery.slimscroll.js"></script>
+	  <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+    <script src="dist/js/simpleweather-data.js"></script>
+	  <script src="vendors/bower_components/waypoints/lib/jquery.waypoints.min.js"></script>
+	  <script src="vendors/bower_components/jquery.counterup/jquery.counterup.min.js"></script>
+	  <script src="dist/js/dropdown-bootstrap-extended.js"></script>
+	  <script src="vendors/jquery.sparkline/dist/jquery.sparkline.min.js"></script>
+	  <script src="vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+	  <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/bower_components/raphael/raphael.min.js"></script>
+    <script src="vendors/bower_components/morris.js/morris.min.js"></script>
+    <script src="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+	  <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
+  	<script src="dist/js/init.js"></script>
+
+</html>
