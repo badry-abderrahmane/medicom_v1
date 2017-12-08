@@ -2,7 +2,7 @@
   <div>
     <part-panel>
       <div slot="heading">
-        Nouveau client
+        Nouveau prospect
       </div>
       <form v-on:submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)" slot="body">
         <div class="row">

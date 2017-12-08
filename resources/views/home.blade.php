@@ -9,6 +9,11 @@
     <link href="vendors/bower_components/morris.js/morris.css" rel="stylesheet" type="text/css"/>
     <link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" type="text/css">
+    <!-- select2 CSS -->
+		<link href="vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <!-- bootstrap-touchspin CSS -->
+		<link href="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
+    
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/app.css">
     <title></title>
@@ -36,7 +41,15 @@
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
 
+
+
     <script src="/js/app.js" charset="utf-8"></script>
+
+    <!-- Select2 JavaScript -->
+    <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- Bootstrap Touchspin JavaScript -->
+		<script src="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
     <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="dist/js/jquery.slimscroll.js"></script>
 	  <script src="vendors/bower_components/moment/min/moment.min.js"></script>
@@ -53,6 +66,14 @@
     <script src="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
 	  <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
   	<script src="dist/js/init.js"></script>
-
+    <script type="text/javascript">
+      /*Form advanced Init*/
+      $(document).ready(function() {
+        "use strict";
+        /* Select2 Init*/
+        $(".select2").select2();
+        $("input[name='tch3']").TouchSpin();
+      });
+    </script>
 
 </html>

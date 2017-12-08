@@ -4,7 +4,7 @@
 *
 */
 Vue.component('infos-client', require('./components/clients/infos.vue'));
-// Vue.component('infos-prospect', require('./components/prospects/infos.vue'));
+Vue.component('infos-prospect', require('./components/prospects/infos.vue'));
 // Vue.component('infos-devis', require('./components/devis/infos.vue'));
 // Vue.component('infos-commande', require('./components/commandes/infos.vue'));
 // Vue.component('infos-facture', require('./components/factures/infos.vue'));

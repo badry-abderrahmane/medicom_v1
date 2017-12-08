@@ -9,14 +9,11 @@
 					</div>
 					<div class="social-info">
 						<div class="row">
-							<div class="col-xs-4 text-center">
+							<div class="col-xs-6 text-center">
                 <slot name="count1"></slot>
 							</div>
-							<div class="col-xs-4 text-center">
+							<div class="col-xs-6 text-center">
                 <slot name="count2"></slot>
-							</div>
-							<div class="col-xs-4 text-center">
-                <slot name="count3"></slot>
 							</div>
 						</div>
 					</div>

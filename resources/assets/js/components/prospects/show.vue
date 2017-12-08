@@ -1,33 +1,27 @@
 <template lang="html">
   <div>
     <div class="col-md-3">
-      <part-panel-profile title="Client" :name="client.name">
+      <part-panel-profile title="Prospect" :name="prospect.name">
         <div slot="count1">
           <span class="counts block head-font"><span class="counter-anim">11</span></span>
-          <span class="counts-text block">Visites</span>
+          <span class="counts-text block">Rendez-vous</span>
         </div>
         <div slot="count2">
-          <span class="counts block head-font"><span class="counter-anim">122</span></span>
-          <span class="counts-text block">Factures</span>
+          <span class="counts block head-font"><span class="counter-anim">34</span></span>
+          <span class="counts-text block">Devis</span>
         </div>
       </part-panel-profile>
     </div>
     <div class="col-md-9">
       <part-panel-tabs :tabs="tabs">
         <div slot="Informations" class="text-center"><br>
-          <infos-client :client="client"></infos-client>
+          <infos-prospect :prospect="prospect"></infos-prospect>
         </div>
         <div slot="Rendez-vous">
           rebdez
         </div>
-        <div slot="Visites">
-          Visites
-        </div>
         <div slot="Devis">
           Debv
-        </div>
-        <div slot="Factures">
-          Fact
         </div>
       </part-panel-tabs>
     </div>
@@ -38,8 +32,8 @@
 export default {
   data(){
     return {
-      tabs: ['Informations','Rendez-vous','Visites','Devis','Factures'],
-      client:{
+      tabs: ['Informations','Rendez-vous','Devis'],
+      prospect:{
         id: '1',
         name: 'Malcom X',
         phone:'06 55 22 66 44',

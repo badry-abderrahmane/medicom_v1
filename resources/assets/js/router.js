@@ -16,22 +16,22 @@ module.exports = {
       { name:'Modification Client', path: '/clients/edit/:id', component: require('./components/clients/form.vue')},
       { name:'Suppression Client', path: '/clients/delete/:id', component: require('./components/clients/delete.vue')},
 
-      // /**
-      // **    Prospects routes
-      // **/
-      // { name:'Prospects', path: '/prospects', component: require('./components/prospects/home.vue')},
-      // { name:'Détail Prospect', path: '/prospects/show/:id', component: require('./components/prospects/show.vue')},
-      // { name:'Ajout Prospect', path: '/prospects/add', component: require('./components/prospects/form.vue')},
-      // { name:'Modification Prospect', path: '/prospects/edit/:id', component: require('./components/prospects/form.vue')},
-      // { name:'Suppression Prospect', path: '/prospects/delete/:id', component: require('./components/prospects/delete.vue')},
-      //
-      // /**
-      // **    Devis routes
-      // **/
-      // { name:'Devis', path: '/devis', component: require('./components/devis/home.vue')},
+      /**
+      **    Prospects routes
+      **/
+      { name:'Prospects', path: '/prospects', component: require('./components/prospects/home.vue')},
+      { name:'Détail Prospect', path: '/prospects/show/:id', component: require('./components/prospects/show.vue')},
+      { name:'Ajout Prospect', path: '/prospects/add', component: require('./components/prospects/form.vue')},
+      { name:'Modification Prospect', path: '/prospects/edit/:id', component: require('./components/prospects/form.vue')},
+      { name:'Suppression Prospect', path: '/prospects/delete/:id', component: require('./components/prospects/delete.vue')},
+
+      /**
+      **    Devis routes
+      **/
+      { name:'Devis', path: '/devis', component: require('./components/devis/home.vue')},
       // { name:'Détail Devis', path: '/devis/show/:id', component: require('./components/devis/show.vue')},
-      // { name:'Ajout Devis', path: '/devis/add', component: require('./components/devis/form.vue')},
-      // { name:'Modification Devis', path: '/devis/edit/:id', component: require('./components/devis/form.vue')},
+      { name:'Ajout Devis', path: '/devis/add', component: require('./components/devis/form.vue')},
+      { name:'Modification Devis', path: '/devis/edit/:id', component: require('./components/devis/form.vue')},
       // { name:'Suppression Devis', path: '/devis/delete/:id', component: require('./components/devis/delete.vue')},
       //
       // /**
