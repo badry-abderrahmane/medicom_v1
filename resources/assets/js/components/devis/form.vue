@@ -4,123 +4,82 @@
       <div slot="heading">
         Nouveau devis
       </div>
-      <form  slot="body">
-        <!-- <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
+      <div  slot="body">
+        <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
           <thead>
-            <th width="30%">Produit</th>
+            <th width="25%">Produit</th>
             <th width="20%">Quantité</th>
             <th width="17%">Prix</th>
             <th width="17%">Prix(HT)</th>
-            <th width="16%"></th>
+            <th width="17%">Totale(HT)</th>
+            <th width="5%"></th>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="row,key in rows">
               <td>
                 <div class="form-group">
-                  <select class="form-control select2">
+                  <select class="form-control select2" v-model="row.produit_id">
                     <option>Select</option>
+                    <option value="1">Produit 1</option>
+                    <option value="2">Produit 2</option>
+                    <option value="3">Produit 3</option>
+                    <option value="4">Produit 4</option>
+                    <option value="5">Produit 5</option>
                   </select>
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <input id="tch3" type="text" value="" name="tch3" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default">
+                  <input v-model="row.quantite" type="number" class="form-control" @change="countTotale(key)">
                 </div>
               </td>
               <td>
                 <div class="input-group mb-15">
-									<input class="form-control" disabled>
+									<input v-model="row.prix" class="form-control" disabled>
 									<span class="input-group-btn">
-									  <button type="button" class="btn btn-success" style="padding-left: 10px;padding-right: 10px;"><i class="fa fa-arrow-right fa-xs"></i></button>
+									  <button @click="insertPrix(key)" class="btn btn-success" style="padding-left: 10px;padding-right: 10px;"><i class="fa fa-arrow-right fa-xs"></i></button>
 									</span>
 								</div>
               </td>
               <td>
                 <div class="form-group">
-                  <input type="text" class="form-control">
+                  <input v-model="row.prixHT" type="number" class="form-control" @change="countTotale(key)" step="0.1">
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <button class="btn btn-primary btn-sm">
-                    <i class="fa fa-check fa-2x"></i>
-                  </button>
-                  <button class="btn btn-default btn-sm">
-                    <i class="fa fa-plus fa-2x"></i>
+                  <input v-model="row.totaleHT" type="number" class="form-control" disabled step="0.1">
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <button :class="key != index ? 'btn btn-danger btn-sm':'btn btn-success btn-sm'" @click="makeRow(key)" style="padding-left: 10px;padding-right: 10px;">
+                    <i :class="key != index ? 'fa fa-close fa-2x':'fa fa-plus fa-2x'"></i>
                   </button>
                 </div>
               </td>
             </tr>
+            <tr>
+              <td colspan="3" style="visibility:hidden;"></td>
+              <td >Totale(HT)</td>
+              <td>{{ devisTotalHT }}</td>
+              <td style="visibility:hidden;"></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="visibility:hidden;"></td>
+              <td >TVA</td>
+              <td>20%</td>
+              <td style="visibility:hidden;"></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="visibility:hidden;"></td>
+              <td >Totale(TTC)</td>
+              <td>{{ devisTotaleTTC }}</td>
+              <td style="visibility:hidden;"></td>
+            </tr>
           </tbody>
-        </table> -->
-        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th style="width: 20px;">No.</th>
-                                <th>Description</th>
-                                <th style="width: 80px;">Qty</th>
-                                <th style="width: 130px;" class="text-right">Price</th>
-                                <th style="width: 90px;">Tax</th>
-                                <th style="width: 130px;">Total</th>
-                                <th style="width: 130px;"></th>
-                            </tr>
-                            </thead>
-                            <tbody v-sortable.tr="rows">
-                            <tr v-for="row in rows" track-by="$index">
-                                <td>
-                                    {{ $index +1 }}
-                                </td>
-                                <td>
-                                    <input class="form-control" v-model="row.description"/>
-                                </td>
-                                <td>
-                                    <input class="form-control" v-model="row.qty" number/>
-                                </td>
-                                <td>
-                                    <input class="form-control text-right" v-model="row.price | currencyDisplay" number data-type="currency"/>
-                                </td>
-                                <td>
-                                    <select class="form-control" v-model="row.tax">
-                                        <option value="0">0%</option>
-                                        <option value="10">10%</option>
-                                        <option value="20">20%</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control text-right"  v-model="row.total | currencyDisplay" number readonly />
-                                    <input type="hidden"  v-model="row.tax_amount | currencyDisplay" number/>
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" @click="addRow($index)">add row</button>
-                                    <button class="btn btn-danger btn-xs" @click="removeRow($index)">remove row</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-
-                            <tr>
-                                <td colspan="5" class="text-right">TAX</td>
-                                <td colspan="1" class="text-right">{{ taxtotal | currencyDisplay }}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="text-right">TOTAL</td>
-                                <td colspan="1" class="text-right">{{ total | currencyDisplay }}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="text-right">DELIVERY</td>
-                                <td colspan="1" class="text-right"><input class="form-control text-right" ></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="text-right"><strong>GRANDTOTAL</strong></td>
-                                <td colspan="1" class="text-right"><strong>{{ grandtotal = total + delivery | currencyDisplay }}</strong></td>
-                                <td></td>
-                            </tr>
-                            </tfoot>
-                        </table>
-      </form>
+        </table>
+      </div>
     </part-panel>
   </div>
 </template>
@@ -130,59 +89,72 @@
     export default {
       data(){
         return {
-            rows: [
-                //initial data
-                {qty: 5, description: "Something", price: 55.20, tax: 10},
-                {qty: 2, description: "Something else", price: 1255.20, tax: 20},
-            ],
-            //total: 0,
-            //grandtotal: 0,
-            //taxtotal: 0,
-            delivery: 40
+          index: 0,
+          rows: [
+            {id:1, produit_id: 1, quantite: 20, prix: 510, prixHT:150, totaleHT: 100},
+            {id:2, produit_id: 2, quantite: 120, prix: 250, prixHT:520, totaleHT: 200},
+            {id:3, produit_id: 3, quantite: 30, prix: 530, prixHT:110, totaleHT: 300},
+            {id:4, produit_id: 4, quantite: 170, prix: 150, prixHT:220, totaleHT: 400},
+          ],
         }
       },
-      computed: {
-          total: function () {
-              var t = 0;
-              $.each(this.rows, function (i, e) {
-                  t += accounting.unformat(e.total, ",");
-              });
-              return t;
-          },
-          taxtotal: function () {
-              var tt = 0;
-              $.each(this.rows, function (i, e) {
-                  tt += accounting.unformat(e.tax_amount, ",");
-              });
-              return tt;
-          }
+      computed:{
+        devisTotalHT: function(){
+          return this.rows.reduce(function(total, item) {
+              return total + item['prixHT']
+          }, 0)
+        },
+        devisTotaleTTC: function(){
+          let sum = this.rows.reduce(function(total, item) {
+              return total + item['prixHT']
+          }, 0);
+          let tva = sum*20/100;
+          return sum+tva;
+        }
       },
-      methods: {
-          addRow(index) {
-              try {
-                  this.rows.splice(index + 1, 0, {});
-              } catch(e)
-              {
-                  console.log(e);
-              }
-          },
-          removeRow(index) {
-              this.rows.splice(index, 1);
-          },
-          getData() {
-              $.ajax({
-                  context: this,
-                  type: "POST",
-                  data: {
-                      rows: this.rows,
-                      total: this.total,
-                      delivery: this.delivery,
-                      taxtotal: this.taxtotal,
-                      grandtotal: this.grandtotal,
-                  },
-                  url: "/api/data"
-              });
+      filters:{
+
+      },
+      created(){
+
+        if (this.rows.length) {
+          this.index = this.rows.length-1;
+        }else{
+          this.addRow();
+          this.index = this.index-1
+        }
+      },
+      methods:{
+        makeRow(key){
+          if (this.index != key) {
+            this.removeRow(key);
+          }else{
+            this.addRow();
           }
+        },
+        addRow(){
+          this.index = this.index+1
+          this.rows.push({id:'', produit_id: '', quantite: '', prix: '', prixHT:'', totaleHT: ''});
+          Vue.nextTick()
+          .then(function () {
+            $(".select2").select2();
+          })
+        },
+        removeRow(key){
+          this.index = this.index-1
+          this.rows.splice(key, 1);
+        },
+        countTotale(key){
+          if (this.rows[key].prixHT < this.rows[key].prix) {
+            this.rows[key].prixHT = this.rows[key].prix;
+            this.rows[key].totaleHT = this.rows[key].prixHT*this.rows[key].quantite;
+          }else{
+            this.rows[key].totaleHT = this.rows[key].prixHT*this.rows[key].quantite;
+          }
+        },
+        insertPrix(key){
+          this.rows[key].prixHT = this.rows[key].prix;
+        }
       }
     }
 </script>
