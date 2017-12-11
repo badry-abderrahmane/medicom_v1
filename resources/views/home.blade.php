@@ -13,7 +13,8 @@
 		<link href="vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
     <!-- bootstrap-touchspin CSS -->
 		<link href="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
-    
+    <!-- Jasny-bootstrap CSS -->
+		<link href="vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/app.css">
     <title></title>
@@ -40,13 +41,13 @@
     <script src="vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-
-
+    <script type="text/javascript" src="/js/select2.min.js"></script>
+    <script src="vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 
     <script src="/js/app.js" charset="utf-8"></script>
 
     <!-- Select2 JavaScript -->
-    <script src="vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+
     <!-- Bootstrap Touchspin JavaScript -->
 		<script src="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 
@@ -71,7 +72,7 @@
       $(document).ready(function() {
         "use strict";
         /* Select2 Init*/
-        $(".select2").select2();
+        // $(".select2").select2();
         $("input[name='tch3']").TouchSpin();
       });
     </script>

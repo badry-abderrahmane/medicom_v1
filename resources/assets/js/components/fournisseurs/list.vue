@@ -19,9 +19,9 @@
           <td>{{ fournisseur.phone }}</td>
           <td>{{ fournisseur.adress }}</td>
           <td>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-eye"></i></button>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/fournisseurs/show/`+fournisseur.id })"><i class="fa fa-eye"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/fournisseurs/edit/`+fournisseur.id })"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/fournisseurs/delete/`+fournisseur.id })"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
       </datatable-buttons>

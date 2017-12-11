@@ -2,7 +2,7 @@
   <div>
     <part-panel>
       <div slot="heading">
-        Nouveau devis
+        Nouvelle facture
       </div>
       <div  slot="body">
         <div class="row">

@@ -21,6 +21,7 @@
     "dependencies": {
         "materialize-css": "^1.0.0-alpha.2",
         "vue-router": "^3.0.1",
+        "vue-search-select": "^2.4.0",
         "vuex": "^3.0.1"
     }
 }

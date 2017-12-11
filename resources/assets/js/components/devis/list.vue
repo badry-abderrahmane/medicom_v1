@@ -20,9 +20,9 @@
           <td>{{ devi.produits.count }}</td>
           <td>{{ devi.totale }}</td>
           <td>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-eye"></i></button>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-default btn-icon-anim btn-circle"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/devis/show/`+devi.id })"><i class="fa fa-eye"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/devis/edit/`+devi.id })"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/devis/delete/`+devi.id })"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
       </datatable-buttons>

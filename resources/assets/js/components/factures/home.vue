@@ -5,7 +5,7 @@
         <div class="row" slot="body">
           <div class="col-md-4"></div>
           <div class="col-md-4">
-            <button class="btn btn-block btn-success"><i class="fa fa-plus fa-3x"></i>&nbsp;&nbsp;Nouvelle facture</button>
+            <button class="btn btn-block btn-success" @click="$router.push({ path: `/factures/add` })"><i class="fa fa-plus fa-3x"></i>&nbsp;&nbsp;Nouvelle facture</button>
           </div>
         </div>
       </part-panel-noheading>

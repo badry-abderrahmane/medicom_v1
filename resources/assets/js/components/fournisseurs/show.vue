@@ -1,33 +1,27 @@
 <template lang="html">
   <div>
     <div class="col-md-3">
-      <part-panel-profile title="Client" :name="client.name">
+      <part-panel-profile title="Fournisseur" :name="fournisseur.name">
         <div slot="count1">
           <span class="counts block head-font"><span class="counter-anim">11</span></span>
-          <span class="counts-text block">Visites</span>
+          <span class="counts-text block">Produits</span>
         </div>
         <div slot="count2">
           <span class="counts block head-font"><span class="counter-anim">122</span></span>
-          <span class="counts-text block">Factures</span>
+          <span class="counts-text block">Bon de commandes</span>
         </div>
       </part-panel-profile>
     </div>
     <div class="col-md-9">
       <part-panel-tabs :tabs="tabs">
         <div slot="1" class="text-center"><br>
-          <infos-client :client="client"></infos-client>
+          <infos-fournisseur :fournisseur="fournisseur"></infos-fournisseur>
         </div>
         <div slot="2">
-          rebdez
+          Produits
         </div>
         <div slot="3">
-          Visites
-        </div>
-        <div slot="4">
-          Debv
-        </div>
-        <div slot="5">
-          Fact
+          Bon de commandes
         </div>
       </part-panel-tabs>
     </div>
@@ -38,19 +32,13 @@
 export default {
   data(){
     return {
-      tabs: [
-        {id: '1', name: 'Informations'},
-        {id: '2', name: 'Rendez-vous'},
-        {id: '3', name: 'Visites'},
-        {id: '4', name: 'Devis'},
-        {id: '5', name: 'Factures'}
-      ],
-      client:{
+      tabs: [{id: '1', name: 'Informations'},{id: '2', name: 'Produits'},{id: '3', name: 'Bon de commandes'}],
+      fournisseur:{
         id: '1',
         name: 'Malcom X',
         phone:'06 55 22 66 44',
         adress:'16 Casablanca',
-        activite:'Transp',
+        specialite:'Transp',
       }
     }
   }

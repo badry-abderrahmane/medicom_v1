@@ -16,6 +16,7 @@ Vue.component('part-panel-noheading', require('./parts/panels/panelNoHeading.vue
 *
 */
 Vue.component('part-input', require('./parts/inputs/input.vue'));
+Vue.component('part-textarea', require('./parts/inputs/textarea.vue'));
 
 
 
@@ -25,3 +26,12 @@ Vue.component('part-input', require('./parts/inputs/input.vue'));
 *
 */
 Vue.component('part-button-submit', require('./parts/buttons/buttonSubmit.vue'));
+
+
+/*
+*
+* Selects components
+*
+*/
+// Vue.component('select2', require('./parts/selects/select2.vue'));
+// Vue.component('part-select-devis', require('./parts/selects/selectDevis.vue'));
