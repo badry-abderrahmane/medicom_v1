@@ -65049,7 +65049,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65094,7 +65094,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tabs: ['Informations', 'Rendez-vous', 'Devis'],
+      tabs: [{ id: '1', name: 'Informations' }, { id: '2', name: 'Rendez-vous' }, { id: '3', name: 'Devis' }],
       prospect: {
         id: '1',
         name: 'Malcom X',
@@ -65155,11 +65155,7 @@ var render = function() {
         _c("part-panel-tabs", { attrs: { tabs: _vm.tabs } }, [
           _c(
             "div",
-            {
-              staticClass: "text-center",
-              attrs: { slot: "Informations" },
-              slot: "Informations"
-            },
+            { staticClass: "text-center", attrs: { slot: "1" }, slot: "1" },
             [
               _c("br"),
               _vm._v(" "),
@@ -65168,12 +65164,12 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { attrs: { slot: "Rendez-vous" }, slot: "Rendez-vous" }, [
+          _c("div", { attrs: { slot: "2" }, slot: "2" }, [
             _vm._v("\n        rebdez\n      ")
           ]),
           _vm._v(" "),
-          _c("div", { attrs: { slot: "Devis" }, slot: "Devis" }, [
-            _vm._v("\n        Debv\n      ")
+          _c("div", { attrs: { slot: "3" }, slot: "3" }, [
+            _vm._v("\n        Debvs\n      ")
           ])
         ])
       ],

@@ -14,14 +14,14 @@
     </div>
     <div class="col-md-9">
       <part-panel-tabs :tabs="tabs">
-        <div slot="Informations" class="text-center"><br>
+        <div slot="1" class="text-center"><br>
           <infos-prospect :prospect="prospect"></infos-prospect>
         </div>
-        <div slot="Rendez-vous">
+        <div slot="2">
           rebdez
         </div>
-        <div slot="Devis">
-          Debv
+        <div slot="3">
+          Debvs
         </div>
       </part-panel-tabs>
     </div>
@@ -32,7 +32,11 @@
 export default {
   data(){
     return {
-      tabs: ['Informations','Rendez-vous','Devis'],
+      tabs: [
+        {id: '1', name: 'Informations'},
+        {id: '2', name: 'Rendez-vous'},
+        {id: '3', name: 'Devis'},
+      ],
       prospect:{
         id: '1',
         name: 'Malcom X',
