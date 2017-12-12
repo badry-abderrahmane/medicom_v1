@@ -15,6 +15,10 @@
 		<link href="vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
     <!-- Jasny-bootstrap CSS -->
 		<link href="vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap Datetimepicker CSS -->
+		<link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Calendar CSS -->
+		<link href="vendors/bower_components/fullcalendar/dist/fullcalendar.css" rel="stylesheet" type="text/css"/>
     <link href="dist/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/app.css">
     <title></title>
@@ -43,6 +47,11 @@
     <script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="/js/select2.min.js"></script>
     <script src="vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <!-- Moment JavaScript -->
+		<script type="text/javascript" src="vendors/bower_components/moment/min/moment-with-locales.min.js"></script>
+    <!-- Bootstrap Datetimepicker JavaScript -->
+		<script type="text/javascript" src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 
     <script src="/js/app.js" charset="utf-8"></script>
 
@@ -74,6 +83,7 @@
         /* Select2 Init*/
         // $(".select2").select2();
         $("input[name='tch3']").TouchSpin();
+
       });
     </script>
 

@@ -2,64 +2,70 @@
   <div>
     <part-panel>
       <div slot="heading">
-        Détail facture
+        Détail produit
       </div>
       <div  slot="body">
         <div class="row">
           <div class="col-md-4">
-            <div class="well" style="min-height:130px;">
-              <p>Date de génération:</p>
-              <p><h6>{{ devis.created_at }}</h6></p>
-              <p>Date de livraison:</p>
-              <br>
-            </div>
+            <img src="/dist/img/chair.jpg" alt="Image produit">
           </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <div class="well" style="min-height:130px;">
-              <p>Client:</p>
-              <p><h6>{{ client.name }}</h6></p>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6"><br>
+                <h6 class="text-success">#ID:</h6>
+                <h5><span class="label label-default">{{ produit.id }}</span></h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Nom:</h6>
+                <h5>{{ produit.name }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Référence:</h6>
+                <h5>{{ produit.reference }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Categorie:</h6>
+                <h5>{{ produit.category }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Fournisseur:</h6>
+                <h5>{{ produit.fournisseur }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Delais de livraison:</h6>
+                <h5>{{ produit.delaisLivraison }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Prix fournisseur:</h6>
+                <h5>{{ produit.prixFournisseur }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Prix vente:</h6>
+                <h5>{{ produit.prixVente }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Quantité minimale:</h6>
+                <h5>{{ produit.quantiteMin }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Quantité Maximale:</h6>
+                <h5>{{ produit.quantiteMax }}</h5>
+              </div>
+              <div class="col-md-6"><br>
+                <h6 class="text-success">Note:</h6>
+                <h5>{{ produit.note }}</h5>
+              </div>
             </div>
-          </div>
-        </div>
-        <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
-          <thead>
-            <th width="25%">Produit</th>
-            <th width="20%">Quantité</th>
-            <th width="17%">Prix</th>
-            <th width="17%">Prix(HT)</th>
-            <th width="17%">Totale(HT)</th>
-          </thead>
-          <tbody>
-            <tr v-for="row,key in rows">
-              <td> {{ row.produit_id }} </td>
-              <td> {{ row.quantite }} </td>
-              <td> {{ row.prixHT }} </td>
-              <td> {{ row.totaleHT }} </td>
-              <td> {{ row.quantite }} </td>
-            </tr>
-            <tr>
-              <td colspan="3" style="visibility:hidden;"></td>
-              <td style="border-left: 2px solid;">Totale(HT)</td>
-              <td style="border-left: 2px solid;">{{ devisTotalHT }}</td>
-            </tr>
-            <tr>
-              <td colspan="3" style="visibility:hidden;"></td>
-              <td style="border-left: 2px solid;">TVA</td>
-              <td style="border-left: 2px solid;">20%</td>
-            </tr>
-            <tr>
-              <td colspan="3" style="visibility:hidden;border-left: 2px solid;"></td>
-              <td style="border-left: 2px solid;">Totale(TTC)</td>
-              <td style="border-left: 2px solid;">{{ devisTotalTTC }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="row"><br><br>
-          <div class="col-md-6 col-sm-offset-4 col-sm-6">
-            <button class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button>
-            <button class="btn btn-warning"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;PDF</button>
-            <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button>
+
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <button class="btn btn-success btn-block btn-outline btn-anim mt-30" @click="$router.push({ path: `/produits/edit/`+produit.id })">
+                  <i class="fa fa-pencil"></i>
+                  <span class="btn-text">Modifier les informations</span>
+                </button><br>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -71,15 +77,19 @@
     export default {
       data(){
         return {
-          rows: [
-            {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totaleHT: 200},
-            {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totaleHT: 1000},
-            {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totaleHT: 300},
-          ],
-          devisTotalHT: 0,
-          devisTotalTTC: 0,
-          client:{ name:'Company Name tes test test' },
-          devis:{ created_at:'22-10-2018'}
+          produit:{
+            id: '1',
+            name: 'Produit 1',
+            reference: 'Ref3344',
+            category: 'Categ 1',
+            fournisseur: 'Fourni 1',
+            delaisLivraison: '10',
+            prixFournisseur: '100',
+            prixVente: '110',
+            quantiteMin: '100',
+            quantiteMax: '0',
+            note: 'Rien à spécifier.'
+          }
         }
       },
     }

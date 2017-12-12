@@ -62,6 +62,15 @@ module.exports = {
       { name:'Suppression Fournisseur', path: '/fournisseurs/delete/:id', component: require('./components/fournisseurs/delete.vue')},
 
       /**
+      **    Categories routes
+      **/
+      { name:'Catégories', path: '/categories', component: require('./components/categories/home.vue')},
+      { name:'Détail Catégorie', path: '/categories/show/:id', component: require('./components/categories/show.vue')},
+      { name:'Ajout Catégorie', path: '/categories/add', component: require('./components/categories/form.vue')},
+      { name:'Modification Catégorie', path: '/categories/edit/:id', component: require('./components/categories/form.vue')},
+      { name:'Suppression Catégorie', path: '/categories/delete/:id', component: require('./components/categories/delete.vue')},
+
+      /**
       **    Produits routes
       **/
       { name:'Produits', path: '/produits', component: require('./components/produits/home.vue')},
@@ -69,33 +78,33 @@ module.exports = {
       { name:'Ajout Produit', path: '/produits/add', component: require('./components/produits/form.vue')},
       { name:'Modification Produit', path: '/produits/edit/:id', component: require('./components/produits/form.vue')},
       { name:'Suppression Produit', path: '/produits/delete/:id', component: require('./components/produits/delete.vue')},
-      //
-      // /**
-      // **    Bon de commandes routes
-      // **/
-      // { name:'Bon de commandes', path: '/bondecommandes', component: require('./components/bondecommandes/home.vue')},
-      // { name:'Détail Bon de commande', path: '/bondecommandes/show/:id', component: require('./components/bondecommandes/show.vue')},
-      // { name:'Ajout Bon de commande', path: '/bondecommandes/add', component: require('./components/bondecommandes/form.vue')},
-      // { name:'Modification Bon de commande', path: '/bondecommandes/edit/:id', component: require('./components/bondecommandes/form.vue')},
-      // { name:'Suppression Bon de commande', path: '/bondecommandes/delete/:id', component: require('./components/bondecommandes/delete.vue')},
-      //
-      // /**
-      // **    Rendez-vous routes
-      // **/
-      // { name:'Rendez-vous', path: '/rendezvous', component: require('./components/rendezvous/home.vue')},
-      // { name:'Détail Rendez-vous', path: '/rendezvous/show/:id', component: require('./components/rendezvous/show.vue')},
-      // { name:'Ajout Rendez-vous', path: '/rendezvous/add', component: require('./components/rendezvous/form.vue')},
-      // { name:'Modification Rendez-vous', path: '/rendezvous/edit/:id', component: require('./components/rendezvous/form.vue')},
-      // { name:'Suppression Rendez-vous', path: '/rendezvous/delete/:id', component: require('./components/rendezvous/delete.vue')},
-      //
-      // /**
-      // **    Visites routes
-      // **/
-      // { name:'Visites', path: '/visites', component: require('./components/visites/home.vue')},
-      // { name:'Détail Visite', path: '/visites/show/:id', component: require('./components/visites/show.vue')},
-      // { name:'Ajout Visite', path: '/visites/add', component: require('./components/visites/form.vue')},
-      // { name:'Modification Visite', path: '/visites/edit/:id', component: require('./components/visites/form.vue')},
-      // { name:'Suppression Visite', path: '/visites/delete/:id', component: require('./components/visites/delete.vue')},
+
+      /**
+      **    Bon de commandes routes
+      **/
+      { name:'Bon de commandes', path: '/bondecommandes', component: require('./components/bondecommandes/home.vue')},
+      { name:'Détail Bon de commande', path: '/bondecommandes/show/:id', component: require('./components/bondecommandes/show.vue')},
+      { name:'Ajout Bon de commande', path: '/bondecommandes/add', component: require('./components/bondecommandes/form.vue')},
+      { name:'Modification Bon de commande', path: '/bondecommandes/edit/:id', component: require('./components/bondecommandes/form.vue')},
+      { name:'Suppression Bon de commande', path: '/bondecommandes/delete/:id', component: require('./components/bondecommandes/delete.vue')},
+
+      /**
+      **    Rendez-vous routes
+      **/
+      { name:'Rendez-vous', path: '/rendezvous', component: require('./components/rendezvous/home.vue')},
+      { name:'Détail Rendez-vous', path: '/rendezvous/show/:id', component: require('./components/rendezvous/show.vue')},
+      { name:'Ajout Rendez-vous', path: '/rendezvous/add', component: require('./components/rendezvous/form.vue')},
+      { name:'Modification Rendez-vous', path: '/rendezvous/edit/:id', component: require('./components/rendezvous/form.vue')},
+      { name:'Suppression Rendez-vous', path: '/rendezvous/delete/:id', component: require('./components/rendezvous/delete.vue')},
+
+      /**
+      **    Visites routes
+      **/
+      { name:'Visites', path: '/visites', component: require('./components/visites/home.vue')},
+      { name:'Détail Visite', path: '/visites/show/:id', component: require('./components/visites/show.vue')},
+      { name:'Ajout Visite', path: '/visites/add', component: require('./components/visites/form.vue')},
+      { name:'Modification Visite', path: '/visites/edit/:id', component: require('./components/visites/form.vue')},
+      { name:'Suppression Visite', path: '/visites/delete/:id', component: require('./components/visites/delete.vue')},
 
 
       { name:'Calendrier', path: '/calendrier', component: require('./components/calendrier/home.vue')},

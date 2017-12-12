@@ -10,8 +10,15 @@
           <part-input v-model="form" name="reference" label="Référence"></part-input>
           <div class="col-md-6">
             <div class="form-group">
+              <label for="Fournisseur" class="control-label mb-10">Categorie</label>
+              <model-select :options="[{value:1,text:'categorie 1'},{value:2,text:'categorie 2'},{value:3,text:'categorie 3'}]" v-model="form['fournisseur']" placeholder="Choisir client..">
+             </model-select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
               <label for="Fournisseur" class="control-label mb-10">Fournisseur</label>
-              <model-select :options="[{value:1,text:'client 1'},{value:2,text:'client 2'},{value:3,text:'client 3'}]" v-model="form['fournisseur']" placeholder="Choisir client..">
+              <model-select :options="[{value:1,text:'fournisseur 1'},{value:2,text:'fournisseur 2'},{value:3,text:'fournisseur 3'}]" v-model="form['fournisseur']" placeholder="Choisir client..">
              </model-select>
             </div>
           </div>

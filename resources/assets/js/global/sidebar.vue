@@ -77,6 +77,15 @@
         </a>
       </li>
       <li>
+        <a style="cursor:pointer;" @click="$router.push({ path: `/categories` })" :class="$route.name == 'Categories' ? 'active':'' ">
+          <div class="pull-left">
+            <i class="zmdi zmdi-flag mr-20"></i>
+            <span class="right-nav-text">Catégories</span>
+          </div>
+          <div class="clearfix"></div>
+        </a>
+      </li>
+      <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/produits` })" :class="$route.name == 'Produits' ? 'active':'' ">
           <div class="pull-left">
             <i class="zmdi zmdi-flag mr-20"></i>
