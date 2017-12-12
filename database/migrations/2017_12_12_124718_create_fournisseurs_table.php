@@ -16,9 +16,9 @@ class CreateFournisseursTable extends Migration
         Schema::create('fournisseurs', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
-          $table->string('phone')->default('Non spécifié');
-          $table->string('adress')->default('Non spécifiée');
-          $table->string('specialite')->default('Non spécifiée');
+          $table->string('phone')->nullable()->default('Non spécifié');
+          $table->string('adress')->nullable()->default('Non spécifiée');
+          $table->string('specialite')->nullable()->default('Non spécifiée');
           $table->timestamps();
         });
     }

@@ -64117,7 +64117,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64172,12 +64172,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         return false;
       }
+    },
+    clientId: function clientId() {
+      return this.$route.params.id;
     }
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    if (this.clientId) {
+      axios.get('/clients/' + this.clientId).then(function (response) {
+        _this.form.load(response.data);
+      });
+    }
+  },
 
 
-  methods: {}
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      if (this.form.id == '') {
+        this.form.post('/clients').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/clients').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    }
+  }
 });
 
 /***/ }),
@@ -65222,7 +65256,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65277,12 +65311,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         return false;
       }
+    },
+    prospectId: function prospectId() {
+      return this.$route.params.id;
     }
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    if (this.prospectId) {
+      axios.get('/prospects/' + this.prospectId).then(function (response) {
+        _this.form.load(response.data);
+      });
+    }
+  },
 
 
-  methods: {}
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      if (this.form.id == '') {
+        this.form.post('/prospects').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/prospects').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    }
+  }
 });
 
 /***/ }),
@@ -69982,7 +70050,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70037,12 +70105,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         return false;
       }
+    },
+    fournisseurId: function fournisseurId() {
+      return this.$route.params.id;
     }
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    if (this.fournisseurId) {
+      axios.get('/fournisseurs/' + this.fournisseurId).then(function (response) {
+        _this.form.load(response.data);
+      });
+    }
+  },
 
 
-  methods: {}
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      if (this.form.id == '') {
+        this.form.post('/fournisseurs').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/fournisseurs').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    }
+  }
 });
 
 /***/ }),
@@ -70058,7 +70160,7 @@ var render = function() {
     [
       _c("part-panel", [
         _c("div", { attrs: { slot: "heading" }, slot: "heading" }, [
-          _vm._v("\n      Nouveau client\n    ")
+          _vm._v("\n      Nouveau fournisseur\n    ")
         ]),
         _vm._v(" "),
         _c(
@@ -72265,7 +72367,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72314,12 +72416,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         return false;
       }
+    },
+    categoryId: function categoryId() {
+      return this.$route.params.id;
     }
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    if (this.categoryId) {
+      axios.get('/categories/' + this.categoryId).then(function (response) {
+        _this.form.load(response.data);
+      });
+    }
+  },
 
 
-  methods: {}
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this2 = this;
+
+      if (this.form.id == '') {
+        this.form.post('/categories').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/categories').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this2.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    }
+  }
 });
 
 /***/ }),
@@ -74685,7 +74821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       form: new __WEBPACK_IMPORTED_MODULE_1__api_form_js__["a" /* Form */]({
         id: '',
         date: '',
-        prospect: '',
+        prospect_id: '',
         sujet: '',
         type: '',
         status: '',
@@ -74701,9 +74837,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         return false;
       }
+    },
+    rendezvouId: function rendezvouId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    if (this.rendezvouId) {
+      axios.get('/rendezvous/' + this.rendezvouId).then(function (response) {
+        _this.form.load(response.data);
+      });
     }
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     /* Datetimepicker Init*/
     $('#datetimepicker1').datetimepicker({
       format: 'DD-MM-YYYY LT',
@@ -74716,11 +74866,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }).on('dp.show', function () {
       if ($(this).data("DateTimePicker").date() === null) $(this).data("DateTimePicker").date(moment());
+    }).on('dp.change', function (event) {
+      _this2.form.date = $('#date').val();
     });
   },
 
 
-  methods: {}
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this3 = this;
+
+      if (this.form.id == '') {
+        this.form.post('/rendezvous').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this3.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/rendezvous').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this3.goback();
+        }).catch(function (errors) {
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    }
+  }
 });
 
 /***/ }),
@@ -74776,8 +74951,25 @@ var render = function() {
                         },
                         [
                           _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form["date"],
+                                expression: "form['date']"
+                              }
+                            ],
                             staticClass: "form-control",
-                            attrs: { type: "text" }
+                            attrs: { type: "text", name: "date", id: "date" },
+                            domProps: { value: _vm.form["date"] },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "date", $event.target.value)
+                              }
+                            }
                           }),
                           _vm._v(" "),
                           _c("span", { staticClass: "input-group-addon" }, [
@@ -74804,6 +74996,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("model-select", {
                           attrs: {
+                            name: "prospect_id",
                             options: [
                               { value: 1, text: "Prospect 1" },
                               { value: 2, text: "Prospect 2" },
@@ -74812,11 +75005,11 @@ var render = function() {
                             placeholder: "Choisir prospect.."
                           },
                           model: {
-                            value: _vm.form["prospect"],
+                            value: _vm.form["prospect_id"],
                             callback: function($$v) {
-                              _vm.$set(_vm.form, "prospect", $$v)
+                              _vm.$set(_vm.form, "prospect_id", $$v)
                             },
-                            expression: "form['prospect']"
+                            expression: "form['prospect_id']"
                           }
                         })
                       ],
@@ -74851,6 +75044,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("model-select", {
                           attrs: {
+                            name: "type",
                             options: [
                               { value: 1, text: "Faible" },
                               { value: 2, text: "Moyen" },
@@ -74887,6 +75081,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("model-select", {
                           attrs: {
+                            name: "status",
                             options: [
                               { value: 1, text: "En attente" },
                               { value: 2, text: "Passé" }

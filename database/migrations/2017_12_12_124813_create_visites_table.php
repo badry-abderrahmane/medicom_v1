@@ -17,9 +17,9 @@ class CreateVisitesTable extends Migration
           $table->increments('id');
           $table->string('date');
           $table->string('sujet');
-          $table->string('type')->default('Faible');
-          $table->string('status')->default('En attente');
-          $table->string('note')->default('Rien à signaler');
+          $table->string('type')->nullable()->default('Faible');
+          $table->string('status')->nullable()->default('En attente');
+          $table->string('note')->nullable()->default('Rien à signaler');
           $table->integer('client_id')->unsigned();
           $table->timestamps();
 

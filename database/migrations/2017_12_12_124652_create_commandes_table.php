@@ -15,8 +15,8 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('totalHT')->default('0');
-          $table->string('totalTTC')->default('0');
+          $table->string('totalHT')->nullable()->default('0');
+          $table->string('totalTTC')->nullable()->default('0');
           $table->integer('client_id')->unsigned();
           $table->timestamps();
 

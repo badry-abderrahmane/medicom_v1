@@ -26,7 +26,7 @@ Route::resource('devis', 'DevisController');
 Route::resource('commandes', 'CommandesController');
 Route::resource('factures', 'FacturesController');
 Route::resource('fournisseurs', 'FournisseursController');
-Route::resource('categories', 'CategoryController');
+Route::resource('categories', 'CategoriesController');
 Route::resource('produits', 'ProduitsController');
 Route::resource('bondecommandes', 'BondecommandesController');
 Route::resource('rendezvous', 'RendezvousController');

@@ -15,8 +15,8 @@ class CreateDevisTable extends Migration
     {
         Schema::create('devis', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('totalHT')->default('0');
-            $table->string('totalTTC')->default('0');
+            $table->string('totalHT')->nullable()->default('0');
+            $table->string('totalTTC')->nullable()->default('0');
             $table->integer('prospect_id')->unsigned();
             $table->timestamps();
 

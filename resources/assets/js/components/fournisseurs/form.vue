@@ -2,7 +2,7 @@
   <div>
     <part-panel>
       <div slot="heading">
-        Nouveau client
+        Nouveau fournisseur
       </div>
       <form v-on:submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)" slot="body">
         <div class="row">
@@ -41,13 +41,45 @@
               return false
             }
           },
+          fournisseurId: function(){
+            return this.$route.params.id
+          }
         },
         created(){
-
+          if (this.fournisseurId) {
+            axios.get('/fournisseurs/'+this.fournisseurId)
+              .then(response => {
+                this.form.load(response.data);
+            });
+          }
         },
 
         methods: {
+          onSubmit(){
+            if (this.form.id == '') {
+              this.form.post('/fournisseurs')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors =>{
+                  console.log(errors);
+                });
+            }else{
+              this.form.put('/fournisseurs')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors => {
+                  console.log(errors);
+                });
+            }
+          },
 
+          goback(){
+              this.$router.go(-1);
+          }
         }
     }
 </script>

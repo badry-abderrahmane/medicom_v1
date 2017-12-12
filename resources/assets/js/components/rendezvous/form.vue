@@ -11,7 +11,7 @@
 							<div class="form-group">
 								<label class="control-label mb-10 text-left">Date du rendez vous</label>
 								<div class="input-group date" id="datetimepicker1">
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" name="date" id="date" v-model="form['date']">
 									<span class="input-group-addon">
 										<span class="fa fa-calendar"></span>
 									</span>
@@ -21,7 +21,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="Fournisseur" class="control-label mb-10">Prospect</label>
-                <model-select :options="[{value:1,text:'Prospect 1'},{value:2,text:'Prospect 2'},{value:3,text:'Prospect 3'}]" v-model="form['prospect']" placeholder="Choisir prospect..">
+                <model-select name="prospect_id" :options="[{value:1,text:'Prospect 1'},{value:2,text:'Prospect 2'},{value:3,text:'Prospect 3'}]" v-model="form['prospect_id']" placeholder="Choisir prospect..">
                </model-select>
               </div>
             </div>
@@ -29,14 +29,14 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="Fournisseur" class="control-label mb-10">Type</label>
-                <model-select :options="[{value:1,text:'Faible'},{value:2,text:'Moyen'},{value:3,text:'Elevé'}]" v-model="form['type']" placeholder="Choisir prospect..">
+                <model-select name="type" :options="[{value:1,text:'Faible'},{value:2,text:'Moyen'},{value:3,text:'Elevé'}]" v-model="form['type']" placeholder="Choisir prospect..">
                </model-select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="Fournisseur" class="control-label mb-10">Status</label>
-                <model-select :options="[{value:1,text:'En attente'},{value:2,text:'Passé'}]" v-model="form['status']" placeholder="Choisir prospect..">
+                <model-select name="status" :options="[{value:1,text:'En attente'},{value:2,text:'Passé'}]" v-model="form['status']" placeholder="Choisir prospect..">
                </model-select>
               </div>
             </div>
@@ -63,7 +63,7 @@
             form : new Form({
               id:'',
               date: '',
-              prospect: '',
+              prospect_id: '',
               sujet: '',
               type: '',
               status: '',
@@ -79,6 +79,17 @@
               return false
             }
           },
+          rendezvouId: function(){
+            return this.$route.params.id
+          }
+        },
+        created(){
+          if (this.rendezvouId) {
+            axios.get('/rendezvous/'+this.rendezvouId)
+              .then(response => {
+                this.form.load(response.data);
+            });
+          }
         },
         mounted(){
           /* Datetimepicker Init*/
@@ -94,11 +105,37 @@
         		}).on('dp.show', function() {
         		if($(this).data("DateTimePicker").date() === null)
         			$(this).data("DateTimePicker").date(moment());
-  	       });
+  	       }).on('dp.change', (event) =>  {
+             this.form.date = $('#date').val();
+          });
         },
 
         methods: {
+          onSubmit(){
+            if (this.form.id == '') {
+              this.form.post('/rendezvous')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors =>{
+                  console.log(errors);
+                });
+            }else{
+              this.form.put('/rendezvous')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors => {
+                  console.log(errors);
+                });
+            }
+          },
 
+          goback(){
+              this.$router.go(-1);
+          }
         }
     }
 </script>

@@ -17,13 +17,13 @@ class CreateProduitsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('reference')->unique();
-            $table->string('delaisLivraison')->default('0');
-            $table->string('prixFournisseur')->default('0');
-            $table->string('prixVente')->default('0');
-            $table->string('quantiteMin')->default('0');
-            $table->string('quantiteMax')->default('0');
-            $table->string('note')->default('Rien à signaler.');
-            $table->string('img')->default('');
+            $table->string('delaisLivraison')->nullable()->default('0');
+            $table->string('prixFournisseur')->nullable()->default('0');
+            $table->string('prixVente')->nullable()->default('0');
+            $table->string('quantiteMin')->nullable()->default('0');
+            $table->string('quantiteMax')->nullable()->default('0');
+            $table->string('note')->nullable()->default('Rien à signaler.');
+            $table->string('img')->nullable()->default('');
             $table->integer('category_id')->unsigned();
             $table->integer('fournisseur_id')->unsigned();
 

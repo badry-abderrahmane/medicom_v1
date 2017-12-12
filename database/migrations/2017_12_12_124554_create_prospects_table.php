@@ -16,9 +16,9 @@ class CreateProspectsTable extends Migration
         Schema::create('prospects', function (Blueprint $table) {
           $table->increments('id');
           $table->string('name')->unique();
-          $table->string('phone')->default('Non spécifié');
-          $table->string('adress')->default('Non spécifiée');
-          $table->string('activite')->default('Non spécifiée');
+          $table->string('phone')->nullable()->default('Non spécifié');
+          $table->string('adress')->nullable()->default('Non spécifiée');
+          $table->string('activite')->nullable()->default('Non spécifiée');
           $table->timestamps();
         });
     }
