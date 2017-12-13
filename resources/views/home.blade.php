@@ -36,6 +36,7 @@
     </div>
 
     <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <!-- Data table JavaScript -->
     <script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -73,7 +74,7 @@
 	  <script src="vendors/chart.js/Chart.min.js"></script>
     <script src="vendors/bower_components/raphael/raphael.min.js"></script>
     <script src="vendors/bower_components/morris.js/morris.min.js"></script>
-    <script src="vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+
 	  <script src="vendors/bower_components/switchery/dist/switchery.min.js"></script>
   	<script src="dist/js/init.js"></script>
     <script type="text/javascript">

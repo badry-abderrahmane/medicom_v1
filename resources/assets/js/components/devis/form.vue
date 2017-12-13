@@ -7,12 +7,14 @@
       <div  slot="body">
         <div class="row">
           <div class="col-md-4">
-            <h5 class="text-muted mb-10 pull-right">Client :</h5>
+
           </div>
           <div class="col-md-4">
-            <div class="form-group">
-              <model-select :options="[{value:1,text:'client 1'},{value:2,text:'client 2'},{value:3,text:'client 3'}]" v-model="client_id" placeholder="Choisir client..">
+            <div v-bind:class="[ prospect_id == '' ? 'has-error' : '', 'form-group']">
+              <label for="Fournisseur" class="control-label mb-10">Client</label>
+              <model-select :options="[{value:1,text:'prospzct 1'},{value:2,text:'prospzct 2'},{value:3,text:'prospzct 3'}]" v-model="prospect_id">
              </model-select>
+             <div class="help-block" v-if="prospect_id == ''">Veuillez spécifier un prospect!</div>
             </div>
           </div>
         </div><br>
@@ -29,13 +31,15 @@
             <tr v-for="row,key in rows">
               <td>
                 <div class="form-group">
-                  <model-select :options="[{value:1,text:'pro 1'},{value:2,text:'pro 2'},{value:3,text:'pro 3'},{value:4,text:'Amine'}]" v-model="row.produit_id" placeholder="Choisir produit..">
+                  <model-select :options="[{value:1,text:'pro 1'},{value:2,text:'pro 2'},{value:3,text:'pro 3'},{value:4,text:'Amine'}]" v-model="row.produit_id" placeholder="Choisir produit.." >
                  </model-select>
+                 <div class="help-block text-danger" v-if="row.produit_id == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
               <td>
                 <div class="form-group">
                   <input v-model="row.quantite" type="number" class="form-control" @change="countTotale(key)" required>
+                  <div class="help-block text-danger" v-if="row.quantite == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
               <td>
@@ -49,11 +53,13 @@
               <td>
                 <div class="form-group">
                   <input v-model="row.prixHT" type="number" class="form-control" @change="countTotale(key)" step="0.1" required>
+                  <div class="help-block text-danger" v-if="row.prixHT == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <input v-model="row.totaleHT" type="number" class="form-control" disabled step="0.1" required>
+                  <input v-model="row.totalHT" type="number" class="form-control" disabled step="0.1" required>
+                  <div class="help-block text-danger" v-if="row.totalHT == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
               <td>
@@ -86,8 +92,8 @@
         </table>
         <div class="row"><br><br>
           <div class="col-md-4 col-sm-offset-4 col-sm-4">
-            <button class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Enregistrer</button>
-            <button class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;Annuler</button>
+            <button class="btn btn-primary" @click="submitThis"><i class="fa fa-save"></i>&nbsp;&nbsp;Enregistrer</button>
+            <button class="btn btn-danger" @click="goback"><i class="fa fa-close"></i>&nbsp;&nbsp;Annuler</button>
           </div>
         </div>
       </div>
@@ -104,15 +110,29 @@
       },
       data(){
         return {
+          errorsTable:{},
+          from:'',
           index: 0,
           rows: [
-            {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totaleHT: 200},
-            {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totaleHT: 1000},
-            {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totaleHT: 300},
+            // {id:1, produit_id: 1, quantite: 20,  prix: 10, prixHT:10, totalHT: 200},
+            // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
+            // {id:3, produit_id: 3, quantite: 30,  prix: 10, prixHT:10, totalHT: 300},
           ],
           devisTotalHT: 0,
           devisTotalTTC: 0,
-          client_id: '',
+          prospect_id: '',
+        }
+      },
+      computed:{
+        editing: function(){
+          if (this.$route.params.id) {
+            return true
+          }else{
+            return false
+          }
+        },
+        deviId: function(){
+          return this.$route.params.id
         }
       },
       created(){
@@ -124,8 +144,52 @@
           this.addRow();
           this.index = this.index-1
         }
+
+        if (this.deviId) {
+          axios.get('/devis/'+this.deviId)
+            .then(response => {
+              //this.form.load(response.data);
+          });
+        }
       },
       methods:{
+        submitThis(){
+          this.form = new Form({
+            id: this.deviId,
+            rows: this.rows,
+            totalHT: this.devisTotalHT,
+            totalTTC: this.devisTotalTTC,
+            prospect_id: this.prospect_id,
+          });
+          this.onSubmit();
+        },
+        onSubmit(){
+          if (this.form.id == '' || this.form.id == undefined) {
+            this.form.post('/devis')
+              .then(data => {
+                Event.$emit('publish-success-message', data.message);
+                this.goback();
+              })
+              .catch(errors =>{
+                Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+                console.log(errors);
+              });
+          }else{
+            this.form.put('/devis')
+              .then(data => {
+                Event.$emit('publish-success-message', data.message);
+                this.goback();
+              })
+              .catch(errors => {
+                Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+                console.log(errors);
+              });
+          }
+        },
+
+        goback(){
+            this.$router.go(-1);
+        },
         makeRow(key){
           if (this.index != key) {
             this.removeRow(key);
@@ -135,7 +199,7 @@
         },
         addRow(){
           this.index = this.index+1
-          this.rows.push({id:'', produit_id: '', quantite: '', prix: '', prixHT:'', totaleHT: ''});
+          this.rows.push({id:'', produit_id: '', quantite: '', prix: '', prixHT:'', totalHT: ''});
         },
         removeRow(key){
           this.index = this.index-1
@@ -146,16 +210,16 @@
         countTotale(key){
           if (this.rows[key].prixHT < this.rows[key].prix) {
             this.rows[key].prixHT = this.rows[key].prix;
-            this.rows[key].totaleHT = this.rows[key].prixHT*this.rows[key].quantite;
+            this.rows[key].totalHT = this.rows[key].prixHT*this.rows[key].quantite;
           }else{
-            this.rows[key].totaleHT = this.rows[key].prixHT*this.rows[key].quantite;
+            this.rows[key].totalHT = this.rows[key].prixHT*this.rows[key].quantite;
           }
           this.countTotalHT();
           this.countTotalTTC();
         },
         countTotalHT(){
           let count =  this.rows.reduce(function(total, item) {
-              return total + parseInt(item['totaleHT'])
+              return total + parseInt(item['totalHT'])
           }, 0)
           this.devisTotalHT = count;
         },

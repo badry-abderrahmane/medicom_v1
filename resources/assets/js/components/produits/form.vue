@@ -11,14 +11,14 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="Fournisseur" class="control-label mb-10">Categorie</label>
-              <model-select :options="[{value:1,text:'categorie 1'},{value:2,text:'categorie 2'},{value:3,text:'categorie 3'}]" v-model="form['fournisseur']" placeholder="Choisir client..">
+              <model-select :options="[{value:1,text:'categorie 1'},{value:2,text:'categorie 2'},{value:3,text:'categorie 3'}]" v-model="form['category_id']" placeholder="Choisir client..">
              </model-select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="Fournisseur" class="control-label mb-10">Fournisseur</label>
-              <model-select :options="[{value:1,text:'fournisseur 1'},{value:2,text:'fournisseur 2'},{value:3,text:'fournisseur 3'}]" v-model="form['fournisseur']" placeholder="Choisir client..">
+              <model-select :options="[{value:1,text:'fournisseur 1'},{value:2,text:'fournisseur 2'},{value:3,text:'fournisseur 3'}]" v-model="form['fournisseur_id']" placeholder="Choisir client..">
              </model-select>
             </div>
           </div>
@@ -61,7 +61,8 @@
               id:'',
               name: '',
               reference: '',
-              fournisseur: '',
+              fournisseur_id: '',
+              category_id: '',
               delaisLivraison: '',
               prixFournisseur: '',
               prixVente: '',
@@ -80,15 +81,61 @@
               return false
             }
           },
+          produitId: function(){
+            return this.$route.params.id
+          }
         },
         created(){
-
+          if (this.produitId) {
+            axios.get('/produits/'+this.produitId)
+              .then(response => {
+                this.form.load(response.data);
+            });
+          }
         },
 
         methods: {
-          processFile(event) {
-            this.form.img = event.target.files[0];
-          }
+          onSubmit(){
+            if (this.form.id == '') {
+              this.form.post('/produits')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors =>{
+                  console.log(errors);
+                });
+            }else{
+              this.form.put('/produits')
+                .then(data => {
+                  Event.$emit('publish-success-message', data.message);
+                  this.goback();
+                })
+                .catch(errors => {
+                  console.log(errors);
+                });
+            }
+          },
+
+          goback(){
+              this.$router.go(-1);
+          },
+
+          processFile(e) {
+              let files = e.target.files || e.dataTransfer.files;
+              if (!files.length)
+                  return;
+              this.createImage(files[0]);
+          },
+          createImage(file) {
+              let reader = new FileReader();
+              let vm = this;
+              reader.onload = (e) => {
+                  vm.form.img = e.target.result;
+                  vm.form.errors.clear('img');
+              };
+              reader.readAsDataURL(file);
+          },
         }
     }
 </script>

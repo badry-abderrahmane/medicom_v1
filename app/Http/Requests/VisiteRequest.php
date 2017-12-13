@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RendezvouRequest extends FormRequest
+class VisiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class RendezvouRequest extends FormRequest
             'sujet' => 'required',
             'type' => 'required',
             'status' => 'required',
-            'prospect_id' => 'required',
+            'client_id' => 'required',
           ];
     }
 }

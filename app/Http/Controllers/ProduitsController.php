@@ -6,6 +6,7 @@ use App\Produit;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProduitRequest;
 use Illuminate\Support\Facades\Response;
+use App\Services\UploadService;
 
 class ProduitsController extends Controller
 {
@@ -17,9 +18,25 @@ class ProduitsController extends Controller
           return $produits;
       }
 
-      public function store(ProduitRequest $request)
+      public function store(ProduitRequest $request,UploadService $upload)
       {
-          $produit = Produit::create($request->toArray());
+          $file = $request->get('img');
+          $imgs = $upload->create($file,'images/products/');
+          $requestNew = $request;
+          $requestNew->img = $imgs;
+            Produit::forceCreate([
+              'name'=> request('name'),
+              'reference'=> request('reference'),
+              'category_id'=> request('category_id'),
+              'fournisseur_id'=> request('fournisseur_id'),
+              'delaisLivraison'=> request('delaisLivraison'),
+              'prixFournisseur'=> request('prixFournisseur'),
+              'prixVente'=> request('prixVente'),
+              'quantiteMax'=> request('quantiteMax'),
+              'quantiteMin'=> request('quantiteMin'),
+              'img'=> $imgs,
+              'note'=> request('note'),
+            ]);
           return Response::json(['message' => 'Produit bien ajouté'], 200);
       }
 
