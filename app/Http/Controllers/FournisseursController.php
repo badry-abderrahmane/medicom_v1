@@ -29,8 +29,8 @@ class FournisseursController extends Controller
       public function show($id)
       {
           $fournisseur = Fournisseur::findOrfail($id);
-          // $fournisseur->rendezvous;
-          // $fournisseur->fournisseurs;
+          $fournisseur->produits;
+          $fournisseur->bondecommandes;
           return Response::json($fournisseur, 200);
       }
 

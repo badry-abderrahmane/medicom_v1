@@ -18,10 +18,10 @@
           <infos-fournisseur :fournisseur="fournisseur"></infos-fournisseur>
         </div>
         <div slot="2">
-          Produits
+          <infos-fournisseur-produits :produits="fournisseur.produits"></infos-fournisseur-produits>
         </div>
         <div slot="3">
-          Bon de commandes
+          <infos-fournisseur-bondecommandes :bondecommandes="fournisseur.bondecommandes"></infos-fournisseur-bondecommandes>
         </div>
       </part-panel-tabs>
     </div>
@@ -46,6 +46,9 @@ export default {
     axios.get('/fournisseurs/'+this.fournisseurId)
       .then(response => {
         this.fournisseur = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
     });
   }
 }

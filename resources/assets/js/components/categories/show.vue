@@ -18,7 +18,7 @@
           <infos-category :category="category"></infos-category>
         </div>
         <div slot="2">
-          Produits
+          <infos-category-produits :produits="category.produits"></infos-category-produits>
         </div>
       </part-panel-tabs>
     </div>
@@ -46,6 +46,9 @@ export default {
     axios.get('/categories/'+this.categoryId)
       .then(response => {
         this.category = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
     });
   }
 }

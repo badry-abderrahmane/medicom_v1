@@ -28,7 +28,7 @@ class CategoriesController extends Controller
       public function show($id)
       {
           $categorie = Category::findOrfail($id);
-          // $fournisseur->rendezvous;
+          $categorie->produits;
           // $fournisseur->fournisseurs;
           return Response::json($categorie, 200);
       }

@@ -18,10 +18,10 @@
           <infos-prospect :prospect="prospect"></infos-prospect>
         </div>
         <div slot="2">
-          rebdez
+          <infos-prospect-rendezvous :rendezvous="prospect.rendezvous"></infos-prospect-rendezvous>
         </div>
         <div slot="3">
-          Debvs
+          <infos-prospect-devis :devis="prospect.devis"></infos-prospect-devis>
         </div>
       </part-panel-tabs>
     </div>
@@ -49,6 +49,9 @@ export default {
     axios.get('/prospects/'+this.prospectId)
       .then(response => {
         this.prospect = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
     });
   }
 }
