@@ -33,14 +33,20 @@ export default {
   data(){
     return {
       tabs: [{id: '1', name: 'Informations'},{id: '2', name: 'Produits'},{id: '3', name: 'Bon de commandes'}],
-      fournisseur:{
-        id: '1',
-        name: 'Malcom X',
-        phone:'06 55 22 66 44',
-        adress:'16 Casablanca',
-        specialite:'Transp',
-      }
+      fournisseur:{}
     }
+  },
+
+  computed:{
+    fournisseurId: function(){
+      return this.$route.params.id
+    }
+  },
+  created(){
+    axios.get('/fournisseurs/'+this.fournisseurId)
+      .then(response => {
+        this.fournisseur = response.data;
+    });
   }
 }
 </script>

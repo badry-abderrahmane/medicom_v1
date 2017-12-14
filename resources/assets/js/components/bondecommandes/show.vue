@@ -9,7 +9,7 @@
           <div class="col-md-4">
             <div class="well" style="min-height:130px;">
               <p>Date de génération:</p>
-              <p><h6>{{ bondecommandes.created_at }}</h6></p>
+              <p><h6>{{ bondecommande.created_at }}</h6></p>
               <p>Date de livraison:</p>
               <br>
             </div>
@@ -18,7 +18,7 @@
           <div class="col-md-4">
             <div class="well" style="min-height:130px;">
               <p>Fournisseur:</p>
-              <p><h6>{{ fournisseur.name }}</h6></p>
+              <p><h6>{{ bondecommande.fournisseur.name }}</h6></p>
             </div>
           </div>
         </div>
@@ -50,17 +50,23 @@
     export default {
       data(){
         return {
-          rows: [
-            {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totaleHT: 200},
-            {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totaleHT: 1000},
-            {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totaleHT: 300},
-          ],
-          bondecommandesTotalHT: 0,
-          bondecommandesTotalTTC: 0,
-          fournisseur:{ name:'Company Name tes test test' },
-          bondecommandes:{ created_at:'22-10-2018'}
+          rows: [],
+          bondecommande:{}
         }
       },
+
+      computed:{
+        bondecommandeId: function(){
+          return this.$route.params.id
+        }
+      },
+      created(){
+        axios.get('/bondecommandes/'+this.bondecommandeId)
+          .then(response => {
+            this.bondecommande = response.data;
+            this.rows = response.data.bondecommandesproduits;
+        });
+      }
     }
 </script>
 

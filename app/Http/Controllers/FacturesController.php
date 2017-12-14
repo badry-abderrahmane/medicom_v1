@@ -39,10 +39,11 @@ class FacturesController extends Controller
 
       public function show($id)
       {
-          $facture = Facture::findOrfail($id);
-          // $facture->rendezvous;
-          // $facture->factures;
-          return Response::json($facture, 200);
+        $facture = Facture::findOrfail($id);
+        $facture->facturesproduits;
+        $facture->client;
+        // $facture->devis;
+        return Response::json($facture, 200);
       }
 
       public function update(FactureRequest $request, $id)

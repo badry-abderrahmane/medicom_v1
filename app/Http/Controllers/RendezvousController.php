@@ -26,8 +26,7 @@ class RendezvousController extends Controller
       public function show($id)
       {
           $rendezvou = Rendezvou::findOrfail($id);
-          // $rendezvou->rendezvous;
-          // $rendezvou->rendezvous;
+          $rendezvou->prospect;
           return Response::json($rendezvou, 200);
       }
 

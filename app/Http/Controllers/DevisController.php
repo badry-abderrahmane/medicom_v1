@@ -12,7 +12,7 @@ class DevisController extends Controller
 {
       public function index()
       {
-          $devis = Devi::all();
+          $devis = Devi::with('devisproduits')->get();
           $devis->filter->prospect;
           $devis->filter->devisproduits;
           foreach ($devis as $devi) {
@@ -40,7 +40,8 @@ class DevisController extends Controller
       public function show($id)
       {
           $devi = Devi::findOrfail($id);
-          // $devi->rendezvous;
+          $devi->devisproduits;
+          $devi->prospect;
           // $devi->devis;
           return Response::json($devi, 200);
       }

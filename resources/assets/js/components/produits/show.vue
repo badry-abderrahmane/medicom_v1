@@ -7,7 +7,7 @@
       <div  slot="body">
         <div class="row">
           <div class="col-md-4">
-            <img src="/dist/img/chair.jpg" alt="Image produit">
+            <img :src="produit.img" alt="Image produit" height="355px" width="285px">
           </div>
           <div class="col-md-8">
             <div class="row">
@@ -25,11 +25,11 @@
               </div>
               <div class="col-md-6"><br>
                 <h6 class="text-success">Categorie:</h6>
-                <h5>{{ produit.category }}</h5>
+                <h5>{{ produit.category.name }}</h5>
               </div>
               <div class="col-md-6"><br>
                 <h6 class="text-success">Fournisseur:</h6>
-                <h5>{{ produit.fournisseur }}</h5>
+                <h5>{{ produit.fournisseur.name }}</h5>
               </div>
               <div class="col-md-6"><br>
                 <h6 class="text-success">Delais de livraison:</h6>
@@ -77,21 +77,22 @@
     export default {
       data(){
         return {
-          produit:{
-            id: '1',
-            name: 'Produit 1',
-            reference: 'Ref3344',
-            category: 'Categ 1',
-            fournisseur: 'Fourni 1',
-            delaisLivraison: '10',
-            prixFournisseur: '100',
-            prixVente: '110',
-            quantiteMin: '100',
-            quantiteMax: '0',
-            note: 'Rien à spécifier.'
-          }
+          produit:{}
         }
       },
+
+      computed:{
+        produitId: function(){
+          return this.$route.params.id
+        }
+      },
+      created(){
+        axios.get('/produits/'+this.produitId)
+          .then(response => {
+            this.produit = response.data;
+        });
+      }
+
     }
 </script>
 

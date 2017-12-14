@@ -43,8 +43,8 @@ class ProduitsController extends Controller
       public function show($id)
       {
           $produit = Produit::findOrfail($id);
-          // $produit->rendezvous;
-          // $produit->produits;
+          $produit->category;
+          $produit->fournisseur;
           return Response::json($produit, 200);
       }
 

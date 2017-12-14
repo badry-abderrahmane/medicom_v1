@@ -38,10 +38,11 @@ class BondecommandesController extends Controller
 
       public function show($id)
       {
-          $bondecommande = Bondecommande::findOrfail($id);
-          // $bondecommande->rendezvous;
-          // $bondecommande->bondecommandes;
-          return Response::json($bondecommande, 200);
+        $bondecommande = Bondecommande::findOrfail($id);
+        $bondecommande->bondecommandesproduits;
+        $bondecommande->fournisseur;
+        // $bondecommande->devis;
+        return Response::json($bondecommande, 200);
       }
 
       public function update(BondecommandeRequest $request, $id)

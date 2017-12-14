@@ -45,14 +45,19 @@ export default {
         {id: '4', name: 'Devis'},
         {id: '5', name: 'Factures'}
       ],
-      client:{
-        id: '1',
-        name: 'Malcom X',
-        phone:'06 55 22 66 44',
-        adress:'16 Casablanca',
-        activite:'Transp',
-      }
+      client:{}
     }
+  },
+  computed:{
+    clientId: function(){
+      return this.$route.params.id
+    }
+  },
+  created(){
+    axios.get('/clients/'+this.clientId)
+      .then(response => {
+        this.client = response.data;
+    });
   }
 }
 </script>

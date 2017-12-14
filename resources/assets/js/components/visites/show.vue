@@ -40,9 +40,21 @@
     export default {
       data(){
         return {
-          visite:{ id:1, date: '12-05-2018 08:00', client: {name:'Prospect 1'}, status: 'En attente',type: 'Faible',sujet: 'Test machine', note : 'Rien à signaler'},
+          visite:'',
         }
       },
+
+      computed:{
+        visiteId: function(){
+          return this.$route.params.id
+        }
+      },
+      created(){
+        axios.get('/visites/'+this.visiteId)
+          .then(response => {
+            this.visite = response.data;
+        });
+      }
     }
 </script>
 

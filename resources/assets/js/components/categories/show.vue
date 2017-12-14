@@ -33,11 +33,20 @@ export default {
         {id: '1', name: 'Informations'},
         {id: '2', name: 'Produits'},
       ],
-      category:{
-        id: '1',
-        name: 'Categ 1',
-      }
+      category:{}
     }
+  },
+
+  computed:{
+    categoryId: function(){
+      return this.$route.params.id
+    }
+  },
+  created(){
+    axios.get('/categories/'+this.categoryId)
+      .then(response => {
+        this.category = response.data;
+    });
   }
 }
 </script>

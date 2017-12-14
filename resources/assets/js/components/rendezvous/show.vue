@@ -40,9 +40,21 @@
     export default {
       data(){
         return {
-          rendezvou:{ id:1, date: '12-05-2018 08:00', prospect: {name:'Prospect 1'}, status: 'En attente',type: 'Faible',sujet: 'Test machine', note : 'Rien à signaler'},
+          rendezvou:{},
         }
       },
+
+      computed:{
+        rendezvouId: function(){
+          return this.$route.params.id
+        }
+      },
+      created(){
+        axios.get('/rendezvous/'+this.rendezvouId)
+          .then(response => {
+            this.rendezvou = response.data;
+        });
+      }
     }
 </script>
 

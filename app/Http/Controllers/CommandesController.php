@@ -40,10 +40,11 @@ class CommandesController extends Controller
 
       public function show($id)
       {
-          $commande = Commande::findOrfail($id);
-          // $commande->rendezvous;
-          // $commande->commandes;
-          return Response::json($commande, 200);
+        $commande = Commande::findOrfail($id);
+        $commande->commandesproduits;
+        $commande->client;
+        // $commande->devis;
+        return Response::json($commande, 200);
       }
 
       public function update(CommandeRequest $request, $id)

@@ -26,7 +26,7 @@ class VisitesController extends Controller
       public function show($id)
       {
           $visite = Visite::findOrfail($id);
-          // $visite->visites;
+          $visite->client;
           // $visite->visites;
           return Response::json($visite, 200);
       }

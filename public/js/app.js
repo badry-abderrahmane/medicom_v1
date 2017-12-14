@@ -64758,7 +64758,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64810,14 +64810,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tabs: [{ id: '1', name: 'Informations' }, { id: '2', name: 'Rendez-vous' }, { id: '3', name: 'Visites' }, { id: '4', name: 'Devis' }, { id: '5', name: 'Factures' }],
-      client: {
-        id: '1',
-        name: 'Malcom X',
-        phone: '06 55 22 66 44',
-        adress: '16 Casablanca',
-        activite: 'Transp'
-      }
+      client: {}
     };
+  },
+
+  computed: {
+    clientId: function clientId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/clients/' + this.clientId).then(function (response) {
+      _this.client = response.data;
+    });
   }
 });
 
@@ -65911,7 +65918,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65957,14 +65964,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tabs: [{ id: '1', name: 'Informations' }, { id: '2', name: 'Rendez-vous' }, { id: '3', name: 'Devis' }],
-      prospect: {
-        id: '1',
-        name: 'Malcom X',
-        phone: '06 55 22 66 44',
-        adress: '16 Casablanca',
-        activite: 'Transp'
-      }
+      prospect: {}
     };
+  },
+
+  computed: {
+    prospectId: function prospectId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/prospects/' + this.prospectId).then(function (response) {
+      _this.prospect = response.data;
+    });
   }
 });
 
@@ -66752,7 +66766,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66836,12 +66850,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
-      client: { name: 'Company Name tes test test' },
-      devis: { created_at: '22-10-2018' }
+      rows: [],
+      devi: []
     };
+  },
+
+
+  computed: {
+    deviId: function deviId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/devis/' + this.deviId).then(function (response) {
+      _this.devi = response.data;
+      _this.rows = response.data.devisproduits;
+    });
   }
 });
 
@@ -66871,7 +66897,7 @@ var render = function() {
                   _c("p", [_vm._v("Date de génération:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.devis.created_at))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.devi.created_at))]),
                   _c("p"),
                   _vm._v(" "),
                   _c("p", [_vm._v("Date de livraison:")]),
@@ -66888,10 +66914,10 @@ var render = function() {
                 "div",
                 { staticClass: "well", staticStyle: { "min-height": "130px" } },
                 [
-                  _c("p", [_vm._v("Client:")]),
+                  _c("p", [_vm._v("Prospect:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.client.name))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.devi.prospect.name))]),
                   _c("p")
                 ]
               )
@@ -66928,7 +66954,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.prixHT) + " ")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(row.totaleHT) + " ")]),
+                      _c("td", [_vm._v(" " + _vm._s(row.totalHT) + " ")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.quantite) + " ")])
                     ])
@@ -66945,7 +66971,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalHT))
+                      _vm._v(_vm._s(_vm.devi.totalHT))
                     ])
                   ]),
                   _vm._v(" "),
@@ -66978,7 +67004,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalTTC))
+                      _vm._v(_vm._s(_vm.devi.totalTTC))
                     ])
                   ])
                 ],
@@ -68249,7 +68275,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68333,12 +68359,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
-      client: { name: 'Company Name tes test test' },
-      devis: { created_at: '22-10-2018' }
+      rows: [],
+      commande: []
     };
+  },
+
+
+  computed: {
+    commandeId: function commandeId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/commandes/' + this.commandeId).then(function (response) {
+      _this.commande = response.data;
+      _this.rows = response.data.commandesproduits;
+    });
   }
 });
 
@@ -68368,7 +68406,7 @@ var render = function() {
                   _c("p", [_vm._v("Date de génération:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.devis.created_at))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.commande.created_at))]),
                   _c("p"),
                   _vm._v(" "),
                   _c("p", [_vm._v("Date de livraison:")]),
@@ -68388,7 +68426,7 @@ var render = function() {
                   _c("p", [_vm._v("Client:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.client.name))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.commande.client.name))]),
                   _c("p")
                 ]
               )
@@ -68425,7 +68463,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.prixHT) + " ")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(row.totaleHT) + " ")]),
+                      _c("td", [_vm._v(" " + _vm._s(row.totalHT) + " ")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.quantite) + " ")])
                     ])
@@ -68442,7 +68480,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalHT))
+                      _vm._v(_vm._s(_vm.commande.totalHT))
                     ])
                   ]),
                   _vm._v(" "),
@@ -68475,7 +68513,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalTTC))
+                      _vm._v(_vm._s(_vm.commande.totalTTC))
                     ])
                   ])
                 ],
@@ -69740,7 +69778,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69824,12 +69862,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
-      client: { name: 'Company Name tes test test' },
-      devis: { created_at: '22-10-2018' }
+      rows: [],
+      facture: []
     };
+  },
+
+
+  computed: {
+    factureId: function factureId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/factures/' + this.factureId).then(function (response) {
+      _this.facture = response.data;
+      _this.rows = response.data.facturesproduits;
+    });
   }
 });
 
@@ -69859,7 +69909,7 @@ var render = function() {
                   _c("p", [_vm._v("Date de génération:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.devis.created_at))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.facture.created_at))]),
                   _c("p"),
                   _vm._v(" "),
                   _c("p", [_vm._v("Date de livraison:")]),
@@ -69879,7 +69929,7 @@ var render = function() {
                   _c("p", [_vm._v("Client:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.client.name))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.facture.client.name))]),
                   _c("p")
                 ]
               )
@@ -69916,7 +69966,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.prixHT) + " ")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(" " + _vm._s(row.totaleHT) + " ")]),
+                      _c("td", [_vm._v(" " + _vm._s(row.totalHT) + " ")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(" " + _vm._s(row.quantite) + " ")])
                     ])
@@ -69933,7 +69983,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalHT))
+                      _vm._v(_vm._s(_vm.facture.totalHT))
                     ])
                   ]),
                   _vm._v(" "),
@@ -69966,7 +70016,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { "border-left": "2px solid" } }, [
-                      _vm._v(_vm._s(_vm.devisTotalTTC))
+                      _vm._v(_vm._s(_vm.facture.totalTTC))
                     ])
                   ])
                 ],
@@ -71232,7 +71282,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -71278,14 +71328,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tabs: [{ id: '1', name: 'Informations' }, { id: '2', name: 'Produits' }, { id: '3', name: 'Bon de commandes' }],
-      fournisseur: {
-        id: '1',
-        name: 'Malcom X',
-        phone: '06 55 22 66 44',
-        adress: '16 Casablanca',
-        specialite: 'Transp'
-      }
+      fournisseur: {}
     };
+  },
+
+
+  computed: {
+    fournisseurId: function fournisseurId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/fournisseurs/' + this.fournisseurId).then(function (response) {
+      _this.fournisseur = response.data;
+    });
   }
 });
 
@@ -72075,7 +72133,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72118,11 +72176,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       tabs: [{ id: '1', name: 'Informations' }, { id: '2', name: 'Produits' }],
-      category: {
-        id: '1',
-        name: 'Categ 1'
-      }
+      category: {}
     };
+  },
+
+
+  computed: {
+    categoryId: function categoryId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/categories/' + this.categoryId).then(function (response) {
+      _this.category = response.data;
+    });
   }
 });
 
@@ -72867,7 +72936,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72957,20 +73026,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      produit: {
-        id: '1',
-        name: 'Produit 1',
-        reference: 'Ref3344',
-        category: 'Categ 1',
-        fournisseur: 'Fourni 1',
-        delaisLivraison: '10',
-        prixFournisseur: '100',
-        prixVente: '110',
-        quantiteMin: '100',
-        quantiteMax: '0',
-        note: 'Rien à spécifier.'
-      }
+      produit: {}
     };
+  },
+
+
+  computed: {
+    produitId: function produitId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/produits/' + this.produitId).then(function (response) {
+      _this.produit = response.data;
+    });
   }
 });
 
@@ -72994,7 +73065,12 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-4" }, [
               _c("img", {
-                attrs: { src: "/dist/img/chair.jpg", alt: "Image produit" }
+                attrs: {
+                  src: _vm.produit.img,
+                  alt: "Image produit",
+                  height: "355px",
+                  width: "285px"
+                }
               })
             ]),
             _vm._v(" "),
@@ -73037,7 +73113,7 @@ var render = function() {
                     _vm._v("Categorie:")
                   ]),
                   _vm._v(" "),
-                  _c("h5", [_vm._v(_vm._s(_vm.produit.category))])
+                  _c("h5", [_vm._v(_vm._s(_vm.produit.category.name))])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -73047,7 +73123,7 @@ var render = function() {
                     _vm._v("Fournisseur:")
                   ]),
                   _vm._v(" "),
-                  _c("h5", [_vm._v(_vm._s(_vm.produit.fournisseur))])
+                  _c("h5", [_vm._v(_vm._s(_vm.produit.fournisseur.name))])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -74115,7 +74191,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74178,12 +74254,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      bondecommandesTotalHT: 0,
-      bondecommandesTotalTTC: 0,
-      fournisseur: { name: 'Company Name tes test test' },
-      bondecommandes: { created_at: '22-10-2018' }
+      rows: [],
+      bondecommande: {}
     };
+  },
+
+
+  computed: {
+    bondecommandeId: function bondecommandeId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/bondecommandes/' + this.bondecommandeId).then(function (response) {
+      _this.bondecommande = response.data;
+      _this.rows = response.data.bondecommandesproduits;
+    });
   }
 });
 
@@ -74213,7 +74301,7 @@ var render = function() {
                   _c("p", [_vm._v("Date de génération:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.bondecommandes.created_at))]),
+                  _c("h6", [_vm._v(_vm._s(_vm.bondecommande.created_at))]),
                   _c("p"),
                   _vm._v(" "),
                   _c("p", [_vm._v("Date de livraison:")]),
@@ -74233,7 +74321,9 @@ var render = function() {
                   _c("p", [_vm._v("Fournisseur:")]),
                   _vm._v(" "),
                   _c("p"),
-                  _c("h6", [_vm._v(_vm._s(_vm.fournisseur.name))]),
+                  _c("h6", [
+                    _vm._v(_vm._s(_vm.bondecommande.fournisseur.name))
+                  ]),
                   _c("p")
                 ]
               )
@@ -75293,7 +75383,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -75346,8 +75436,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rendezvou: { id: 1, date: '12-05-2018 08:00', prospect: { name: 'Prospect 1' }, status: 'En attente', type: 'Faible', sujet: 'Test machine', note: 'Rien à signaler' }
+      rendezvou: {}
     };
+  },
+
+
+  computed: {
+    rendezvouId: function rendezvouId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/rendezvous/' + this.rendezvouId).then(function (response) {
+      _this.rendezvou = response.data;
+    });
   }
 });
 
@@ -76423,7 +76527,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -76476,8 +76580,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      visite: { id: 1, date: '12-05-2018 08:00', client: { name: 'Prospect 1' }, status: 'En attente', type: 'Faible', sujet: 'Test machine', note: 'Rien à signaler' }
+      visite: ''
     };
+  },
+
+
+  computed: {
+    visiteId: function visiteId() {
+      return this.$route.params.id;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/visites/' + this.visiteId).then(function (response) {
+      _this.visite = response.data;
+    });
   }
 });
 

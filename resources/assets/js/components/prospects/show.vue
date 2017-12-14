@@ -37,14 +37,19 @@ export default {
         {id: '2', name: 'Rendez-vous'},
         {id: '3', name: 'Devis'},
       ],
-      prospect:{
-        id: '1',
-        name: 'Malcom X',
-        phone:'06 55 22 66 44',
-        adress:'16 Casablanca',
-        activite:'Transp',
-      }
+      prospect:{}
     }
+  },
+  computed:{
+    prospectId: function(){
+      return this.$route.params.id
+    }
+  },
+  created(){
+    axios.get('/prospects/'+this.prospectId)
+      .then(response => {
+        this.prospect = response.data;
+    });
   }
 }
 </script>
