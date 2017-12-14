@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Facture extends Model
 {
     protected $fillable = [
-      'totalHT', 'totalTTC','client_id'
+      'totalHT', 'totalTTC','client_id','status'
     ];
 
     public function client(){

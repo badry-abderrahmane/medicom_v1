@@ -29,7 +29,7 @@
               name: '',
               phone: '',
               adress: '',
-              activite: '',
+              specialite: '',
             }),
           }
         },

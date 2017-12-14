@@ -5,7 +5,7 @@
         <tr slot="thead">
           <th width="12%">#ID</th>
           <th width="20%">Nom</th>
-          <th width="10%">Type</th>
+          <th width="10%">Spécialité</th>
           <th width="10%">Produits</th>
           <th>Telephone</th>
           <th>Adresse</th>
@@ -14,7 +14,7 @@
         <tr slot="tbody" v-for="fournisseur in fournisseurs">
           <td>{{ fournisseur.id }}</td>
           <td>{{ fournisseur.name }}</td>
-          <td>{{ fournisseur.type }}</td>
+          <td>{{ fournisseur.specialite }}</td>
           <td>{{ fournisseur.produits.count }}</td>
           <td>{{ fournisseur.phone }}</td>
           <td>{{ fournisseur.adress }}</td>

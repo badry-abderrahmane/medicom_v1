@@ -14,8 +14,8 @@
           <td>{{ devi.id }}</td>
           <td>{{ devi.prospect.name }}</td>
           <td>
-            <span v-if="devi.status" class="label label-success block">Livré</span>
-            <span v-else class="label label-danger block">En attente</span>
+            <span v-if="devi.status == '1'" class="label label-danger block">En attente</span>
+            <span v-if="devi.status == '2'" class="label label-success block">Livré</span>
           </td>
           <td>{{ devi.devisproduits.count }}</td>
           <td>{{ devi.totalHT }}</td>

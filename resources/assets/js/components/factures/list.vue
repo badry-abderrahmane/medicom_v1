@@ -14,12 +14,12 @@
           <td>{{ facture.id }}</td>
           <td>{{ facture.client.name }}</td>
           <td>
-            <span v-if="facture.status == '0'" class="label label-danger block">En attente</span>
-            <span v-if="facture.status == '1'" class="label label-warning block">Non Payé</span>
-            <span v-if="facture.status == '2'" class="label label-success block">Payé</span>
+            <span v-if="facture.status == '1'" class="label label-danger block">En attente</span>
+            <span v-if="facture.status == '2'" class="label label-warning block">Non Payée</span>
+            <span v-if="facture.status == '3'" class="label label-success block">Payée</span>
           </td>
           <td>{{ facture.facturesproduits.count }}</td>
-          <td>{{ facture.totaleHT }}</td>
+          <td>{{ facture.totalHT }}</td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/show/`+facture.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/edit/`+facture.id })"><i class="fa fa-pencil"></i></button>

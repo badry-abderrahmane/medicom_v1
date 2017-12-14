@@ -16,6 +16,7 @@ class CreateBondecommandesTable extends Migration
         Schema::create('bondecommandes', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('fournisseur_id')->unsigned();
+          $table->string('status')->default('1');
           $table->timestamps();
 
           $table->foreign('fournisseur_id')

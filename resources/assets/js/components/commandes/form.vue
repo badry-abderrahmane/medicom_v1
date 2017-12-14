@@ -6,14 +6,24 @@
       </div>
       <div  slot="body">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <h5 class="text-muted mb-10 pull-right">Client :</h5>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div v-bind:class="[ client_id == '' ? 'has-error' : '', 'form-group']">
               <model-select :options="[{value:1,text:'client 1'},{value:2,text:'client 2'},{value:3,text:'client 3'}]" v-model="client_id" placeholder="Choisir client..">
              </model-select>
              <div class="help-block" v-if="client_id == ''">Veuillez spécifier un client!</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5 class="text-muted mb-10 pull-right">Status :</h5>
+          </div>
+          <div class="col-md-3">
+            <div v-bind:class="[ status == '' ? 'has-error' : '', 'form-group']">
+              <model-select name="status" :options="[{value:1,text:'En attente'},{value:2,text:'Livré'}]" v-model="status" placeholder="Choisir status..">
+             </model-select>
+             <div class="help-block" v-if="status == ''">Veuillez spécifier un status!</div>
             </div>
           </div>
         </div><br>
@@ -111,11 +121,8 @@
         return {
           from:'',
           index: 0,
-          rows: [
-            // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totalHT: 200},
-            // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
-            // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totalHT: 300},
-          ],
+          rows: [],
+          status:'',
           commandesTotalHT: 0,
           commandesTotalTTC: 0,
           client_id: '',
@@ -158,6 +165,7 @@
             totalHT: this.commandesTotalHT,
             totalTTC: this.commandesTotalTTC,
             client_id: this.client_id,
+            status: this.status,
           });
           this.onSubmit();
         },

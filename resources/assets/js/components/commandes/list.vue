@@ -14,8 +14,8 @@
           <td>{{ commande.id }}</td>
           <td>{{ commande.client.name }}</td>
           <td>
-            <span v-if="commande.status" class="label label-success block">Livré</span>
-            <span v-else class="label label-danger block">En attente</span>
+            <span v-if="commande.status == '1'" class="label label-danger block">En attente</span>
+            <span v-if="commande.status == '2'" class="label label-success block">Livré</span>
           </td>
           <td>{{ commande.commandesproduits.count }}</td>
           <td>{{ commande.totalHT }}</td>

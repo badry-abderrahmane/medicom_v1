@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bondecommande extends Model
 {
       protected $fillable = [
-        'fournisseur_id'
+        'fournisseur_id','status'
       ];
 
       public function fournisseur(){

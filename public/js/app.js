@@ -60693,13 +60693,17 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(devi.prospect.name))]),
                 _vm._v(" "),
                 _c("td", [
-                  devi.status
+                  devi.status == "1"
+                    ? _c("span", { staticClass: "label label-danger block" }, [
+                        _vm._v("En attente")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  devi.status == "2"
                     ? _c("span", { staticClass: "label label-success block" }, [
                         _vm._v("Livré")
                       ])
-                    : _c("span", { staticClass: "label label-danger block" }, [
-                        _vm._v("En attente")
-                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(devi.devisproduits.count))]),
@@ -60956,13 +60960,17 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(commande.client.name))]),
                 _vm._v(" "),
                 _c("td", [
-                  commande.status
+                  commande.status == "1"
+                    ? _c("span", { staticClass: "label label-danger block" }, [
+                        _vm._v("En attente")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  commande.status == "2"
                     ? _c("span", { staticClass: "label label-success block" }, [
                         _vm._v("Livré")
                       ])
-                    : _c("span", { staticClass: "label label-danger block" }, [
-                        _vm._v("En attente")
-                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(commande.commandesproduits.count))]),
@@ -61226,28 +61234,28 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(facture.client.name))]),
                 _vm._v(" "),
                 _c("td", [
-                  facture.status == "0"
+                  facture.status == "1"
                     ? _c("span", { staticClass: "label label-danger block" }, [
                         _vm._v("En attente")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  facture.status == "1"
+                  facture.status == "2"
                     ? _c("span", { staticClass: "label label-warning block" }, [
-                        _vm._v("Non Payé")
+                        _vm._v("Non Payée")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  facture.status == "2"
+                  facture.status == "3"
                     ? _c("span", { staticClass: "label label-success block" }, [
-                        _vm._v("Payé")
+                        _vm._v("Payée")
                       ])
                     : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(facture.facturesproduits.count))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(facture.totaleHT))]),
+                _c("td", [_vm._v(_vm._s(facture.totalHT))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -61488,7 +61496,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "20%" } }, [_vm._v("Nom")]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "10%" } }, [_vm._v("Type")]),
+              _c("th", { attrs: { width: "10%" } }, [_vm._v("Spécialité")]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [_vm._v("Produits")]),
               _vm._v(" "),
@@ -61505,7 +61513,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fournisseur.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(fournisseur.type))]),
+                _c("td", [_vm._v(_vm._s(fournisseur.specialite))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(fournisseur.produits.count))]),
                 _vm._v(" "),
@@ -62314,13 +62322,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", { staticStyle: { "text-align": "center" } }, [
-                  bondecommande.status
+                  bondecommande.status == "1"
+                    ? _c("span", { staticClass: "label label-danger block" }, [
+                        _vm._v("En attente")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  bondecommande.status == "2"
                     ? _c("span", { staticClass: "label label-success block" }, [
                         _vm._v("Livré")
                       ])
-                    : _c("span", { staticClass: "label label-danger block" }, [
-                        _vm._v("En attente")
-                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", { staticStyle: { "text-align": "center" } }, [
@@ -67168,6 +67180,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67186,7 +67207,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       ],
       devisTotalHT: 0,
       devisTotalTTC: 0,
-      prospect_id: ''
+      prospect_id: '',
+      status: ''
     };
   },
 
@@ -67226,7 +67248,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         rows: this.rows,
         totalHT: this.devisTotalHT,
         totalTTC: this.devisTotalTTC,
-        prospect_id: this.prospect_id
+        prospect_id: this.prospect_id,
+        status: this.status
       });
       this.onSubmit();
     },
@@ -67316,9 +67339,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
+                _vm._v("Prospect :")
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _c(
                 "div",
                 {
@@ -67328,15 +67355,6 @@ var render = function() {
                   ]
                 },
                 [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "control-label mb-10",
-                      attrs: { for: "Fournisseur" }
-                    },
-                    [_vm._v("Client")]
-                  ),
-                  _vm._v(" "),
                   _c("model-select", {
                     attrs: {
                       options: [
@@ -67357,6 +67375,45 @@ var render = function() {
                   _vm.prospect_id == ""
                     ? _c("div", { staticClass: "help-block" }, [
                         _vm._v("Veuillez spécifier un prospect!")
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
+                _vm._v("Status :")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { class: [_vm.status == "" ? "has-error" : "", "form-group"] },
+                [
+                  _c("model-select", {
+                    attrs: {
+                      name: "status",
+                      options: [
+                        { value: 1, text: "En attente" },
+                        { value: 2, text: "Livré" }
+                      ],
+                      placeholder: "Choisir status.."
+                    },
+                    model: {
+                      value: _vm.status,
+                      callback: function($$v) {
+                        _vm.status = $$v
+                      },
+                      expression: "status"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.status == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un status!")
                       ])
                     : _vm._e()
                 ],
@@ -68619,6 +68676,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -68630,11 +68697,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       from: '',
       index: 0,
-      rows: [
-        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totalHT: 200},
-        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
-        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totalHT: 300},
-      ],
+      rows: [],
+      status: '',
       commandesTotalHT: 0,
       commandesTotalTTC: 0,
       client_id: ''
@@ -68677,7 +68741,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         rows: this.rows,
         totalHT: this.commandesTotalHT,
         totalTTC: this.commandesTotalTTC,
-        client_id: this.client_id
+        client_id: this.client_id,
+        status: this.status
       });
       this.onSubmit();
     },
@@ -68767,13 +68832,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-2" }, [
               _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
                 _vm._v("Client :")
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _c(
                 "div",
                 {
@@ -68801,6 +68866,45 @@ var render = function() {
                   _vm.client_id == ""
                     ? _c("div", { staticClass: "help-block" }, [
                         _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
+                _vm._v("Status :")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { class: [_vm.status == "" ? "has-error" : "", "form-group"] },
+                [
+                  _c("model-select", {
+                    attrs: {
+                      name: "status",
+                      options: [
+                        { value: 1, text: "En attente" },
+                        { value: 2, text: "Livré" }
+                      ],
+                      placeholder: "Choisir status.."
+                    },
+                    model: {
+                      value: _vm.status,
+                      callback: function($$v) {
+                        _vm.status = $$v
+                      },
+                      expression: "status"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.status == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un status!")
                       ])
                     : _vm._e()
                 ],
@@ -70063,6 +70167,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -70074,14 +70188,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       from: '',
       index: 0,
-      rows: [
-        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totalHT: 200},
-        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
-        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totalHT: 300},
-      ],
+      rows: [],
       facturesTotalHT: 0,
       facturesTotalTTC: 0,
-      client_id: ''
+      client_id: '',
+      status: ''
     };
   },
 
@@ -70121,7 +70232,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         rows: this.rows,
         totalHT: this.facturesTotalHT,
         totalTTC: this.facturesTotalTTC,
-        client_id: this.client_id
+        client_id: this.client_id,
+        status: this.status
       });
       this.onSubmit();
     },
@@ -70211,13 +70323,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-2" }, [
               _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
                 _vm._v("Client :")
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _c(
                 "div",
                 {
@@ -70245,6 +70357,46 @@ var render = function() {
                   _vm.client_id == ""
                     ? _c("div", { staticClass: "help-block" }, [
                         _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
+                _vm._v("Status :")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { class: [_vm.status == "" ? "has-error" : "", "form-group"] },
+                [
+                  _c("model-select", {
+                    attrs: {
+                      name: "status",
+                      options: [
+                        { value: 1, text: "En attente" },
+                        { value: 2, text: "Non Payée" },
+                        { value: 3, text: "Payée" }
+                      ],
+                      placeholder: "Choisir status.."
+                    },
+                    model: {
+                      value: _vm.status,
+                      callback: function($$v) {
+                        _vm.status = $$v
+                      },
+                      expression: "status"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.status == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un status!")
                       ])
                     : _vm._e()
                 ],
@@ -71298,7 +71450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: '',
         phone: '',
         adress: '',
-        activite: ''
+        specialite: ''
       })
     };
   },
@@ -74265,6 +74417,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -74276,12 +74438,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       from: '',
       index: 0,
-      rows: [
-        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totaleHT: 200},
-        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totaleHT: 1000},
-        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totaleHT: 300},
-      ],
-      fournisseur_id: ''
+      rows: [],
+      fournisseur_id: '',
+      status: ''
     };
   },
 
@@ -74317,7 +74476,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.form = new __WEBPACK_IMPORTED_MODULE_1__api_form_js__["a" /* Form */]({
         id: this.commandeId,
         rows: this.rows,
-        fournisseur_id: this.fournisseur_id
+        fournisseur_id: this.fournisseur_id,
+        status: this.status
       });
       this.onSubmit();
     },
@@ -74407,13 +74567,13 @@ var render = function() {
         _vm._v(" "),
         _c("div", { attrs: { slot: "body" }, slot: "body" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-2" }, [
               _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
                 _vm._v("Fournisseur :")
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _c(
                 "div",
                 {
@@ -74444,6 +74604,45 @@ var render = function() {
                   _vm.fournisseur_id == ""
                     ? _c("div", { staticClass: "help-block" }, [
                         _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("h5", { staticClass: "text-muted mb-10 pull-right" }, [
+                _vm._v("Status :")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { class: [_vm.status == "" ? "has-error" : "", "form-group"] },
+                [
+                  _c("model-select", {
+                    attrs: {
+                      name: "status",
+                      options: [
+                        { value: 1, text: "En attente" },
+                        { value: 2, text: "Livré" }
+                      ],
+                      placeholder: "Choisir status.."
+                    },
+                    model: {
+                      value: _vm.status,
+                      callback: function($$v) {
+                        _vm.status = $$v
+                      },
+                      expression: "status"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.status == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un status!")
                       ])
                     : _vm._e()
                 ],

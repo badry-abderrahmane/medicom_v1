@@ -13,8 +13,8 @@
           <td style="text-align: center;">{{ bondecommande.id }}</td>
           <td style="text-align: center;">{{ bondecommande.fournisseur.name }}</td>
           <td style="text-align: center;">
-            <span v-if="bondecommande.status" class="label label-success block">Livré</span>
-            <span v-else class="label label-danger block">En attente</span>
+            <span v-if="bondecommande.status == '1'" class="label label-danger block">En attente</span>
+            <span v-if="bondecommande.status == '2'" class="label label-success block">Livré</span>
           </td>
           <td style="text-align: center;">{{ bondecommande.bondecommandesproduits.count }}</td>
           <td>

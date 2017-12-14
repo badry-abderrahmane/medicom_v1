@@ -18,6 +18,7 @@ class CreateFacturesTable extends Migration
           $table->string('totalHT')->nullable()->default('0');
           $table->string('totalTTC')->nullable()->default('0');
           $table->integer('client_id')->unsigned();
+          $table->string('status')->default('1');
           $table->timestamps();
 
           $table->foreign('client_id')

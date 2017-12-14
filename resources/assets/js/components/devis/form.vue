@@ -6,15 +6,24 @@
       </div>
       <div  slot="body">
         <div class="row">
-          <div class="col-md-4">
-
+          <div class="col-md-2">
+            <h5 class="text-muted mb-10 pull-right">Prospect :</h5>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div v-bind:class="[ prospect_id == '' ? 'has-error' : '', 'form-group']">
-              <label for="Fournisseur" class="control-label mb-10">Client</label>
               <model-select :options="[{value:1,text:'prospzct 1'},{value:2,text:'prospzct 2'},{value:3,text:'prospzct 3'}]" v-model="prospect_id">
              </model-select>
              <div class="help-block" v-if="prospect_id == ''">Veuillez spécifier un prospect!</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5 class="text-muted mb-10 pull-right">Status :</h5>
+          </div>
+          <div class="col-md-3">
+            <div v-bind:class="[ status == '' ? 'has-error' : '', 'form-group']">
+              <model-select name="status" :options="[{value:1,text:'En attente'},{value:2,text:'Livré'}]" v-model="status" placeholder="Choisir status..">
+             </model-select>
+             <div class="help-block" v-if="status == ''">Veuillez spécifier un status!</div>
             </div>
           </div>
         </div><br>
@@ -120,6 +129,7 @@
           devisTotalHT: 0,
           devisTotalTTC: 0,
           prospect_id: '',
+          status:'',
         }
       },
       computed:{
@@ -159,6 +169,7 @@
             totalHT: this.devisTotalHT,
             totalTTC: this.devisTotalTTC,
             prospect_id: this.prospect_id,
+            status: this.status,
           });
           this.onSubmit();
         },
