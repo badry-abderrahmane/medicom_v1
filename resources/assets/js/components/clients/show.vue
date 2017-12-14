@@ -18,16 +18,13 @@
           <infos-client :client="client"></infos-client>
         </div>
         <div slot="2">
-          rebdez
+          <infos-client-visites :visites="client.visites"></infos-client-visites>
         </div>
         <div slot="3">
-          Visites
+          <infos-client-commandes :commandes="client.commandes"></infos-client-commandes>
         </div>
         <div slot="4">
-          Debv
-        </div>
-        <div slot="5">
-          Fact
+          <infos-client-factures :factures="client.factures"></infos-client-factures>
         </div>
       </part-panel-tabs>
     </div>
@@ -40,10 +37,9 @@ export default {
     return {
       tabs: [
         {id: '1', name: 'Informations'},
-        {id: '2', name: 'Rendez-vous'},
-        {id: '3', name: 'Visites'},
-        {id: '4', name: 'Devis'},
-        {id: '5', name: 'Factures'}
+        {id: '2', name: 'Visites'},
+        {id: '3', name: 'Commandes'},
+        {id: '4', name: 'Factures'}
       ],
       client:{}
     }
@@ -57,6 +53,9 @@ export default {
     axios.get('/clients/'+this.clientId)
       .then(response => {
         this.client = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
     });
   }
 }

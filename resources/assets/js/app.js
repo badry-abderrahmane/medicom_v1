@@ -142,7 +142,7 @@ const app = new Vue({
     *
     **/
     datatableThis(tableid){
-      $('#datatable').DataTable({
+      $('table.display').DataTable({
         "bDestroy": true,
         dom: 'Bfrtip',
         buttons: [

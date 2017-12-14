@@ -1,5 +1,5 @@
 <template lang="html">
-  <table id="datatable">
+  <table id="datatable" class="display">
     <thead>
       <slot name="thead"></slot>
     </thead>

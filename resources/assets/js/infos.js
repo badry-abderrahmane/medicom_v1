@@ -4,6 +4,11 @@
 *
 */
 Vue.component('infos-client', require('./components/clients/infos.vue'));
+Vue.component('infos-client-visites', require('./components/clients/visites.vue'));
+Vue.component('infos-client-commandes', require('./components/clients/commandes.vue'));
+Vue.component('infos-client-factures', require('./components/clients/factures.vue'));
+
+
 Vue.component('infos-prospect', require('./components/prospects/infos.vue'));
 // Vue.component('infos-devis', require('./components/devis/infos.vue'));
 // Vue.component('infos-commande', require('./components/commandes/infos.vue'));

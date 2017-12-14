@@ -12,9 +12,8 @@ class ClientsController extends Controller
       public function index()
       {
           $clients = Client::all();
-          $clients->filter->rendezvous;
           $clients->filter->visites;
-          $clients->filter->devis;
+          $clients->filter->commandes;
           $clients->filter->factures;
           return $clients;
       }
@@ -28,9 +27,8 @@ class ClientsController extends Controller
       public function show($id)
       {
           $client = Client::findOrfail($id);
-          $client->rendezvous;
           $client->visites;
-          $client->devis;
+          $client->commandes;
           $client->factures;
           return Response::json($client, 200);
       }
