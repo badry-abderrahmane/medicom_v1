@@ -67075,7 +67075,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      errorsTable: {},
       from: '',
       index: 0,
       rows: [
@@ -68513,6 +68512,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -68522,12 +68526,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      from: '',
       index: 0,
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
+      rows: [
+        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totalHT: 200},
+        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
+        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totalHT: 300},
+      ],
+      commandesTotalHT: 0,
+      commandesTotalTTC: 0,
       client_id: ''
     };
+  },
+
+  computed: {
+    editing: function editing() {
+      if (this.$route.params.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    commandeId: function commandeId() {
+      return this.$route.params.id;
+    }
   },
   created: function created() {
     if (this.rows.length) {
@@ -68538,9 +68560,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.addRow();
       this.index = this.index - 1;
     }
+
+    if (this.commandeId) {
+      axios.get('/commandes/' + this.commandeId).then(function (response) {
+        //this.form.load(response.data);
+      });
+    }
   },
 
   methods: {
+    submitThis: function submitThis() {
+      this.form = new __WEBPACK_IMPORTED_MODULE_1__api_form_js__["a" /* Form */]({
+        id: this.commandeId,
+        rows: this.rows,
+        totalHT: this.commandesTotalHT,
+        totalTTC: this.commandesTotalTTC,
+        client_id: this.client_id
+      });
+      this.onSubmit();
+    },
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      if (this.form.id == '' || this.form.id == undefined) {
+        this.form.post('/commandes').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/commandes').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    },
     makeRow: function makeRow(key) {
       if (this.index != key) {
         this.removeRow(key);
@@ -68550,7 +68612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     addRow: function addRow() {
       this.index = this.index + 1;
-      this.rows.push({ id: '', produit_id: '', quantite: '', prix: '', prixHT: '', totaleHT: '' });
+      this.rows.push({ id: '', produit_id: '', quantite: '', prix: '', prixHT: '', totalHT: '' });
     },
     removeRow: function removeRow(key) {
       this.index = this.index - 1;
@@ -68561,23 +68623,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     countTotale: function countTotale(key) {
       if (this.rows[key].prixHT < this.rows[key].prix) {
         this.rows[key].prixHT = this.rows[key].prix;
-        this.rows[key].totaleHT = this.rows[key].prixHT * this.rows[key].quantite;
+        this.rows[key].totalHT = this.rows[key].prixHT * this.rows[key].quantite;
       } else {
-        this.rows[key].totaleHT = this.rows[key].prixHT * this.rows[key].quantite;
+        this.rows[key].totalHT = this.rows[key].prixHT * this.rows[key].quantite;
       }
       this.countTotalHT();
       this.countTotalTTC();
     },
     countTotalHT: function countTotalHT() {
       var count = this.rows.reduce(function (total, item) {
-        return total + parseInt(item['totaleHT']);
+        return total + parseInt(item['totalHT']);
       }, 0);
-      this.devisTotalHT = count;
+      this.commandesTotalHT = count;
     },
     countTotalTTC: function countTotalTTC() {
-      var sum = this.devisTotalHT;
+      var sum = this.commandesTotalHT;
       var tva = sum * 20 / 100;
-      this.devisTotalTTC = sum + tva;
+      this.commandesTotalTTC = sum + tva;
     },
     insertPrix: function insertPrix(key) {
       this.rows[key].prixHT = this.rows[key].prix;
@@ -68612,7 +68674,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c(
                 "div",
-                { staticClass: "form-group" },
+                {
+                  class: [_vm.client_id == "" ? "has-error" : "", "form-group"]
+                },
                 [
                   _c("model-select", {
                     attrs: {
@@ -68630,7 +68694,13 @@ var render = function() {
                       },
                       expression: "client_id"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.client_id == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
                 ],
                 1
               )
@@ -68686,7 +68756,19 @@ var render = function() {
                                 },
                                 expression: "row.produit_id"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            row.produit_id == ""
+                              ? _c(
+                                  "div",
+                                  { staticClass: "help-block text-danger" },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-exclamation-triangle"
+                                    })
+                                  ]
+                                )
+                              : _vm._e()
                           ],
                           1
                         )
@@ -68717,7 +68799,19 @@ var render = function() {
                                 _vm.$set(row, "quantite", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.quantite == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -68799,7 +68893,19 @@ var render = function() {
                                 _vm.$set(row, "prixHT", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.prixHT == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -68810,8 +68916,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: row.totaleHT,
-                                expression: "row.totaleHT"
+                                value: row.totalHT,
+                                expression: "row.totalHT"
                               }
                             ],
                             staticClass: "form-control",
@@ -68821,16 +68927,28 @@ var render = function() {
                               step: "0.1",
                               required: ""
                             },
-                            domProps: { value: row.totaleHT },
+                            domProps: { value: row.totalHT },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(row, "totaleHT", $event.target.value)
+                                _vm.$set(row, "totalHT", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.totalHT == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -68875,7 +68993,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v("Totale(HT)")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.devisTotalHT))]),
+                    _c("td", [_vm._v(_vm._s(_vm.commandesTotalHT))]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { visibility: "hidden" } })
                   ]),
@@ -68901,7 +69019,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v("Totale(TTC)")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.devisTotalTTC))]),
+                    _c("td", [_vm._v(_vm._s(_vm.commandesTotalTTC))]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { visibility: "hidden" } })
                   ])
@@ -68916,15 +69034,23 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4 col-sm-offset-4 col-sm-4" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-save" }),
-                _vm._v("  Enregistrer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.submitThis }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-save" }),
+                  _vm._v("  Enregistrer")
+                ]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger" }, [
-                _c("i", { staticClass: "fa fa-close" }),
-                _vm._v("  Annuler")
-              ])
+              _c(
+                "button",
+                { staticClass: "btn btn-danger", on: { click: _vm.goback } },
+                [_c("i", { staticClass: "fa fa-close" }), _vm._v("  Annuler")]
+              )
             ])
           ])
         ])
@@ -69830,6 +69956,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -69839,12 +69970,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      from: '',
       index: 0,
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
+      rows: [
+        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totalHT: 200},
+        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
+        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totalHT: 300},
+      ],
+      facturesTotalHT: 0,
+      facturesTotalTTC: 0,
       client_id: ''
     };
+  },
+
+  computed: {
+    editing: function editing() {
+      if (this.$route.params.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    factureId: function factureId() {
+      return this.$route.params.id;
+    }
   },
   created: function created() {
     if (this.rows.length) {
@@ -69855,9 +70004,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.addRow();
       this.index = this.index - 1;
     }
+
+    if (this.factureId) {
+      axios.get('/factures/' + this.factureId).then(function (response) {
+        //this.form.load(response.data);
+      });
+    }
   },
 
   methods: {
+    submitThis: function submitThis() {
+      this.form = new __WEBPACK_IMPORTED_MODULE_1__api_form_js__["a" /* Form */]({
+        id: this.factureId,
+        rows: this.rows,
+        totalHT: this.facturesTotalHT,
+        totalTTC: this.facturesTotalTTC,
+        client_id: this.client_id
+      });
+      this.onSubmit();
+    },
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      if (this.form.id == '' || this.form.id == undefined) {
+        this.form.post('/factures').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/factures').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    },
     makeRow: function makeRow(key) {
       if (this.index != key) {
         this.removeRow(key);
@@ -69867,7 +70056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     addRow: function addRow() {
       this.index = this.index + 1;
-      this.rows.push({ id: '', produit_id: '', quantite: '', prix: '', prixHT: '', totaleHT: '' });
+      this.rows.push({ id: '', produit_id: '', quantite: '', prix: '', prixHT: '', totalHT: '' });
     },
     removeRow: function removeRow(key) {
       this.index = this.index - 1;
@@ -69878,23 +70067,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     countTotale: function countTotale(key) {
       if (this.rows[key].prixHT < this.rows[key].prix) {
         this.rows[key].prixHT = this.rows[key].prix;
-        this.rows[key].totaleHT = this.rows[key].prixHT * this.rows[key].quantite;
+        this.rows[key].totalHT = this.rows[key].prixHT * this.rows[key].quantite;
       } else {
-        this.rows[key].totaleHT = this.rows[key].prixHT * this.rows[key].quantite;
+        this.rows[key].totalHT = this.rows[key].prixHT * this.rows[key].quantite;
       }
       this.countTotalHT();
       this.countTotalTTC();
     },
     countTotalHT: function countTotalHT() {
       var count = this.rows.reduce(function (total, item) {
-        return total + parseInt(item['totaleHT']);
+        return total + parseInt(item['totalHT']);
       }, 0);
-      this.devisTotalHT = count;
+      this.facturesTotalHT = count;
     },
     countTotalTTC: function countTotalTTC() {
-      var sum = this.devisTotalHT;
+      var sum = this.facturesTotalHT;
       var tva = sum * 20 / 100;
-      this.devisTotalTTC = sum + tva;
+      this.facturesTotalTTC = sum + tva;
     },
     insertPrix: function insertPrix(key) {
       this.rows[key].prixHT = this.rows[key].prix;
@@ -69929,7 +70118,9 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c(
                 "div",
-                { staticClass: "form-group" },
+                {
+                  class: [_vm.client_id == "" ? "has-error" : "", "form-group"]
+                },
                 [
                   _c("model-select", {
                     attrs: {
@@ -69947,7 +70138,13 @@ var render = function() {
                       },
                       expression: "client_id"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.client_id == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
                 ],
                 1
               )
@@ -70003,7 +70200,19 @@ var render = function() {
                                 },
                                 expression: "row.produit_id"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            row.produit_id == ""
+                              ? _c(
+                                  "div",
+                                  { staticClass: "help-block text-danger" },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-exclamation-triangle"
+                                    })
+                                  ]
+                                )
+                              : _vm._e()
                           ],
                           1
                         )
@@ -70034,7 +70243,19 @@ var render = function() {
                                 _vm.$set(row, "quantite", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.quantite == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -70116,7 +70337,19 @@ var render = function() {
                                 _vm.$set(row, "prixHT", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.prixHT == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -70127,8 +70360,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: row.totaleHT,
-                                expression: "row.totaleHT"
+                                value: row.totalHT,
+                                expression: "row.totalHT"
                               }
                             ],
                             staticClass: "form-control",
@@ -70138,16 +70371,28 @@ var render = function() {
                               step: "0.1",
                               required: ""
                             },
-                            domProps: { value: row.totaleHT },
+                            domProps: { value: row.totalHT },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(row, "totaleHT", $event.target.value)
+                                _vm.$set(row, "totalHT", $event.target.value)
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.totalHT == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),
@@ -70192,7 +70437,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v("Totale(HT)")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.devisTotalHT))]),
+                    _c("td", [_vm._v(_vm._s(_vm.facturesTotalHT))]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { visibility: "hidden" } })
                   ]),
@@ -70218,7 +70463,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v("Totale(TTC)")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.devisTotalTTC))]),
+                    _c("td", [_vm._v(_vm._s(_vm.facturesTotalTTC))]),
                     _vm._v(" "),
                     _c("td", { staticStyle: { visibility: "hidden" } })
                   ])
@@ -70233,15 +70478,23 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4 col-sm-offset-4 col-sm-4" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-save" }),
-                _vm._v("  Enregistrer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.submitThis }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-save" }),
+                  _vm._v("  Enregistrer")
+                ]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger" }, [
-                _c("i", { staticClass: "fa fa-close" }),
-                _vm._v("  Annuler")
-              ])
+              _c(
+                "button",
+                { staticClass: "btn btn-danger", on: { click: _vm.goback } },
+                [_c("i", { staticClass: "fa fa-close" }), _vm._v("  Annuler")]
+              )
             ])
           ])
         ])
@@ -73907,6 +74160,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -73916,25 +74172,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      from: '',
       index: 0,
-      rows: [{ id: 1, produit_id: 1, quantite: 20, prix: 10, prixHT: 10, totaleHT: 200 }, { id: 2, produit_id: 2, quantite: 100, prix: 10, prixHT: 10, totaleHT: 1000 }, { id: 3, produit_id: 3, quantite: 30, prix: 10, prixHT: 10, totaleHT: 300 }],
-      devisTotalHT: 0,
-      devisTotalTTC: 0,
-      client_id: ''
+      rows: [
+        // {id:1, produit_id: 1, quantite: 20, prix: 10, prixHT:10, totaleHT: 200},
+        // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totaleHT: 1000},
+        // {id:3, produit_id: 3, quantite: 30, prix: 10, prixHT:10, totaleHT: 300},
+      ],
+      fournisseur_id: ''
     };
+  },
+
+  computed: {
+    editing: function editing() {
+      if (this.$route.params.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    bondecommandeId: function bondecommandeId() {
+      return this.$route.params.id;
+    }
   },
   created: function created() {
     if (this.rows.length) {
       this.index = this.rows.length - 1;
-      this.countTotalHT();
-      this.countTotalTTC();
     } else {
       this.addRow();
       this.index = this.index - 1;
     }
+
+    if (this.bondecommandeId) {
+      axios.get('/bondecommandes/' + this.bondecommandeId).then(function (response) {
+        //this.form.load(response.data);
+      });
+    }
   },
 
   methods: {
+    submitThis: function submitThis() {
+      this.form = new __WEBPACK_IMPORTED_MODULE_1__api_form_js__["a" /* Form */]({
+        id: this.commandeId,
+        rows: this.rows,
+        fournisseur_id: this.fournisseur_id
+      });
+      this.onSubmit();
+    },
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      if (this.form.id == '' || this.form.id == undefined) {
+        this.form.post('/bondecommandes').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      } else {
+        this.form.put('/bondecommandes').then(function (data) {
+          Event.$emit('publish-success-message', data.message);
+          _this.goback();
+        }).catch(function (errors) {
+          Event.$emit('publish-danger-message', 'Une erreur s\'est produite');
+          console.log(errors);
+        });
+      }
+    },
+    goback: function goback() {
+      this.$router.go(-1);
+    },
     makeRow: function makeRow(key) {
       if (this.index != key) {
         this.removeRow(key);
@@ -73944,7 +74252,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     addRow: function addRow() {
       this.index = this.index + 1;
-      this.rows.push({ id: '', produit_id: '', quantite: '', prix: '', prixHT: '', totaleHT: '' });
+      this.rows.push({ id: '', produit_id: '', quantite: '' });
     },
     removeRow: function removeRow(key) {
       this.index = this.index - 1;
@@ -73966,12 +74274,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var count = this.rows.reduce(function (total, item) {
         return total + parseInt(item['totaleHT']);
       }, 0);
-      this.devisTotalHT = count;
+      this.bondecommandesTotalHT = count;
     },
     countTotalTTC: function countTotalTTC() {
-      var sum = this.devisTotalHT;
+      var sum = this.bondecommandesTotalHT;
       var tva = sum * 20 / 100;
-      this.devisTotalTTC = sum + tva;
+      this.bondecommandesTotalTTC = sum + tva;
     },
     insertPrix: function insertPrix(key) {
       this.rows[key].prixHT = this.rows[key].prix;
@@ -74006,7 +74314,12 @@ var render = function() {
             _c("div", { staticClass: "col-md-4" }, [
               _c(
                 "div",
-                { staticClass: "form-group" },
+                {
+                  class: [
+                    _vm.fournisseur_id == "" ? "has-error" : "",
+                    "form-group"
+                  ]
+                },
                 [
                   _c("model-select", {
                     attrs: {
@@ -74018,13 +74331,19 @@ var render = function() {
                       placeholder: "Choisir client.."
                     },
                     model: {
-                      value: _vm.client_id,
+                      value: _vm.fournisseur_id,
                       callback: function($$v) {
-                        _vm.client_id = $$v
+                        _vm.fournisseur_id = $$v
                       },
-                      expression: "client_id"
+                      expression: "fournisseur_id"
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.fournisseur_id == ""
+                    ? _c("div", { staticClass: "help-block" }, [
+                        _vm._v("Veuillez spécifier un client!")
+                      ])
+                    : _vm._e()
                 ],
                 1
               )
@@ -74073,7 +74392,19 @@ var render = function() {
                               },
                               expression: "row.produit_id"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          row.produit_id == ""
+                            ? _c(
+                                "div",
+                                { staticClass: "help-block text-danger" },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-exclamation-triangle"
+                                  })
+                                ]
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
@@ -74104,7 +74435,19 @@ var render = function() {
                               _vm.$set(row, "quantite", $event.target.value)
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        row.quantite == ""
+                          ? _c(
+                              "div",
+                              { staticClass: "help-block text-danger" },
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-exclamation-triangle"
+                                })
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
@@ -74149,15 +74492,23 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4 col-sm-offset-4 col-sm-4" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-save" }),
-                _vm._v("  Enregistrer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.submitThis }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-save" }),
+                  _vm._v("  Enregistrer")
+                ]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger" }, [
-                _c("i", { staticClass: "fa fa-close" }),
-                _vm._v("  Annuler")
-              ])
+              _c(
+                "button",
+                { staticClass: "btn btn-danger", on: { click: _vm.goback } },
+                [_c("i", { staticClass: "fa fa-close" }), _vm._v("  Annuler")]
+              )
             ])
           ])
         ])

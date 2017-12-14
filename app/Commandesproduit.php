@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Facturesproduit extends Model
+class Commandesproduit extends Model
 {
       protected $fillable = [
-        'produit_id', 'quantite','prixHT','totalHT','facture_id'
+        'produit_id', 'quantite','prixHT','totalHT','commande_id'
       ];
 }

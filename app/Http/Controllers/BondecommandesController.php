@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bondecommande;
+use App\Bondecommandesproduit;
 use Illuminate\Http\Request;
 use App\Http\Requests\BondecommandeRequest;
 use Illuminate\Support\Facades\Response;
@@ -19,7 +20,16 @@ class BondecommandesController extends Controller
 
       public function store(BondecommandeRequest $request)
       {
-          $bondecommande = Bondecommande::create($request->toArray());
+          $bondecommandeRequest   = $request->toArray();
+          unset($bondecommandeRequest['rows']);
+          $bondecommandeProduits  = $request['rows'];
+          $bondecommande = Bondecommande::create($bondecommandeRequest);
+          foreach ($bondecommandeProduits as $bondecommandeproduit)
+          {
+              unset($bondecommandeproduit['id']);
+              $bondecommandeproduit['bondecommande_id'] = $bondecommande->id;
+              Bondecommandesproduit::create($bondecommandeproduit);
+          }
           return Response::json(['message' => 'Bon de commande bien ajouté'], 200);
       }
 

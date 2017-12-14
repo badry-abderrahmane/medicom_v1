@@ -110,7 +110,6 @@
       },
       data(){
         return {
-          errorsTable:{},
           from:'',
           index: 0,
           rows: [

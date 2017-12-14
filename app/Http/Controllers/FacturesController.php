@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facture;
+use App\Facturesproduit;
 use Illuminate\Http\Request;
 use App\Http\Requests\FactureRequest;
 use Illuminate\Support\Facades\Response;
@@ -19,7 +20,17 @@ class FacturesController extends Controller
 
       public function store(FactureRequest $request)
       {
-          $facture = Facture::create($request->toArray());
+          $factureRequest   = $request->toArray();
+          unset($factureRequest['rows']);
+          $factureProduits  = $request['rows'];
+          $facture = Facture::create($factureRequest);
+          foreach ($factureProduits as $factureproduit)
+          {
+              unset($factureproduit['prix']);
+              unset($factureproduit['id']);
+              $factureproduit['facture_id'] = $facture->id;
+              Facturesproduit::create($factureproduit);
+          }
           return Response::json(['message' => 'Facture bien ajouté'], 200);
       }
 

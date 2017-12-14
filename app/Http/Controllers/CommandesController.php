@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Commande;
+use App\Commandesproduit;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommandeRequest;
 use Illuminate\Support\Facades\Response;
@@ -19,7 +20,18 @@ class CommandesController extends Controller
 
       public function store(CommandeRequest $request)
       {
-          $commande = Commande::create($request->toArray());
+          $commandeRequest   = $request->toArray();
+          unset($commandeRequest['rows']);
+          $commandeProduits  = $request['rows'];
+          $commande = Commande::create($commandeRequest);
+          foreach ($commandeProduits as $commandeproduit)
+          {
+              unset($commandeproduit['prix']);
+              unset($commandeproduit['id']);
+              $commandeproduit['commande_id'] = $commande->id;
+              Commandesproduit::create($commandeproduit);
+          }
+
           return Response::json(['message' => 'Commande bien ajouté'], 200);
       }
 

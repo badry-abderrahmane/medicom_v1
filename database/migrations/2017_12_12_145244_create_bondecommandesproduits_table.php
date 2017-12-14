@@ -15,6 +15,7 @@ class CreateBondecommandesproduitsTable extends Migration
     {
         Schema::create('bondecommandesproduits', function (Blueprint $table) {
           $table->increments('id');
+          $table->string('quantite');
           $table->integer('produit_id')->unsigned();
           $table->integer('bondecommande_id')->unsigned();
           $table->timestamps();

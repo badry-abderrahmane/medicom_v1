@@ -31,7 +31,7 @@ class DevisController extends Controller
               $deviproduit['devi_id'] = $devi->id;
               Devisproduit::create($deviproduit);
           }
-          // return Response::json(['message' => 'Devi bien ajouté'], 200);
+          return Response::json(['message' => 'Devi bien ajouté'], 200);
       }
 
       public function show($id)
