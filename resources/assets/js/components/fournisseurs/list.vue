@@ -33,13 +33,18 @@
 export default {
   data(){
     return {
-      fournisseurs:  [
-        { id: '1', name: 'Badry Abdo', type: 'Impression', produits:{ count: 20 },phone: '06022885566', adress: '12 Casablanca'},
-        { id: '2', name: 'Badry Abdo', type: 'Packaging', produits:{ count: 20 }, phone: '06022885566', adress: '12 Casablanca'},
-        { id: '3', name: 'Badry Abdo', type: 'Design', produits:{ count: 20 }, phone: '06022885566', adress: '12 Casablanca'},
-        { id: '4', name: 'Badry Abdo', type: 'Dev', produits:{ count: 20 }, phone: '06022885566', adress: '12 Casablanca'},
-      ],
+      fournisseurs:  [],
     }
+  },
+
+  created(){
+    axios.get('/fournisseurs')
+      .then(response => {
+        this.fournisseurs = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

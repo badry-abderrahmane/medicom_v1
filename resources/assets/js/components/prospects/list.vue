@@ -31,13 +31,18 @@
 export default {
   data(){
     return {
-      prospects:  [
-        { id: '1', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca' , activite: 'Transport'},
-        { id: '2', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca' , activite: 'Transport'},
-        { id: '3', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca' , activite: 'Transport'},
-        { id: '4', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca' , activite: 'Transport'},
-      ],
+      prospects:  [],
     }
+  },
+
+  created(){
+    axios.get('/prospects')
+      .then(response => {
+        this.prospects = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

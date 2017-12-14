@@ -12,8 +12,11 @@ class FournisseursController extends Controller
       public function index()
       {
           $fournisseurs = Fournisseur::all();
-          // $fournisseurs->filter->rendezvous;
-          // $fournisseurs->filter->fournisseurs;
+          $fournisseurs->filter->produits;
+          $fournisseurs->filter->bondecommandes;
+          foreach ($fournisseurs as $fournisseur) {
+            $fournisseur->produits['count'] = $fournisseur->produits->count();
+          }
           return $fournisseurs;
       }
 

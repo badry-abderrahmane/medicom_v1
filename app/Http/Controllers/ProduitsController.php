@@ -13,7 +13,7 @@ class ProduitsController extends Controller
       public function index()
       {
           $produits = Produit::all();
-          // $produits->filter->rendezvous;
+          $produits->filter->fournisseur;
           // $produits->filter->produits;
           return $produits;
       }

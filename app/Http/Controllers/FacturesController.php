@@ -13,8 +13,11 @@ class FacturesController extends Controller
       public function index()
       {
           $factures = Facture::all();
-          // $factures->filter->rendezvous;
-          // $factures->filter->factures;
+          $factures->filter->client;
+          $factures->filter->facturesproduits;
+          foreach ($factures as $facture) {
+            $facture->facturesproduits['count'] = $facture->facturesproduits->count();
+          }
           return $factures;
       }
 

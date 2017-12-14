@@ -14,7 +14,7 @@ class Facture extends Model
         return $this->belongsTo('App\Client');
     }
 
-    public function commandesproduits(){
-        return $this->hasMany('App\Commandesproduit');
+    public function facturesproduits(){
+        return $this->hasMany('App\Facturesproduit');
     }
 }

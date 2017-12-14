@@ -12,8 +12,10 @@ class CategoriesController extends Controller
       public function index()
       {
           $categories = Category::all();
-          // $fournisseurs->filter->rendezvous;
-          // $fournisseurs->filter->fournisseurs;
+          $categories->filter->produits;
+          foreach ($categories as $categorie) {
+            $categorie->produits['count'] = $categorie->produits->count();
+          }
           return $categories;
       }
 

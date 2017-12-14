@@ -59796,9 +59796,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    Vue.nextTick(function () {
-      Event.$emit('init-datatable', 'tableAdd');
-    });
+    // Vue.nextTick(function () {
+    //   Event.$emit('init-datatable', 'tableAdd');
+    // })
   }
 });
 
@@ -60074,7 +60074,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60118,8 +60118,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      clients: [{ id: '1', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '2', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '3', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '4', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }]
+      clients: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/clients').then(function (response) {
+      _this.clients = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -60322,7 +60332,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60366,8 +60376,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      prospects: [{ id: '1', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '2', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '3', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }, { id: '4', name: 'Badry Abdo', phone: '06022885566', adress: '12 Casablanca', activite: 'Transport' }]
+      prospects: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/prospects').then(function (response) {
+      _this.prospects = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -60570,7 +60590,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60617,8 +60637,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      devis: [{ id: '1', status: 1, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '2', status: 0, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '3', status: 1, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '4', status: 0, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }]
+      devis: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/devis').then(function (response) {
+      _this.devis = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -60645,7 +60675,7 @@ var render = function() {
             _c("tr", { attrs: { slot: "thead" }, slot: "thead" }, [
               _c("th", { attrs: { width: "12%" } }, [_vm._v("#ID")]),
               _vm._v(" "),
-              _c("th", { attrs: { width: "30%" } }, [_vm._v("Client")]),
+              _c("th", { attrs: { width: "30%" } }, [_vm._v("Prospect")]),
               _vm._v(" "),
               _c("th", { attrs: { width: "10%" } }, [_vm._v("Status")]),
               _vm._v(" "),
@@ -60660,7 +60690,7 @@ var render = function() {
               return _c("tr", { attrs: { slot: "tbody" }, slot: "tbody" }, [
                 _c("td", [_vm._v(_vm._s(devi.id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(devi.client.name))]),
+                _c("td", [_vm._v(_vm._s(devi.prospect.name))]),
                 _vm._v(" "),
                 _c("td", [
                   devi.status
@@ -60672,9 +60702,9 @@ var render = function() {
                       ])
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(devi.produits.count))]),
+                _c("td", [_vm._v(_vm._s(devi.devisproduits.count))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(devi.totale))]),
+                _c("td", [_vm._v(_vm._s(devi.totalHT))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -60823,7 +60853,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60870,8 +60900,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      commandes: [{ id: '1', status: 0, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '2', status: 1, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '3', status: 0, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }]
+      commandes: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/commandes').then(function (response) {
+      _this.commandes = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -60925,9 +60965,9 @@ var render = function() {
                       ])
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(commande.produits.count))]),
+                _c("td", [_vm._v(_vm._s(commande.commandesproduits.count))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(commande.totale))]),
+                _c("td", [_vm._v(_vm._s(commande.totalHT))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -61082,7 +61122,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61130,8 +61170,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      factures: [{ id: '1', status: 0, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '2', status: 1, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '3', status: 2, client: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }]
+      factures: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/factures').then(function (response) {
+      _this.factures = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -61195,9 +61245,9 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(facture.produits.count))]),
+                _c("td", [_vm._v(_vm._s(facture.facturesproduits.count))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(facture.totale))]),
+                _c("td", [_vm._v(_vm._s(facture.totaleHT))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -61352,7 +61402,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61398,8 +61448,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      fournisseurs: [{ id: '1', name: 'Badry Abdo', type: 'Impression', produits: { count: 20 }, phone: '06022885566', adress: '12 Casablanca' }, { id: '2', name: 'Badry Abdo', type: 'Packaging', produits: { count: 20 }, phone: '06022885566', adress: '12 Casablanca' }, { id: '3', name: 'Badry Abdo', type: 'Design', produits: { count: 20 }, phone: '06022885566', adress: '12 Casablanca' }, { id: '4', name: 'Badry Abdo', type: 'Dev', produits: { count: 20 }, phone: '06022885566', adress: '12 Casablanca' }]
+      fournisseurs: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/fournisseurs').then(function (response) {
+      _this.fournisseurs = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -61606,7 +61666,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61646,8 +61706,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categories: [{ id: '1', name: 'Categ 1', produits: { count: 150 } }, { id: '2', name: 'Categ 2', produits: { count: 150 } }, { id: '3', name: 'Categ 3', produits: { count: 150 } }, { id: '4', name: 'Categ 4', produits: { count: 150 } }]
+      categories: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/categories').then(function (response) {
+      _this.categories = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -61842,7 +61912,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61884,14 +61954,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      produits: [{ id: '1', name: 'Papier A4', fournisseur: { name: 'Fourni 1' }, delais: '10', prixFournisseur: '100', prixHT: '150', prixTTC: '200' }, { id: '2', name: 'Papier A4', fournisseur: { name: 'Fourni 1' }, delais: '10', prixFournisseur: '100', prixHT: '150', prixTTC: '200' }, { id: '3', name: 'Papier A4', fournisseur: { name: 'Fourni 1' }, delais: '10', prixFournisseur: '100', prixHT: '150', prixTTC: '200' }, { id: '4', name: 'Papier A4', fournisseur: { name: 'Fourni 1' }, delais: '10', prixFournisseur: '100', prixHT: '150', prixTTC: '200' }]
+      produits: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/produits').then(function (response) {
+      _this.produits = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -61928,8 +62006,6 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("Prix | HT")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Prix | TTC")]),
-              _vm._v(" "),
               _c("th", { attrs: { width: "15%" } }, [_vm._v("Action")])
             ]),
             _vm._v(" "),
@@ -61941,13 +62017,11 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(produit.fournisseur.name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(produit.delais))]),
+                _c("td", [_vm._v(_vm._s(produit.delaisLivraison))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(produit.prixFournisseur))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(produit.prixHT))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(produit.prixTTC))]),
+                _c("td", [_vm._v(_vm._s(produit.prixVente))]),
                 _vm._v(" "),
                 _c("td", [
                   _c(
@@ -62102,7 +62176,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62143,14 +62217,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      bondecommandes: [{ id: '1', status: 1, fournisseur: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '2', status: 0, fournisseur: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '3', status: 1, fournisseur: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }, { id: '4', status: 0, fournisseur: { id: '1', name: 'Amine' }, produits: { count: '30' }, totale: '15550' }]
+      bondecommandes: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/bondecommandes').then(function (response) {
+      _this.bondecommandes = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -62211,10 +62293,6 @@ var render = function() {
                 [_vm._v("Totale | P")]
               ),
               _vm._v(" "),
-              _c("th", { staticStyle: { "text-align": "center" } }, [
-                _vm._v("Totale | HT")
-              ]),
-              _vm._v(" "),
               _c(
                 "th",
                 {
@@ -62246,11 +62324,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", { staticStyle: { "text-align": "center" } }, [
-                  _vm._v(_vm._s(bondecommande.produits.count))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticStyle: { "text-align": "center" } }, [
-                  _vm._v(_vm._s(bondecommande.totale))
+                  _vm._v(_vm._s(bondecommande.bondecommandesproduits.count))
                 ]),
                 _vm._v(" "),
                 _c("td", [
@@ -62406,7 +62480,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62458,8 +62532,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      rendezvous: [{ id: '1', date: '12-03-2017', prospect: { name: 'Adil' }, type: '0', status: 0 }, { id: '2', date: '12-03-2017', prospect: { name: 'Adil' }, type: '1', status: 0 }, { id: '3', date: '12-03-2017', prospect: { name: 'Adil' }, type: '2', status: 1 }]
+      rendezvous: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/rendezvous').then(function (response) {
+      _this.rendezvous = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -62502,19 +62586,19 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(rendezvou.id))]),
                 _vm._v(" "),
                 _c("td", [
-                  rendezvou.type == "0"
+                  rendezvou.type == "1"
                     ? _c("span", { staticClass: "label label-default block" }, [
                         _vm._v("Faible")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  rendezvou.type == "1"
+                  rendezvou.type == "2"
                     ? _c("span", { staticClass: "label label-warning block" }, [
                         _vm._v("Moyenne")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  rendezvou.type == "2"
+                  rendezvou.type == "3"
                     ? _c("span", { staticClass: "label label-danger block" }, [
                         _vm._v("Haute")
                       ])
@@ -62526,13 +62610,17 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(rendezvou.prospect.name))]),
                 _vm._v(" "),
                 _c("td", [
-                  rendezvou.status
+                  rendezvou.status == "1"
+                    ? _c("span", { staticClass: "label label-danger block" }, [
+                        _vm._v("En attente")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  rendezvou.status == "2"
                     ? _c("span", { staticClass: "label label-success block" }, [
                         _vm._v("Passé")
                       ])
-                    : _c("span", { staticClass: "label label-danger block" }, [
-                        _vm._v("En attente")
-                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [
@@ -62688,7 +62776,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62740,8 +62828,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      visites: [{ id: '1', date: '12-03-2017', client: { name: 'Adil' }, type: '0', status: 0 }, { id: '2', date: '12-03-2017', client: { name: 'Adil' }, type: '1', status: 0 }, { id: '3', date: '12-03-2017', client: { name: 'Adil' }, type: '2', status: 1 }]
+      visites: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/visites').then(function (response) {
+      _this.visites = response.data;
+      Vue.nextTick(function () {
+        Event.$emit('init-datatable', 'tableAdd');
+      });
+    });
   }
 });
 
@@ -62772,7 +62870,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", { attrs: { width: "30%" } }, [_vm._v("Date")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Prospect")]),
+              _c("th", [_vm._v("Client")]),
               _vm._v(" "),
               _c("th", [_vm._v("Status")]),
               _vm._v(" "),
@@ -62784,19 +62882,19 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(visite.id))]),
                 _vm._v(" "),
                 _c("td", [
-                  visite.type == "0"
+                  visite.type == "1"
                     ? _c("span", { staticClass: "label label-default block" }, [
                         _vm._v("Faible")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  visite.type == "1"
+                  visite.type == "2"
                     ? _c("span", { staticClass: "label label-warning block" }, [
                         _vm._v("Moyenne")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  visite.type == "2"
+                  visite.type == "3"
                     ? _c("span", { staticClass: "label label-danger block" }, [
                         _vm._v("Haute")
                       ])
@@ -62808,13 +62906,17 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(visite.client.name))]),
                 _vm._v(" "),
                 _c("td", [
-                  visite.status
-                    ? _c("span", { staticClass: "label label-success block" }, [
-                        _vm._v("Visité")
-                      ])
-                    : _c("span", { staticClass: "label label-danger block" }, [
+                  visite.status == "1"
+                    ? _c("span", { staticClass: "label label-danger block" }, [
                         _vm._v("En attente")
                       ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  visite.status == "2"
+                    ? _c("span", { staticClass: "label label-success block" }, [
+                        _vm._v("Passé")
+                      ])
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("td", [

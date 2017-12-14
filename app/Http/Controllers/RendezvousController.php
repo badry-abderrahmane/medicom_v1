@@ -12,7 +12,7 @@ class RendezvousController extends Controller
       public function index()
       {
           $rendezvous = Rendezvou::all();
-          // $rendezvous->filter->rendezvous;
+          $rendezvous->filter->prospect;
           // $rendezvous->filter->rendezvous;
           return $rendezvous;
       }

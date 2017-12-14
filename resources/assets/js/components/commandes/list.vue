@@ -17,8 +17,8 @@
             <span v-if="commande.status" class="label label-success block">Livré</span>
             <span v-else class="label label-danger block">En attente</span>
           </td>
-          <td>{{ commande.produits.count }}</td>
-          <td>{{ commande.totale }}</td>
+          <td>{{ commande.commandesproduits.count }}</td>
+          <td>{{ commande.totalHT }}</td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/commandes/show/`+commande.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/commandes/edit/`+commande.id })"><i class="fa fa-pencil"></i></button>
@@ -34,12 +34,17 @@
 export default {
   data(){
     return {
-      commandes:  [
-        { id: '1', status: 0, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-        { id: '2', status: 1, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-        { id: '3', status: 0, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-      ],
+      commandes:  [],
     }
+  },
+  created(){
+    axios.get('/commandes')
+      .then(response => {
+        this.commandes = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

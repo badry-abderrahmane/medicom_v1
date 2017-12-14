@@ -13,16 +13,16 @@
         <tr slot="tbody" v-for="rendezvou in rendezvous">
           <td>{{ rendezvou.id }}</td>
           <td>
-            <span v-if="rendezvou.type == '0'" class="label label-default block">Faible</span>
-            <span v-if="rendezvou.type == '1'" class="label label-warning block">Moyenne</span>
-            <span v-if="rendezvou.type == '2'" class="label label-danger block">Haute</span>
+            <span v-if="rendezvou.type == '1'" class="label label-default block">Faible</span>
+            <span v-if="rendezvou.type == '2'" class="label label-warning block">Moyenne</span>
+            <span v-if="rendezvou.type == '3'" class="label label-danger block">Haute</span>
 
           </td>
           <td>{{ rendezvou.date }}</td>
           <td>{{ rendezvou.prospect.name }}</td>
           <td>
-            <span v-if="rendezvou.status" class="label label-success block">Passé</span>
-            <span v-else class="label label-danger block">En attente</span>
+            <span v-if="rendezvou.status == '1'" class="label label-danger block">En attente</span>
+            <span v-if="rendezvou.status == '2'" class="label label-success block">Passé</span>
           </td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/rendezvous/show/`+rendezvou.id })"><i class="fa fa-eye"></i></button>
@@ -39,12 +39,18 @@
 export default {
   data(){
     return {
-      rendezvous:  [
-        { id: '1', date: '12-03-2017', prospect:{ name: 'Adil'}, type: '0', status: 0},
-        { id: '2', date: '12-03-2017', prospect:{ name: 'Adil'}, type: '1', status: 0},
-        { id: '3', date: '12-03-2017', prospect:{ name: 'Adil'}, type: '2', status: 1},
-      ],
+      rendezvous:  [],
     }
+  },
+
+  created(){
+    axios.get('/rendezvous')
+      .then(response => {
+        this.rendezvous = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

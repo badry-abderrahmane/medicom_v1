@@ -12,9 +12,9 @@
 <script>
 export default {
   mounted(){
-    Vue.nextTick(function () {
-      Event.$emit('init-datatable', 'tableAdd');
-    })
+    // Vue.nextTick(function () {
+    //   Event.$emit('init-datatable', 'tableAdd');
+    // })
   }
 }
 </script>

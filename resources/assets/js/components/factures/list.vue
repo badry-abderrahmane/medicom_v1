@@ -18,8 +18,8 @@
             <span v-if="facture.status == '1'" class="label label-warning block">Non Payé</span>
             <span v-if="facture.status == '2'" class="label label-success block">Payé</span>
           </td>
-          <td>{{ facture.produits.count }}</td>
-          <td>{{ facture.totale }}</td>
+          <td>{{ facture.facturesproduits.count }}</td>
+          <td>{{ facture.totaleHT }}</td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/show/`+facture.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/edit/`+facture.id })"><i class="fa fa-pencil"></i></button>
@@ -35,12 +35,17 @@
 export default {
   data(){
     return {
-      factures:  [
-        { id: '1', status: 0, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-        { id: '2', status: 1, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-        { id: '3', status: 2, client:{ id: '1', name:'Amine'}, produits:{count:'30'}, totale: '15550'},
-      ],
+      factures:  [],
     }
+  },
+  created(){
+    axios.get('/factures')
+      .then(response => {
+        this.factures = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

@@ -13,8 +13,11 @@ class BondecommandesController extends Controller
       public function index()
       {
           $bondecommandes = Bondecommande::all();
-          // $bondecommandes->filter->rendezvous;
-          // $bondecommandes->filter->bondecommandes;
+          $bondecommandes->filter->fournisseur;
+          $bondecommandes->filter->bondecommandesproduits;
+          foreach ($bondecommandes as $bondecommande) {
+            $bondecommande->bondecommandesproduits['count'] = $bondecommande->bondecommandesproduits->count();
+          }
           return $bondecommandes;
       }
 

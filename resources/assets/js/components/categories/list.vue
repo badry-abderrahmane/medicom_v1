@@ -27,13 +27,18 @@
 export default {
   data(){
     return {
-      categories:  [
-        { id: '1', name: 'Categ 1', produits:{ count: 150 }},
-        { id: '2', name: 'Categ 2', produits:{ count: 150 }},
-        { id: '3', name: 'Categ 3', produits:{ count: 150 }},
-        { id: '4', name: 'Categ 4', produits:{ count: 150 }},
-      ],
+      categories:  [],
     }
+  },
+
+  created(){
+    axios.get('/categories')
+      .then(response => {
+        this.categories = response.data;
+        Vue.nextTick(function () {
+          Event.$emit('init-datatable', 'tableAdd');
+        })
+    });
   }
 }
 </script>

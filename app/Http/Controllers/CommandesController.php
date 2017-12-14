@@ -13,8 +13,11 @@ class CommandesController extends Controller
       public function index()
       {
           $commandes = Commande::all();
-          // $commandes->filter->rendezvous;
-          // $commandes->filter->commandes;
+          $commandes->filter->client;
+          $commandes->filter->commandesproduits;
+          foreach ($commandes as $commande) {
+            $commande->commandesproduits['count'] = $commande->commandesproduits->count();
+          }
           return $commandes;
       }
 

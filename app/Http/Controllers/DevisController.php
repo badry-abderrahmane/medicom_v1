@@ -13,8 +13,11 @@ class DevisController extends Controller
       public function index()
       {
           $devis = Devi::all();
-          // $devis->filter->rendezvous;
-          // $devis->filter->devis;
+          $devis->filter->prospect;
+          $devis->filter->devisproduits;
+          foreach ($devis as $devi) {
+            $devi->devisproduits['count'] = $devi->devisproduits->count();
+          }
           return $devis;
       }
 

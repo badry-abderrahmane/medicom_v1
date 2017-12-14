@@ -12,7 +12,7 @@ class VisitesController extends Controller
       public function index()
       {
           $visites = Visite::all();
-          // $visites->filter->visites;
+          $visites->filter->client;
           // $visites->filter->visites;
           return $visites;
       }
