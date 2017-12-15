@@ -47,8 +47,22 @@ class BondecommandesController extends Controller
 
       public function update(BondecommandeRequest $request, $id)
       {
+          $bondecommandeRequest   = $request->toArray();
+          unset($bondecommandeRequest['rows']);
+          $bondecommandeProduits  = $request['rows'];
           $bondecommande = Bondecommande::findOrfail($id);
-          $bondecommande->update($request->toArray());
+          $bondecommande->update($bondecommandeRequest);
+          foreach ($bondecommandeProduits as $bondecommandeproduit)
+          {
+              $bondecommandeproduit['bondecommande_id'] = $id;
+              if ($bondecommandeproduit['id']) {
+                $bondecommandeProduit = Bondecommandesproduit::findOrfail($bondecommandeproduit['id']);
+                $bondecommandeProduit->update($bondecommandeproduit);
+              }else{
+                unset($bondecommandeproduit['id']);
+                Bondecommandesproduit::create($bondecommandeproduit);
+              }
+          }
           return Response::json(['message' => 'Bon de commande bien mis à jour'], 200);
       }
 
@@ -56,5 +70,11 @@ class BondecommandesController extends Controller
       {
           Bondecommande::destroy($id);
           return Response::json(['message' => 'Bon de commande bien supprimé'], 200);
+      }
+
+      public function destroyBondecommandesproduit($id)
+      {
+          Bondecommandesproduit::destroy($id);
+          return Response::json(['message' => 'Enregistrement bien supprimé'], 200);
       }
 }

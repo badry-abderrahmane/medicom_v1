@@ -22,13 +22,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('clients', 'ClientsController');
 Route::resource('prospects', 'ProspectsController');
+
 Route::resource('devis', 'DevisController');
+Route::delete('/devisproduits/{id}', 'DevisController@destroyDevisproduit');
+
 Route::resource('commandes', 'CommandesController');
+Route::delete('/commandesproduits/{id}', 'CommandesController@destroyCommandesproduit');
+
+
 Route::resource('factures', 'FacturesController');
+Route::delete('/facturesproduits/{id}', 'FacturesController@destroyFacturesproduit');
+
 Route::resource('fournisseurs', 'FournisseursController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('produits', 'ProduitsController');
+
 Route::resource('bondecommandes', 'BondecommandesController');
+Route::delete('/bondecommandesproduits/{id}', 'BondecommandesController@destroyBondecommandesproduit');
+
 Route::resource('rendezvous', 'RendezvousController');
 Route::resource('visites', 'VisitesController');
 Route::resource('calendrier', 'CalendrierController');

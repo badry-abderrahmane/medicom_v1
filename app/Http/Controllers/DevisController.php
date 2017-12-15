@@ -48,14 +48,37 @@ class DevisController extends Controller
 
       public function update(DeviRequest $request, $id)
       {
-          // $devi = Devi::findOrfail($id);
-          // $devi->update($request->toArray());
-          // return Response::json(['message' => 'Devi bien mis à jour'], 200);
+          $deviRequest   = $request->toArray();
+          unset($deviRequest['rows']);
+          $deviProduits  = $request['rows'];
+
+          $devi = Devi::findOrfail($id);
+          $devi->update($deviRequest);
+
+          foreach ($deviProduits as $deviproduit)
+          {
+              unset($deviproduit['prix']);
+              $deviproduit['devi_id'] = $id;
+              if ($deviproduit['id']) {
+                $deviProduit = Devisproduit::findOrfail($deviproduit['id']);
+                $deviProduit->update($deviproduit);
+              }else{
+                unset($deviproduit['id']);
+                Devisproduit::create($deviproduit);
+              }
+          }
+          return Response::json(['message' => 'Devi bien mis à jour'], 200);
       }
 
       public function destroy($id)
       {
           Devi::destroy($id);
           return Response::json(['message' => 'Devi bien supprimé'], 200);
+      }
+
+      public function destroyDevisproduit($id)
+      {
+          Devisproduit::destroy($id);
+          return Response::json(['message' => 'Enregistrement bien supprimé'], 200);
       }
 }

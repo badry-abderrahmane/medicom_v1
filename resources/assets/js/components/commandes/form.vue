@@ -73,7 +73,7 @@
               </td>
               <td>
                 <div class="form-group">
-                  <button :class="key != index ? 'btn btn-danger btn-sm':'btn btn-success btn-sm'" @click="makeRow(key)" style="padding-left: 10px;padding-right: 10px;">
+                  <button :class="key != index ? 'btn btn-danger btn-sm':'btn btn-success btn-sm'" @click="makeRow(key,row)" style="padding-left: 10px;padding-right: 10px;">
                     <i :class="key != index ? 'fa fa-close fa-2x':'fa fa-plus fa-2x'"></i>
                   </button>
                 </div>
@@ -141,19 +141,23 @@
         }
       },
       created(){
-        if (this.rows.length) {
-          this.index = this.rows.length-1;
-          this.countTotalHT();
-          this.countTotalTTC();
-        }else{
-          this.addRow();
-          this.index = this.index-1
-        }
-
         if (this.commandeId) {
           axios.get('/commandes/'+this.commandeId)
             .then(response => {
-              //this.form.load(response.data);
+              this.rows = response.data.commandesproduits;
+              this.commandesTotalHT  = response.data.totalHT;
+              this.commandesTotalTTC = response.data.totalTTC;
+              this.client_id   = response.data.client_id;
+              this.status        = response.data.status;
+
+              if (this.rows.length) {
+                this.index = this.rows.length-1;
+                // this.countTotalHT();
+                // this.countTotalTTC();
+              }else{
+                this.addRow();
+                this.index = this.index-1
+              }
           });
         }
       },
@@ -192,14 +196,21 @@
               });
           }
         },
-
+        deleteCommande(row){
+          axios.delete('/commandesproduits/'+row.id)
+          .then(response => {
+          })
+          .catch(function(err){
+            console.log(err);
+          });
+        },
         goback(){
             this.$router.go(-1);
         },
 
-        makeRow(key){
+        makeRow(key,row){
           if (this.index != key) {
-            this.removeRow(key);
+            this.removeRow(key,row);
           }else{
             this.addRow();
           }
@@ -208,11 +219,12 @@
           this.index = this.index+1
           this.rows.push({id:'', produit_id: '', quantite: '', prix: '', prixHT:'', totalHT: ''});
         },
-        removeRow(key){
+        removeRow(key,row){
           this.index = this.index-1
           this.rows.splice(key, 1);
           this.countTotalHT();
           this.countTotalTTC();
+          this.deleteCommande(row);
         },
         countTotale(key){
           if (this.rows[key].prixHT < this.rows[key].prix) {

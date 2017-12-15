@@ -21,7 +21,7 @@
           </div>
           <div class="col-md-3">
             <div v-bind:class="[ status == '' ? 'has-error' : '', 'form-group']">
-              <model-select name="status" :options="[{value:1,text:'En attente'},{value:2,text:'Livré'}]" v-model="status" placeholder="Choisir status..">
+              <model-select :options="[{value:1,text:'En attente'},{value:2,text:'Livré'}]" v-model="status">
              </model-select>
              <div class="help-block" v-if="status == ''">Veuillez spécifier un status!</div>
             </div>
@@ -73,7 +73,7 @@
               </td>
               <td>
                 <div class="form-group">
-                  <button :class="key != index ? 'btn btn-danger btn-sm':'btn btn-success btn-sm'" @click="makeRow(key)" style="padding-left: 10px;padding-right: 10px;">
+                  <button :class="key != index ? 'btn btn-danger btn-sm':'btn btn-success btn-sm'" @click="makeRow(key,row)" style="padding-left: 10px;padding-right: 10px;">
                     <i :class="key != index ? 'fa fa-close fa-2x':'fa fa-plus fa-2x'"></i>
                   </button>
                 </div>
@@ -121,11 +121,7 @@
         return {
           from:'',
           index: 0,
-          rows: [
-            // {id:1, produit_id: 1, quantite: 20,  prix: 10, prixHT:10, totalHT: 200},
-            // {id:2, produit_id: 2, quantite: 100, prix: 10, prixHT:10, totalHT: 1000},
-            // {id:3, produit_id: 3, quantite: 30,  prix: 10, prixHT:10, totalHT: 300},
-          ],
+          rows: [],
           devisTotalHT: 0,
           devisTotalTTC: 0,
           prospect_id: '',
@@ -145,19 +141,24 @@
         }
       },
       created(){
-        if (this.rows.length) {
-          this.index = this.rows.length-1;
-          this.countTotalHT();
-          this.countTotalTTC();
-        }else{
-          this.addRow();
-          this.index = this.index-1
-        }
-
         if (this.deviId) {
           axios.get('/devis/'+this.deviId)
             .then(response => {
-              //this.form.load(response.data);
+              this.rows = response.data.devisproduits;
+              this.devisTotalHT  = response.data.totalHT;
+              this.devisTotalTTC = response.data.totalTTC;
+              this.prospect_id   = response.data.prospect_id;
+              this.status        = response.data.status;
+
+              if (this.rows.length) {
+                this.index = this.rows.length-1;
+                // this.countTotalHT();
+                // this.countTotalTTC();
+              }else{
+                this.addRow();
+                this.index = this.index-1
+              }
+
           });
         }
       },
@@ -196,13 +197,20 @@
               });
           }
         },
-
+        deleteDevi(row){
+          axios.delete('/devisproduits/'+row.id)
+          .then(response => {
+          })
+          .catch(function(err){
+            console.log(err);
+          });
+        },
         goback(){
             this.$router.go(-1);
         },
-        makeRow(key){
+        makeRow(key,row){
           if (this.index != key) {
-            this.removeRow(key);
+            this.removeRow(key,row);
           }else{
             this.addRow();
           }
@@ -211,11 +219,12 @@
           this.index = this.index+1
           this.rows.push({id:'', produit_id: '', quantite: '', prix: '', prixHT:'', totalHT: ''});
         },
-        removeRow(key){
+        removeRow(key,row){
           this.index = this.index-1
           this.rows.splice(key, 1);
           this.countTotalHT();
           this.countTotalTTC();
+          this.deleteDevi(row);
         },
         countTotale(key){
           if (this.rows[key].prixHT < this.rows[key].prix) {

@@ -49,14 +49,35 @@ class CommandesController extends Controller
 
       public function update(CommandeRequest $request, $id)
       {
+          $commandeRequest   = $request->toArray();
+          unset($commandeRequest['rows']);
+          $commandeProduits  = $request['rows'];
           $commande = Commande::findOrfail($id);
-          $commande->update($request->toArray());
-          return Response::json(['message' => 'Commande bien mis à jour'], 200);
+          $commande->update($commandeRequest);
+          foreach ($commandeProduits as $commandeproduit)
+          {
+              unset($commandeproduit['prix']);
+              $commandeproduit['commande_id'] = $id;
+              if ($commandeproduit['id']) {
+                $commandeProduit = Commandesproduit::findOrfail($commandeproduit['id']);
+                $commandeProduit->update($commandeproduit);
+              }else{
+                unset($commandeproduit['id']);
+                Commandesproduit::create($commandeproduit);
+              }
+          }
+          return Response::json(['message' => 'Commande bien mise à jour'], 200);
       }
 
       public function destroy($id)
       {
           Commande::destroy($id);
-          return Response::json(['message' => 'Commande bien supprimé'], 200);
+          return Response::json(['message' => 'Commande bien supprimée'], 200);
+      }
+
+      public function destroyCommandesproduit($id)
+      {
+          Commandesproduit::destroy($id);
+          return Response::json(['message' => 'Enregistrement bien supprimé'], 200);
       }
 }
