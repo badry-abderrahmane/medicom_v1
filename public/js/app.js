@@ -67392,7 +67392,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67426,9 +67426,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    clientId: function clientId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/clients/' + this.clientId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/clients' });
+    }
+  }
+});
 
 /***/ }),
 /* 311 */
@@ -67468,9 +67483,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -67487,9 +67507,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -68259,7 +68277,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68293,9 +68311,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    prospectId: function prospectId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/prospects/' + this.prospectId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/prospects' });
+    }
+  }
+});
 
 /***/ }),
 /* 330 */
@@ -68335,9 +68368,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -68354,9 +68392,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -69772,7 +69808,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69806,9 +69842,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    deviId: function deviId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/devis/' + this.deviId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/devis' });
+    }
+  }
+});
 
 /***/ }),
 /* 349 */
@@ -69848,9 +69899,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -69867,9 +69923,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -71288,7 +71342,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -71322,9 +71376,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    commandeId: function commandeId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/commandes/' + this.commandeId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/commandes' });
+    }
+  }
+});
 
 /***/ }),
 /* 368 */
@@ -71364,9 +71433,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -71376,16 +71450,14 @@ var render = function() {
                     staticClass: "btn btn-default btn-block",
                     on: {
                       click: function($event) {
-                        _vm.$router.push({ path: "/clients" })
+                        _vm.$router.push({ path: "/commandes" })
                       }
                     }
                   },
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -72807,7 +72879,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72841,9 +72913,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    factureId: function factureId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/factures/' + this.factureId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/factures' });
+    }
+  }
+});
 
 /***/ }),
 /* 387 */
@@ -72883,9 +72970,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -72895,16 +72987,14 @@ var render = function() {
                     staticClass: "btn btn-default btn-block",
                     on: {
                       click: function($event) {
-                        _vm.$router.push({ path: "/clients" })
+                        _vm.$router.push({ path: "/factures" })
                       }
                     }
                   },
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -73677,7 +73767,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73711,9 +73801,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    fournisseurId: function fournisseurId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/fournisseurs/' + this.fournisseurId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/fournisseurs' });
+    }
+  }
+});
 
 /***/ }),
 /* 406 */
@@ -73753,9 +73858,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -73772,9 +73882,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -74492,7 +74600,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74526,9 +74634,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    categoryId: function categoryId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/categories/' + this.categoryId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/categories' });
+    }
+  }
+});
 
 /***/ }),
 /* 425 */
@@ -74568,9 +74691,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -74587,9 +74715,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -75746,7 +75872,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -75780,9 +75906,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    produitId: function produitId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/produits/' + this.produitId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/produits' });
+    }
+  }
+});
 
 /***/ }),
 /* 444 */
@@ -75822,9 +75963,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -75841,9 +75987,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -76951,7 +77095,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -76985,9 +77129,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    bondecommandeId: function bondecommandeId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/bondecommandes/' + this.bondecommandeId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/bondecommandes' });
+    }
+  }
+});
 
 /***/ }),
 /* 463 */
@@ -77027,9 +77186,18 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteMe()
+                      }
+                    }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -77046,9 +77214,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -78095,7 +78261,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -78129,9 +78295,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    rendezvouId: function rendezvouId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/rendezvous/' + this.rendezvouId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/rendezvous' });
+    }
+  }
+});
 
 /***/ }),
 /* 482 */
@@ -78171,9 +78352,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -78190,9 +78376,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
@@ -79236,7 +79420,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -79270,9 +79454,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    visiteId: function visiteId() {
+      return this.$route.params.id;
+    }
+  },
+  methods: {
+    deleteMe: function deleteMe() {
+      axios.delete('/visites/' + this.visiteId).then(function (response) {
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$router.push({ path: '/visites' });
+    }
+  }
+});
 
 /***/ }),
 /* 501 */
@@ -79312,9 +79511,14 @@ var render = function() {
               _c("div", { staticClass: "col-md-2" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("button", { staticClass: "btn btn-danger btn-block" }, [
-                  _vm._v("Supprimer  ")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-block",
+                    on: { click: _vm.deleteMe }
+                  },
+                  [_vm._v("Supprimer  ")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
@@ -79331,9 +79535,7 @@ var render = function() {
                   [_vm._v("Annuler")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("h5", [_vm._v(_vm._s(_vm.$route.params.id))])
+            ])
           ])
         ])
       ],
