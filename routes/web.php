@@ -43,3 +43,26 @@ Route::delete('/bondecommandesproduits/{id}', 'BondecommandesController@destroyB
 Route::resource('rendezvous', 'RendezvousController');
 Route::resource('visites', 'VisitesController');
 Route::resource('calendrier', 'CalendrierController');
+
+
+
+/**
+** Get Lists
+**
+**/
+Route::get('list/clients', function(){
+  $list = \App\Client::pluck('name','id')->toJson();
+  return $list;
+});
+Route::get('list/prospects', function(){
+  $list = \App\Prospect::pluck('name','id')->toJson();
+  return $list;
+});
+Route::get('list/fournisseurs', function(){
+  $list = \App\Fournisseur::pluck('name','id')->toJson();
+  return $list;
+});
+Route::get('list/categories', function(){
+  $list = \App\Category::pluck('name','id')->toJson();
+  return $list;
+});

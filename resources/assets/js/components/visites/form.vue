@@ -22,7 +22,7 @@
             <div class="col-md-6">
               <div v-bind:class="[ form.errors.get('client_id') ? 'has-error' : '', 'form-group']">
                 <label for="Fournisseur" class="control-label mb-10">Client</label>
-                <model-select :options="[{value:1,text:'Client 1'},{value:2,text:'Client 2'},{value:3,text:'Client 3'}]" v-model="form['client_id']" placeholder="Choisir client.." @input="clearThis('client_id')">
+                <model-select :options="clients" v-model="form['client_id']" placeholder="Choisir client.." @input="clearThis('client_id')">
                </model-select>
                <div class="help-block" v-if="form.errors.has('client_id')" v-text="form.errors.get('client_id')"></div>
               </div>
@@ -85,7 +85,11 @@
           },
           visiteId: function(){
             return this.$route.params.id
-          }
+          },
+
+          clients: function(){
+            return this.$store.state.clients
+          },
         },
         created(){
           if (this.visiteId) {

@@ -53,6 +53,7 @@
             if (this.form.id == '') {
               this.form.post('/categories')
                 .then(data => {
+                  this.$store.dispatch('LOAD_CATEGORY_LIST')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })
@@ -62,6 +63,7 @@
             }else{
               this.form.put('/categories')
                 .then(data => {
+                  this.$store.dispatch('LOAD_CATEGORY_LIST')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })

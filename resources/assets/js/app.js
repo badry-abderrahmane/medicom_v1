@@ -9,35 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
-import Vuex from 'vuex'
+import { store } from './store';
 
-Vue.use(Vuex)
 Vue.use(VueRouter);
 
-const store = new Vuex.Store({
-  state: {
-    pagetitle: 'Blank',
-    banqueCustom:[],
-  },
-  getters: {
-    pagetitle: state => {
-      return state.pagetitle
-    },
-    banqueCustom: state => {
-      return state.banqueCustom
-    }
-  },
-  mutations: {
-    pagetitle (state,title) {
-      state.pagetitle = title;
-    },
-    banqueCustom (state,banque) {
-      state.banqueCustom = banque;
-    }
-  }
-})
-
-// require('./store');
 require('./global');
 require('./parts');
 require('./plugins');
@@ -55,10 +30,11 @@ Vue.component('full-app', require('./components/home.vue'));
 const app = new Vue({
   store,
   router,
-  data(){
-    return {
-
-    }
+  mounted(){
+    this.$store.dispatch('LOAD_PROSPECT_LIST')
+    this.$store.dispatch('LOAD_FOURNISSEUR_LIST')
+    this.$store.dispatch('LOAD_CLIENT_LIST')
+    this.$store.dispatch('LOAD_CATEGORY_LIST')
   },
   created(){
     Event.$on('init-datatable', (tableid) => {
@@ -76,6 +52,20 @@ const app = new Vue({
     Event.$on('publish-danger-message', (message) => {
       this.notifDanger(message);
     });
+
+    Event.$on('refresh-clients', () => {
+      this.getClients();
+    });
+    Event.$on('refresh-fournisseurs', () => {
+      this.getFournisseurs();
+    });
+    Event.$on('refresh-prospects', () => {
+      this.getProspects();
+    });
+    Event.$on('refresh-categories', () => {
+      this.getCategories();
+    });
+
   },
   methods:{
     /**

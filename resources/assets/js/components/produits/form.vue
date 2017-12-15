@@ -11,14 +11,14 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="Fournisseur" class="control-label mb-10">Categorie</label>
-              <model-select :options="[{value:1,text:'categorie 1'},{value:2,text:'categorie 2'},{value:3,text:'categorie 3'}]" v-model="form['category_id']" placeholder="Choisir client..">
+              <model-select :options="categories" v-model="form['category_id']" placeholder="Choisir client..">
              </model-select>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="Fournisseur" class="control-label mb-10">Fournisseur</label>
-              <model-select :options="[{value:1,text:'fournisseur 1'},{value:2,text:'fournisseur 2'},{value:3,text:'fournisseur 3'}]" v-model="form['fournisseur_id']" placeholder="Choisir client..">
+              <model-select :options="fournisseurs" v-model="form['fournisseur_id']" placeholder="Choisir client..">
              </model-select>
             </div>
           </div>
@@ -83,6 +83,13 @@
           },
           produitId: function(){
             return this.$route.params.id
+          },
+
+          fournisseurs: function(){
+            return this.$store.state.fournisseurs
+          },
+          categories: function(){
+            return this.$store.state.categories
           }
         },
         created(){

@@ -22737,7 +22737,7 @@ module.exports = __webpack_require__(512);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(516);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router_js__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__router_js__);
 
@@ -22753,33 +22753,8 @@ window.Vue = __webpack_require__(57);
 
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 
-var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: {
-    pagetitle: 'Blank',
-    banqueCustom: []
-  },
-  getters: {
-    pagetitle: function pagetitle(state) {
-      return state.pagetitle;
-    },
-    banqueCustom: function banqueCustom(state) {
-      return state.banqueCustom;
-    }
-  },
-  mutations: {
-    pagetitle: function pagetitle(state, title) {
-      state.pagetitle = title;
-    },
-    banqueCustom: function banqueCustom(state, banque) {
-      state.banqueCustom = banque;
-    }
-  }
-});
-
-// require('./store');
 __webpack_require__(62);
 __webpack_require__(94);
 __webpack_require__(135);
@@ -22795,10 +22770,13 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({ r
 Vue.component('full-app', __webpack_require__(507));
 
 var app = new Vue({
-  store: store,
+  store: __WEBPACK_IMPORTED_MODULE_1__store__["a" /* store */],
   router: router,
-  data: function data() {
-    return {};
+  mounted: function mounted() {
+    this.$store.dispatch('LOAD_PROSPECT_LIST');
+    this.$store.dispatch('LOAD_FOURNISSEUR_LIST');
+    this.$store.dispatch('LOAD_CLIENT_LIST');
+    this.$store.dispatch('LOAD_CATEGORY_LIST');
   },
   created: function created() {
     var _this = this;
@@ -22817,6 +22795,19 @@ var app = new Vue({
     });
     Event.$on('publish-danger-message', function (message) {
       _this.notifDanger(message);
+    });
+
+    Event.$on('refresh-clients', function () {
+      _this.getClients();
+    });
+    Event.$on('refresh-fournisseurs', function () {
+      _this.getFournisseurs();
+    });
+    Event.$on('refresh-prospects', function () {
+      _this.getProspects();
+    });
+    Event.$on('refresh-categories', function () {
+      _this.getCategories();
     });
   },
 
@@ -66811,7 +66802,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66888,6 +66879,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (this.form.id == '') {
         this.form.post('/clients').then(function (data) {
+          _this2.$store.dispatch('LOAD_CLIENT_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -66895,6 +66887,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         this.form.put('/clients').then(function (data) {
+          _this2.$store.dispatch('LOAD_CLIENT_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -67974,7 +67967,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68051,6 +68044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (this.form.id == '') {
         this.form.post('/prospects').then(function (data) {
+          _this2.$store.dispatch('LOAD_PROSPECT_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -68058,6 +68052,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         this.form.put('/prospects').then(function (data) {
+          _this2.$store.dispatch('LOAD_PROSPECT_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -69112,7 +69107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     editing: function editing() {
-      if (this.$route.params.id) {
+      if (this.$parent.$route.params.id) {
         return true;
       } else {
         return false;
@@ -69120,8 +69115,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     deviId: function deviId() {
       return this.$route.params.id;
+    },
+    prospects: function prospects() {
+      return this.$store.state.prospects;
     }
   },
+
   created: function created() {
     var _this = this;
 
@@ -69132,16 +69131,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.devisTotalTTC = response.data.totalTTC;
         _this.prospect_id = response.data.prospect_id;
         _this.status = response.data.status;
-
         if (_this.rows.length) {
           _this.index = _this.rows.length - 1;
-          // this.countTotalHT();
-          // this.countTotalTTC();
         } else {
           _this.addRow();
           _this.index = _this.index - 1;
         }
       });
+    } else {
+      this.addRow();
+      this.index = this.index - 1;
     }
   },
 
@@ -69266,13 +69265,7 @@ var render = function() {
                 },
                 [
                   _c("model-select", {
-                    attrs: {
-                      options: [
-                        { value: 1, text: "prospzct 1" },
-                        { value: 2, text: "prospzct 2" },
-                        { value: 3, text: "prospzct 3" }
-                      ]
-                    },
+                    attrs: { options: _vm.prospects },
                     model: {
                       value: _vm.prospect_id,
                       callback: function($$v) {
@@ -70635,6 +70628,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     commandeId: function commandeId() {
       return this.$route.params.id;
+    },
+
+    clients: function clients() {
+      return this.$store.state.clients;
     }
   },
   created: function created() {
@@ -70650,13 +70647,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         if (_this.rows.length) {
           _this.index = _this.rows.length - 1;
-          // this.countTotalHT();
-          // this.countTotalTTC();
         } else {
           _this.addRow();
           _this.index = _this.index - 1;
         }
       });
+    } else {
+      this.addRow();
+      this.index = this.index - 1;
     }
   },
 
@@ -70779,11 +70777,7 @@ var render = function() {
                 [
                   _c("model-select", {
                     attrs: {
-                      options: [
-                        { value: 1, text: "client 1" },
-                        { value: 2, text: "client 2" },
-                        { value: 3, text: "client 3" }
-                      ],
+                      options: _vm.clients,
                       placeholder: "Choisir client.."
                     },
                     model: {
@@ -72150,6 +72144,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     factureId: function factureId() {
       return this.$route.params.id;
+    },
+
+    clients: function clients() {
+      return this.$store.state.clients;
     }
   },
   created: function created() {
@@ -72172,6 +72170,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.index = _this.index - 1;
         }
       });
+    } else {
+      this.addRow();
+      this.index = this.index - 1;
     }
   },
 
@@ -72294,11 +72295,7 @@ var render = function() {
                 [
                   _c("model-select", {
                     attrs: {
-                      options: [
-                        { value: 1, text: "client 1" },
-                        { value: 2, text: "client 2" },
-                        { value: 3, text: "client 3" }
-                      ],
+                      options: _vm.clients,
                       placeholder: "Choisir client.."
                     },
                     model: {
@@ -73388,7 +73385,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73465,6 +73462,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (this.form.id == '') {
         this.form.post('/fournisseurs').then(function (data) {
+          _this2.$store.dispatch('LOAD_FOURNISSEUR_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -73472,6 +73470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         this.form.put('/fournisseurs').then(function (data) {
+          _this2.$store.dispatch('LOAD_FOURNISSEUR_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -74240,7 +74239,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74311,6 +74310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (this.form.id == '') {
         this.form.post('/categories').then(function (data) {
+          _this2.$store.dispatch('LOAD_CATEGORY_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -74318,6 +74318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       } else {
         this.form.put('/categories').then(function (data) {
+          _this2.$store.dispatch('LOAD_CATEGORY_LIST');
           Event.$emit('publish-success-message', data.message);
           _this2.goback();
         }).catch(function (errors) {
@@ -75199,7 +75200,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -75299,6 +75300,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     produitId: function produitId() {
       return this.$route.params.id;
+    },
+
+    fournisseurs: function fournisseurs() {
+      return this.$store.state.fournisseurs;
+    },
+    categories: function categories() {
+      return this.$store.state.categories;
     }
   },
   created: function created() {
@@ -75426,11 +75434,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("model-select", {
                         attrs: {
-                          options: [
-                            { value: 1, text: "categorie 1" },
-                            { value: 2, text: "categorie 2" },
-                            { value: 3, text: "categorie 3" }
-                          ],
+                          options: _vm.categories,
                           placeholder: "Choisir client.."
                         },
                         model: {
@@ -75462,11 +75466,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("model-select", {
                         attrs: {
-                          options: [
-                            { value: 1, text: "fournisseur 1" },
-                            { value: 2, text: "fournisseur 2" },
-                            { value: 3, text: "fournisseur 3" }
-                          ],
+                          options: _vm.fournisseurs,
                           placeholder: "Choisir client.."
                         },
                         model: {
@@ -76477,6 +76477,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     bondecommandeId: function bondecommandeId() {
       return this.$route.params.id;
+    },
+
+    fournisseurs: function fournisseurs() {
+      return this.$store.state.fournisseurs;
     }
   },
   created: function created() {
@@ -76495,6 +76499,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.index = _this.index - 1;
         }
       });
+    } else {
+      this.addRow();
+      this.index = this.index - 1;
     }
   },
 
@@ -76618,11 +76625,7 @@ var render = function() {
                 [
                   _c("model-select", {
                     attrs: {
-                      options: [
-                        { value: 1, text: "client 1" },
-                        { value: 2, text: "client 2" },
-                        { value: 3, text: "client 3" }
-                      ],
+                      options: _vm.fournisseurs,
                       placeholder: "Choisir client.."
                     },
                     model: {
@@ -77617,6 +77620,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     rendezvouId: function rendezvouId() {
       return this.$route.params.id;
+    },
+
+    prospects: function prospects() {
+      return this.$store.state.prospects;
     }
   },
   created: function created() {
@@ -77807,11 +77814,7 @@ var render = function() {
                         _c("model-select", {
                           attrs: {
                             name: "prospect_id",
-                            options: [
-                              { value: 1, text: "Prospect 1" },
-                              { value: 2, text: "Prospect 2" },
-                              { value: 3, text: "Prospect 3" }
-                            ],
+                            options: _vm.prospects,
                             placeholder: "Choisir prospect.."
                           },
                           on: {
@@ -78761,6 +78764,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     visiteId: function visiteId() {
       return this.$route.params.id;
+    },
+
+    clients: function clients() {
+      return this.$store.state.clients;
     }
   },
   created: function created() {
@@ -78950,11 +78957,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("model-select", {
                           attrs: {
-                            options: [
-                              { value: 1, text: "Client 1" },
-                              { value: 2, text: "Client 2" },
-                              { value: 3, text: "Client 3" }
-                            ],
+                            options: _vm.clients,
                             placeholder: "Choisir client.."
                           },
                           on: {
@@ -79710,6 +79713,112 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(61);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: {
+    prospects: [],
+    fournisseurs: [],
+    clients: [],
+    categories: []
+  },
+  mutations: {
+    SET_PROSPECT_LIST: function SET_PROSPECT_LIST(state, _ref) {
+      var list = _ref.list;
+
+      var array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {
+        var item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);
+      }
+      state.prospects = array;
+    },
+    SET_FOURNISSEUR_LIST: function SET_FOURNISSEUR_LIST(state, _ref2) {
+      var list = _ref2.list;
+
+      var array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {
+        var item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);
+      }
+      state.fournisseurs = array;
+    },
+    SET_CLIENT_LIST: function SET_CLIENT_LIST(state, _ref3) {
+      var list = _ref3.list;
+
+      var array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {
+        var item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);
+      }
+      state.clients = array;
+    },
+    SET_CATEGORY_LIST: function SET_CATEGORY_LIST(state, _ref4) {
+      var list = _ref4.list;
+
+      var array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {
+        var item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);
+      }
+      state.categories = array;
+    }
+  },
+  actions: {
+    LOAD_PROSPECT_LIST: function LOAD_PROSPECT_LIST(_ref5) {
+      var commit = _ref5.commit;
+
+      axios.get('list/prospects').then(function (response) {
+        commit('SET_PROSPECT_LIST', { list: response.data });
+      }, function (err) {
+        console.log(err);
+      });
+    },
+
+    LOAD_FOURNISSEUR_LIST: function LOAD_FOURNISSEUR_LIST(_ref6) {
+      var commit = _ref6.commit;
+
+      axios.get('list/fournisseurs').then(function (response) {
+        commit('SET_FOURNISSEUR_LIST', { list: response.data });
+      }, function (err) {
+        console.log(err);
+      });
+    },
+
+    LOAD_CLIENT_LIST: function LOAD_CLIENT_LIST(_ref7) {
+      var commit = _ref7.commit;
+
+      axios.get('list/clients').then(function (response) {
+        commit('SET_CLIENT_LIST', { list: response.data });
+      }, function (err) {
+        console.log(err);
+      });
+    },
+
+    LOAD_CATEGORY_LIST: function LOAD_CATEGORY_LIST(_ref8) {
+      var commit = _ref8.commit;
+
+      axios.get('list/categories').then(function (response) {
+        commit('SET_CATEGORY_LIST', { list: response.data });
+      }, function (err) {
+        console.log(err);
+      });
+    }
+  }
+});
 
 /***/ })
 /******/ ]);

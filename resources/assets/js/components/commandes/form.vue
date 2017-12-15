@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-3">
             <div v-bind:class="[ client_id == '' ? 'has-error' : '', 'form-group']">
-              <model-select :options="[{value:1,text:'client 1'},{value:2,text:'client 2'},{value:3,text:'client 3'}]" v-model="client_id" placeholder="Choisir client..">
+              <model-select :options="clients" v-model="client_id" placeholder="Choisir client..">
              </model-select>
              <div class="help-block" v-if="client_id == ''">Veuillez spécifier un client!</div>
             </div>
@@ -138,6 +138,10 @@
         },
         commandeId: function(){
           return this.$route.params.id
+        },
+
+        clients: function(){
+          return this.$store.state.clients
         }
       },
       created(){
@@ -152,13 +156,14 @@
 
               if (this.rows.length) {
                 this.index = this.rows.length-1;
-                // this.countTotalHT();
-                // this.countTotalTTC();
               }else{
                 this.addRow();
                 this.index = this.index-1
               }
           });
+        }else{
+          this.addRow();
+          this.index = this.index-1
         }
       },
       methods:{

@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-3">
             <div v-bind:class="[ prospect_id == '' ? 'has-error' : '', 'form-group']">
-              <model-select :options="[{value:1,text:'prospzct 1'},{value:2,text:'prospzct 2'},{value:3,text:'prospzct 3'}]" v-model="prospect_id">
+              <model-select :options="prospects" v-model="prospect_id">
              </model-select>
              <div class="help-block" v-if="prospect_id == ''">Veuillez spécifier un prospect!</div>
             </div>
@@ -130,7 +130,7 @@
       },
       computed:{
         editing: function(){
-          if (this.$route.params.id) {
+          if (this.$parent.$route.params.id) {
             return true
           }else{
             return false
@@ -138,9 +138,15 @@
         },
         deviId: function(){
           return this.$route.params.id
+        },
+        prospects: function(){
+          return this.$store.state.prospects
         }
       },
+
+
       created(){
+
         if (this.deviId) {
           axios.get('/devis/'+this.deviId)
             .then(response => {
@@ -149,17 +155,16 @@
               this.devisTotalTTC = response.data.totalTTC;
               this.prospect_id   = response.data.prospect_id;
               this.status        = response.data.status;
-
               if (this.rows.length) {
                 this.index = this.rows.length-1;
-                // this.countTotalHT();
-                // this.countTotalTTC();
               }else{
                 this.addRow();
                 this.index = this.index-1
               }
-
           });
+        }else{
+          this.addRow();
+          this.index = this.index-1
         }
       },
       methods:{

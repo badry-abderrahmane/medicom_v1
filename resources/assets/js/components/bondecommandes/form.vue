@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-3">
             <div v-bind:class="[ fournisseur_id == '' ? 'has-error' : '', 'form-group']">
-              <model-select :options="[{value:1,text:'client 1'},{value:2,text:'client 2'},{value:3,text:'client 3'}]" v-model="fournisseur_id" placeholder="Choisir client..">
+              <model-select :options="fournisseurs" v-model="fournisseur_id" placeholder="Choisir client..">
              </model-select>
              <div class="help-block" v-if="fournisseur_id == ''">Veuillez spécifier un client!</div>
             </div>
@@ -95,7 +95,11 @@
         },
         bondecommandeId: function(){
           return this.$route.params.id
-        }
+        },
+
+        fournisseurs: function(){
+          return this.$store.state.fournisseurs
+        },
       },
       created(){
         if (this.bondecommandeId) {
@@ -112,6 +116,9 @@
                 this.index = this.index-1
               }
           });
+        }else{
+          this.addRow();
+          this.index = this.index-1
         }
       },
       methods:{

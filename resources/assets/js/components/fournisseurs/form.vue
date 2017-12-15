@@ -59,6 +59,7 @@
             if (this.form.id == '') {
               this.form.post('/fournisseurs')
                 .then(data => {
+                  this.$store.dispatch('LOAD_FOURNISSEUR_LIST')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })
@@ -68,6 +69,7 @@
             }else{
               this.form.put('/fournisseurs')
                 .then(data => {
+                  this.$store.dispatch('LOAD_FOURNISSEUR_LIST')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })
