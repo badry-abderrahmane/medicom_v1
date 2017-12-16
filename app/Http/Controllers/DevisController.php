@@ -41,6 +41,9 @@ class DevisController extends Controller
       {
           $devi = Devi::findOrfail($id);
           $devi->devisproduits;
+          foreach ($devi->devisproduits as $deviproduit) {
+            $deviproduit->produit;
+          }
           $devi->prospect;
           // $devi->devis;
           return Response::json($devi, 200);

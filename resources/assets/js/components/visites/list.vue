@@ -18,8 +18,8 @@
             <span v-if="visite.type == '3'" class="label label-danger block">Haute</span>
 
           </td>
-          <td>{{ visite.date }}</td>
-          <td>{{ visite.client.name }}</td>
+          <td><strong class="text-primary">{{ visite.date }}</strong></td>
+          <td><a @click="$router.push({ path: `/clients/show/`+visite.client.id })" class="text-primary btn">{{ visite.client.name }}</a></td>
           <td>
             <span v-if="visite.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="visite.status == '2'" class="label label-success block">Passé</span>

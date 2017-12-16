@@ -14,10 +14,10 @@
         <tr slot="tbody" v-for="produit in produits">
           <td>{{ produit.id }}</td>
           <td>{{ produit.name }}</td>
-          <td>{{ produit.fournisseur.name }}</td>
-          <td>{{ produit.delaisLivraison }}</td>
-          <td>{{ produit.prixFournisseur }}</td>
-          <td>{{ produit.prixVente }}</td>
+          <td><a @click="$router.push({ path: `/fournisseurs/show/`+produit.fournisseur.id })" class="text-primary btn">{{ produit.fournisseur.name }}</a></td>
+          <td><span class="label label-warning">{{ produit.delaisLivraison }}</span></td>
+          <td><h5 class="text-success">{{ produit.prixFournisseur | currency('') }}</h5></td>
+          <td><h5 class="text-success">{{ produit.prixVente | currency('') }}</h5></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/produits/show/`+produit.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/produits/edit/`+produit.id })"><i class="fa fa-pencil"></i></button>

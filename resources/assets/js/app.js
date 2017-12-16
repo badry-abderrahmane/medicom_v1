@@ -10,7 +10,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import { store } from './store';
+import Vue2Filters from 'vue2-filters'
 
+Vue.use(Vue2Filters)
 Vue.use(VueRouter);
 
 require('./global');
@@ -35,6 +37,8 @@ const app = new Vue({
     this.$store.dispatch('LOAD_FOURNISSEUR_LIST')
     this.$store.dispatch('LOAD_CLIENT_LIST')
     this.$store.dispatch('LOAD_CATEGORY_LIST')
+    this.$store.dispatch('LOAD_PRODUIT_LIST')
+    this.$store.dispatch('LOAD_PRODUIT_PRIX')
   },
   created(){
     Event.$on('init-datatable', (tableid) => {

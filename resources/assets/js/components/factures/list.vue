@@ -12,14 +12,14 @@
         </tr>
         <tr slot="tbody" v-for="facture in factures">
           <td>{{ facture.id }}</td>
-          <td>{{ facture.client.name }}</td>
+          <td><a @click="$router.push({ path: `/clients/show/`+facture.client.id })" class="text-primary btn">{{ facture.client.name }}</a></td>
           <td>
             <span v-if="facture.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="facture.status == '2'" class="label label-warning block">Non Payée</span>
             <span v-if="facture.status == '3'" class="label label-success block">Payée</span>
           </td>
-          <td>{{ facture.facturesproduits.count }}</td>
-          <td>{{ facture.totalHT }}</td>
+          <td><span class="label label-default">{{ facture.facturesproduits.count }}</span></td>
+          <td><h5 class="text-success">{{ facture.totalHT | currency('') }}</h5></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/show/`+facture.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/factures/edit/`+facture.id })"><i class="fa fa-pencil"></i></button>

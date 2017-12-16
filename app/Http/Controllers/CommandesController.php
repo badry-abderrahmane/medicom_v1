@@ -42,6 +42,9 @@ class CommandesController extends Controller
       {
         $commande = Commande::findOrfail($id);
         $commande->commandesproduits;
+        foreach ($commande->commandesproduits as $commandeproduit) {
+          $commandeproduit->produit;
+        }
         $commande->client;
         // $commande->devis;
         return Response::json($commande, 200);

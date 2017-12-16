@@ -11,7 +11,7 @@
         <tr slot="tbody" v-for="category in categories">
           <td>{{ category.id }}</td>
           <td>{{ category.name }}</td>
-          <td>{{ category.produits.count }}</td>
+          <td><span class="label label-default">{{ category.produits.count }}</span></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/categories/show/`+category.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/categories/edit/`+category.id })"><i class="fa fa-pencil"></i></button>

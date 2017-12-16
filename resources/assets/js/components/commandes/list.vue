@@ -12,13 +12,13 @@
         </tr>
         <tr slot="tbody" v-for="commande in commandes">
           <td>{{ commande.id }}</td>
-          <td>{{ commande.client.name }}</td>
+          <td><a @click="$router.push({ path: `/clients/show/`+commande.client.id })" class="text-primary btn">{{ commande.client.name }}</a></td>
           <td>
             <span v-if="commande.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="commande.status == '2'" class="label label-success block">Livré</span>
           </td>
-          <td>{{ commande.commandesproduits.count }}</td>
-          <td>{{ commande.totalHT }}</td>
+          <td><span class="label label-default">{{ commande.commandesproduits.count }}</span></td>
+          <td><h5 class="text-success">{{ commande.totalHT  | currency('')  }}</h5></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/commandes/show/`+commande.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/commandes/edit/`+commande.id })"><i class="fa fa-pencil"></i></button>

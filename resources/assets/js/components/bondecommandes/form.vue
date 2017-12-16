@@ -37,7 +37,7 @@
             <tr v-for="row,key in rows">
               <td>
                 <div class="form-group">
-                  <model-select :options="[{value:1,text:'pro 1'},{value:2,text:'pro 2'},{value:3,text:'pro 3'},{value:4,text:'Amine'}]" v-model="row.produit_id" placeholder="Choisir produit..">
+                  <model-select :options="produits" v-model="row.produit_id" placeholder="Choisir produit..">
                  </model-select>
                  <div class="help-block text-danger" v-if="row.produit_id == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
@@ -99,6 +99,10 @@
 
         fournisseurs: function(){
           return this.$store.state.fournisseurs
+        },
+
+        produits: function(){
+          return this.$store.state.produits
         },
       },
       created(){

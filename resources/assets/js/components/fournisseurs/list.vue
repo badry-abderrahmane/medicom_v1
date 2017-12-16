@@ -15,7 +15,7 @@
           <td>{{ fournisseur.id }}</td>
           <td>{{ fournisseur.name }}</td>
           <td>{{ fournisseur.specialite }}</td>
-          <td>{{ fournisseur.produits.count }}</td>
+          <td><span class="label label-default">{{ fournisseur.produits.count }}</span></td>
           <td>{{ fournisseur.phone }}</td>
           <td>{{ fournisseur.adress }}</td>
           <td>

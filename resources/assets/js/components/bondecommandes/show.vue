@@ -29,7 +29,7 @@
           </thead>
           <tbody>
             <tr v-for="row,key in rows">
-              <td> {{ row.produit_id }} </td>
+              <td> {{ row.produit.name }} </td>
               <td> {{ row.quantite }} </td>
             </tr>
           </tbody>

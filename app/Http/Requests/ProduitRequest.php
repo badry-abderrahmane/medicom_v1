@@ -24,8 +24,8 @@ class ProduitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'reference'=>'required',
+            'name'=>'required|unique:produits,name,'. $this->id,
+            'reference'=>'required|unique:produits,reference,'. $this->id,
             'category_id'=>'required',
             'fournisseur_id'=>'required',
             'imgs' => 'image64:jpeg,jpg,png',

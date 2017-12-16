@@ -10,5 +10,9 @@ class Devisproduit extends Model
         'produit_id', 'quantite','prixHT','totalHT','devi_id'
       ];
 
+      public function produit()
+      {
+        return $this->belongsTo('App\Produit');
+      }
 
 }

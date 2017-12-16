@@ -106,6 +106,8 @@
             if (this.form.id == '') {
               this.form.post('/produits')
                 .then(data => {
+                  this.$store.dispatch('LOAD_PRODUIT_LIST')
+                  this.$store.dispatch('LOAD_PRODUIT_PRIX')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })
@@ -115,6 +117,8 @@
             }else{
               this.form.put('/produits')
                 .then(data => {
+                  this.$store.dispatch('LOAD_PRODUIT_LIST')
+                  this.$store.dispatch('LOAD_PRODUIT_PRIX')
                   Event.$emit('publish-success-message', data.message);
                   this.goback();
                 })

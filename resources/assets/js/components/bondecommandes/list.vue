@@ -11,12 +11,12 @@
         </tr>
         <tr slot="tbody" v-for="bondecommande in bondecommandes">
           <td style="text-align: center;">{{ bondecommande.id }}</td>
-          <td style="text-align: center;">{{ bondecommande.fournisseur.name }}</td>
+          <td><a @click="$router.push({ path: `/fournisseurs/show/`+bondecommande.fournisseur.id })" class="text-primary btn">{{ bondecommande.fournisseur.name }}</a></td>
           <td style="text-align: center;">
             <span v-if="bondecommande.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="bondecommande.status == '2'" class="label label-success block">Livré</span>
           </td>
-          <td style="text-align: center;">{{ bondecommande.bondecommandesproduits.count }}</td>
+          <td><span class="label label-default">{{ bondecommande.bondecommandesproduits.count }}</span></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/bondecommandes/show/`+bondecommande.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/bondecommandes/edit/`+bondecommande.id })"><i class="fa fa-pencil"></i></button>

@@ -41,6 +41,9 @@ class FacturesController extends Controller
       {
         $facture = Facture::findOrfail($id);
         $facture->facturesproduits;
+        foreach ($facture->facturesproduits as $factureproduit) {
+          $factureproduit->produit;
+        }
         $facture->client;
         // $facture->devis;
         return Response::json($facture, 200);

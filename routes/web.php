@@ -66,3 +66,12 @@ Route::get('list/categories', function(){
   $list = \App\Category::pluck('name','id')->toJson();
   return $list;
 });
+Route::get('list/produits', function(){
+  $list = \App\Produit::pluck('name','id')->toJson();
+  return $list;
+});
+
+Route::get('prix/produits', function(){
+  $list = \App\Produit::pluck('prixVente','id')->toJson();
+  return $list;
+});

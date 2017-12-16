@@ -40,6 +40,9 @@ class BondecommandesController extends Controller
       {
         $bondecommande = Bondecommande::findOrfail($id);
         $bondecommande->bondecommandesproduits;
+        foreach ($bondecommande->bondecommandesproduits as $bondecommandeproduit) {
+          $bondecommandeproduit->produit;
+        }
         $bondecommande->fournisseur;
         // $bondecommande->devis;
         return Response::json($bondecommande, 200);

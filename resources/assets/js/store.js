@@ -10,6 +10,8 @@ export const store = new Vuex.Store({
     fournisseurs: [],
     clients: [],
     categories: [],
+    produits: [],
+    produitsprix: [],
   },
   mutations: {
     SET_PROSPECT_LIST: (state, { list }) => {
@@ -31,6 +33,16 @@ export const store = new Vuex.Store({
       let array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
       for (var prop in list) {let item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);}
       state.categories = array
+    },
+    SET_PRODUIT_LIST: (state, { list }) => {
+      let array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {let item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);}
+      state.produits = array
+    },
+    SET_PRODUIT_PRIX: (state, { list }) => {
+      let array = [];var empty = {};empty['text'] = '';empty['value'] = '';array.push(empty);
+      for (var prop in list) {let item = {};item['text'] = list[prop];item['value'] = prop;array.push(item);}
+      state.produitsprix = array
     }
   },
   actions: {
@@ -61,6 +73,22 @@ export const store = new Vuex.Store({
     LOAD_CATEGORY_LIST: function ({ commit }) {
       axios.get('list/categories').then((response) => {
         commit('SET_CATEGORY_LIST', { list: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+
+    LOAD_PRODUIT_LIST: function ({ commit }) {
+      axios.get('list/produits').then((response) => {
+        commit('SET_PRODUIT_LIST', { list: response.data })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+
+    LOAD_PRODUIT_PRIX: function ({ commit }) {
+      axios.get('prix/produits').then((response) => {
+        commit('SET_PRODUIT_PRIX', { list: response.data })
       }, (err) => {
         console.log(err)
       })

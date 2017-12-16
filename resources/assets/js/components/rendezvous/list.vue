@@ -18,8 +18,8 @@
             <span v-if="rendezvou.type == '3'" class="label label-danger block">Haute</span>
 
           </td>
-          <td>{{ rendezvou.date }}</td>
-          <td>{{ rendezvou.prospect.name }}</td>
+          <td><strong class="text-primary">{{ rendezvou.date }}</strong></td>
+          <td><a @click="$router.push({ path: `/prospects/show/`+rendezvou.prospect.id })" class="text-primary btn">{{ rendezvou.prospect.name }}</a></td>
           <td>
             <span v-if="rendezvou.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="rendezvou.status == '2'" class="label label-success block">Passé</span>

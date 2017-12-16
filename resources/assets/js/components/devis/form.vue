@@ -40,7 +40,7 @@
             <tr v-for="row,key in rows">
               <td>
                 <div class="form-group">
-                  <model-select :options="[{value:1,text:'pro 1'},{value:2,text:'pro 2'},{value:3,text:'pro 3'},{value:4,text:'Amine'}]" v-model="row.produit_id" placeholder="Choisir produit.." >
+                  <model-select :options="produits" v-model="row.produit_id" placeholder="Choisir produit.." @input="getPrix(row)">
                  </model-select>
                  <div class="help-block text-danger" v-if="row.produit_id == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
@@ -53,7 +53,7 @@
               </td>
               <td>
                 <div class="input-group mb-15">
-									<input v-model="row.prix" class="form-control" disabled>
+									<input v-model="row.prix"  class="form-control" disabled>
 									<span class="input-group-btn">
 									  <button @click="insertPrix(key)" class="btn btn-success" style="padding-left: 10px;padding-right: 10px;"><i class="fa fa-arrow-right fa-xs"></i></button>
 									</span>
@@ -141,6 +141,12 @@
         },
         prospects: function(){
           return this.$store.state.prospects
+        },
+        produits: function(){
+          return this.$store.state.produits
+        },
+        produitsprix: function(){
+          return this.$store.state.produitsprix
         }
       },
 
@@ -213,6 +219,13 @@
         goback(){
             this.$router.go(-1);
         },
+        getPrix(row){
+          this.produitsprix.reduce(function(key,item) {
+            if (item['value'] == row.produit_id) {
+              row.prix = item['text']
+            }
+          }, 0)
+        },
         makeRow(key,row){
           if (this.index != key) {
             this.removeRow(key,row);
@@ -232,7 +245,7 @@
           this.deleteDevi(row);
         },
         countTotale(key){
-          if (this.rows[key].prixHT < this.rows[key].prix) {
+          if (parseInt(this.rows[key].prixHT) < parseInt(this.rows[key].prix)) {
             this.rows[key].prixHT = this.rows[key].prix;
             this.rows[key].totalHT = this.rows[key].prixHT*this.rows[key].quantite;
           }else{

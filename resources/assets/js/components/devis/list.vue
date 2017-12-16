@@ -12,13 +12,13 @@
         </tr>
         <tr slot="tbody" v-for="devi in devis">
           <td>{{ devi.id }}</td>
-          <td>{{ devi.prospect.name }}</td>
+          <td><a @click="$router.push({ path: `/prospects/show/`+devi.prospect.id })" class="text-primary btn">{{ devi.prospect.name }}</a></td>
           <td>
             <span v-if="devi.status == '1'" class="label label-danger block">En attente</span>
             <span v-if="devi.status == '2'" class="label label-success block">Livré</span>
           </td>
-          <td>{{ devi.devisproduits.count }}</td>
-          <td>{{ devi.totalHT }}</td>
+          <td><span class="label label-default">{{ devi.devisproduits.count }}</span></td>
+          <td><h5 class="text-success">{{ devi.totalHT | currency('') }}</h5></td>
           <td>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/devis/show/`+devi.id })"><i class="fa fa-eye"></i></button>
             <button class="btn btn-default btn-icon-anim btn-circle" @click="$router.push({ path: `/devis/edit/`+devi.id })"><i class="fa fa-pencil"></i></button>
