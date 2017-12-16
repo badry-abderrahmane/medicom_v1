@@ -3,11 +3,11 @@
     <div class="col-md-3">
       <part-panel-profile title="Catégorie" :name="category.name">
         <div slot="count1">
-          <span class="counts block head-font"><span class="counter-anim">11</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countProduits }}</span></span>
           <span class="counts-text block">Produits</span>
         </div>
         <div slot="count2">
-          <span class="counts block head-font"><span class="counter-anim">122</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countProduits }}</span></span>
           <span class="counts-text block">Produits</span>
         </div>
       </part-panel-profile>
@@ -40,7 +40,14 @@ export default {
   computed:{
     categoryId: function(){
       return this.$route.params.id
-    }
+    },
+    countProduits: function(){
+      if (this.category.produits) {
+        return this.category.produits.length
+      }else{
+        return 0
+      }
+    },
   },
   created(){
     axios.get('/categories/'+this.categoryId)

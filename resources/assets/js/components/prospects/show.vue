@@ -3,11 +3,11 @@
     <div class="col-md-3">
       <part-panel-profile title="Prospect" :name="prospect.name">
         <div slot="count1">
-          <span class="counts block head-font"><span class="counter-anim">11</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countRendezvous }}</span></span>
           <span class="counts-text block">Rendez-vous</span>
         </div>
         <div slot="count2">
-          <span class="counts block head-font"><span class="counter-anim">34</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countDevis }}</span></span>
           <span class="counts-text block">Devis</span>
         </div>
       </part-panel-profile>
@@ -43,7 +43,21 @@ export default {
   computed:{
     prospectId: function(){
       return this.$route.params.id
-    }
+    },
+    countRendezvous: function(){
+      if (this.prospect.rendezvous) {
+        return this.prospect.rendezvous.length
+      }else{
+        return 0
+      }
+    },
+    countDevis: function(){
+      if (this.prospect.rendezvous) {
+        return this.prospect.devis.length
+      }else{
+        return 0
+      }
+    },
   },
   created(){
     axios.get('/prospects/'+this.prospectId)

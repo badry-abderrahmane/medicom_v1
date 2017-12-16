@@ -3,11 +3,11 @@
     <div class="col-md-3">
       <part-panel-profile title="Fournisseur" :name="fournisseur.name">
         <div slot="count1">
-          <span class="counts block head-font"><span class="counter-anim">11</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countProduits }}</span></span>
           <span class="counts-text block">Produits</span>
         </div>
         <div slot="count2">
-          <span class="counts block head-font"><span class="counter-anim">122</span></span>
+          <span class="counts block head-font"><span class="counter-anim">{{ countBondecommandes }}</span></span>
           <span class="counts-text block">Bon de commandes</span>
         </div>
       </part-panel-profile>
@@ -40,7 +40,21 @@ export default {
   computed:{
     fournisseurId: function(){
       return this.$route.params.id
-    }
+    },
+    countProduits: function(){
+      if (this.fournisseur.produits) {
+        return this.fournisseur.produits.length
+      }else{
+        return 0
+      }
+    },
+    countBondecommandes: function(){
+      if (this.fournisseur.bondecommandes) {
+        return this.fournisseur.bondecommandes.length
+      }else{
+        return 0
+      }
+    },
   },
   created(){
     axios.get('/fournisseurs/'+this.fournisseurId)

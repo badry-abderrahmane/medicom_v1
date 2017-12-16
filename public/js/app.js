@@ -66901,7 +66901,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66957,6 +66957,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     clientId: function clientId() {
       return this.$route.params.id;
+    },
+    countVisites: function countVisites() {
+      if (this.client.visites) {
+        return this.client.visites.length;
+      } else {
+        return 0;
+      }
+    },
+    countFactures: function countFactures() {
+      if (this.client.factures) {
+        return this.client.factures.length;
+      } else {
+        return 0;
+      }
     }
   },
   created: function created() {
@@ -66990,7 +67004,9 @@ var render = function() {
           [
             _c("div", { attrs: { slot: "count1" }, slot: "count1" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("11")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countVisites))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -67000,7 +67016,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", { attrs: { slot: "count2" }, slot: "count2" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("122")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countFactures))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -68098,7 +68116,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68151,6 +68169,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     prospectId: function prospectId() {
       return this.$route.params.id;
+    },
+    countRendezvous: function countRendezvous() {
+      if (this.prospect.rendezvous) {
+        return this.prospect.rendezvous.length;
+      } else {
+        return 0;
+      }
+    },
+    countDevis: function countDevis() {
+      if (this.prospect.rendezvous) {
+        return this.prospect.devis.length;
+      } else {
+        return 0;
+      }
     }
   },
   created: function created() {
@@ -68184,7 +68216,9 @@ var render = function() {
           [
             _c("div", { attrs: { slot: "count1" }, slot: "count1" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("11")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countRendezvous))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -68194,7 +68228,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", { attrs: { slot: "count2" }, slot: "count2" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("34")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countDevis))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -73626,7 +73662,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73680,6 +73716,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     fournisseurId: function fournisseurId() {
       return this.$route.params.id;
+    },
+    countProduits: function countProduits() {
+      if (this.fournisseur.produits) {
+        return this.fournisseur.produits.length;
+      } else {
+        return 0;
+      }
+    },
+    countBondecommandes: function countBondecommandes() {
+      if (this.fournisseur.bondecommandes) {
+        return this.fournisseur.bondecommandes.length;
+      } else {
+        return 0;
+      }
     }
   },
   created: function created() {
@@ -73713,7 +73763,9 @@ var render = function() {
           [
             _c("div", { attrs: { slot: "count1" }, slot: "count1" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("11")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countProduits))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -73723,7 +73775,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", { attrs: { slot: "count2" }, slot: "count2" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("122")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countBondecommandes))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -74514,7 +74568,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74565,6 +74619,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     categoryId: function categoryId() {
       return this.$route.params.id;
+    },
+    countProduits: function countProduits() {
+      if (this.category.produits) {
+        return this.category.produits.length;
+      } else {
+        return 0;
+      }
     }
   },
   created: function created() {
@@ -74598,7 +74659,9 @@ var render = function() {
           [
             _c("div", { attrs: { slot: "count1" }, slot: "count1" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("11")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countProduits))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -74608,7 +74671,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", { attrs: { slot: "count2" }, slot: "count2" }, [
               _c("span", { staticClass: "counts block head-font" }, [
-                _c("span", { staticClass: "counter-anim" }, [_vm._v("122")])
+                _c("span", { staticClass: "counter-anim" }, [
+                  _vm._v(_vm._s(_vm.countProduits))
+                ])
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "counts-text block" }, [
@@ -79994,7 +80059,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n#calendar .fc-title {\ncolor: #fffff;\n}\n", ""]);
 
 // exports
 
@@ -80005,6 +80070,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty__);
+
 //
 //
 //
@@ -80013,56 +80081,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        $('#calendar').fullCalendar({
+  data: function data() {
+    return {
+      list: [],
+      evs: [],
+      realEvents: []
+    };
+  },
+  created: function created() {
+    this.getEvents();
+  },
 
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: false,
-            droppable: false, // this allows things to be dropped onto the calendar
-            eventLimit: true, // allow "more" link when too many events
+  methods: {
+    getEvents: function getEvents() {
+      var _this = this;
 
-            eventMouseover: function eventMouseover(data, event, view) {
-                var tooltip = '<div class="tooltiptopicevent tooltip tooltip-inner" style="width:auto;height:auto;position:absolute;z-index:10001;">10:00 AM ' + data.title + '</div>';
-                $("body").append(tooltip);
-                $(this).mouseover(function (e) {
-                    $(this).css('z-index', 10000);
-                    $('.tooltiptopicevent').fadeIn('500');
-                    $('.tooltiptopicevent').fadeTo('10', 1.9);
-                }).mousemove(function (e) {
-                    $('.tooltiptopicevent').css('top', e.pageY + 10);
-                    $('.tooltiptopicevent').css('left', e.pageX + 20);
-                });
-            },
-            eventMouseout: function eventMouseout(data, event, view) {
-                $(this).css('z-index', 8);
-                $('.tooltiptopicevent').remove();
-            },
-            dayClick: function dayClick() {
-                tooltip.hide();
-            },
-            eventResizeStart: function eventResizeStart() {
-                tooltip.hide();
-            },
-            eventDragStart: function eventDragStart() {
-                tooltip.hide();
-            },
-            viewDisplay: function viewDisplay() {
-                tooltip.hide();
-            },
-
-            events: [{
-                start: '2017-12-12',
-                end: '2017-12-12',
-                overlap: false,
-                rendering: 'background',
-                color: 'rgba(234, 108, 65, 0.3)'
-            }]
+      axios.get('/visites').then(function (response) {
+        _this.list.push(response.data);
+        axios.get('/rendezvous').then(function (response) {
+          _this.list.push(response.data);
+          _this.evs.push(_this.list[0]);
+          _this.evs = _this.list[0].concat(_this.list[1]);
+          _this.makeEvents();
         });
+      });
+    },
+    makeEvents: function makeEvents() {
+      var list = [];
+      this.evs.forEach(function (element) {
+        var color = 'rgba(234, 108, 65, 0.3)';
+        var title = '';
+        if (element.type == '1') {
+          color = '#777';
+        }
+        if (element.type == '2') {
+          color = '#f0ad4e';
+        }
+        if (element.type == '3') {
+          color = '#d9534f';
+        }
+        if (element.client) {
+          title = element.client.name;
+        } else {
+          title = element.prospect.name;
+        }
+        list.push(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()({ url: 'clients', title: title, textColor: '#d9534f', start: moment(element.date, 'DD-MM-YYYY LT'), end: moment(element.date, 'DD-MM-YYYY LT'), allDay: true, color: color }, 'textColor', '#ffff'));
+      });
+      this.realEvents = list;
+      this.mountCalendar();
+    },
+    mountCalendar: function mountCalendar() {
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        editable: false,
+        droppable: false, // this allows things to be dropped onto the calendar
+        eventLimit: true, // allow "more" link when too many events
+        // eventAfterRender: function(event, element, view) {
+        //   element.append(event.title);
+        // },
+        eventClick: function eventClick(calEvent, jsEvent, view) {
+          console.log('Event: ' + calEvent.title);
+          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+          alert('View: ' + view.name);
+
+          // change the border color just for fun
+          $(this).css('border-color', 'red');
+        },
+        // eventMouseover: function (data, event, view) {
+        //     var tooltip = '<div class="tooltiptopicevent tooltip tooltip-inner" style="width:auto;height:auto;position:absolute;z-index:10001;">10:00 AM ' + data.title + '</div>';
+        // 		$("body").append(tooltip);
+        //           $(this).mouseover(function (e) {
+        //               $(this).css('z-index', 10000);
+        //               $('.tooltiptopicevent').fadeIn('500');
+        //               $('.tooltiptopicevent').fadeTo('10', 1.9);
+        //           }).mousemove(function (e) {
+        //               $('.tooltiptopicevent').css('top', e.pageY + 10);
+        //               $('.tooltiptopicevent').css('left', e.pageX + 20);
+        //           });
+        //       },
+        //       eventMouseout: function (data, event, view) {
+        //           $(this).css('z-index', 8);
+        //           $('.tooltiptopicevent').remove();
+        //       },
+        //       dayClick: function () {
+        //           tooltip.hide()
+        //       },
+        //       eventResizeStart: function () {
+        //           tooltip.hide()
+        //       },
+        //       eventDragStart: function () {
+        //           tooltip.hide()
+        //       },
+        //       viewDisplay: function () {
+        //           tooltip.hide()
+        //       },
+
+        events: this.realEvents
+      });
     }
+  }
 });
 
 /***/ }),
@@ -80946,6 +81067,36 @@ function pluralize (value) {
 /***/ })
 /******/ ]);
 });
+
+/***/ }),
+/* 518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(294);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (obj, key, value) {
+  if (key in obj) {
+    (0, _defineProperty2.default)(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
 
 /***/ })
 /******/ ]);
