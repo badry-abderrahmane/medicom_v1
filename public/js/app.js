@@ -57001,154 +57001,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0, false, false)
+  return _c("nav", { staticClass: "navbar navbar-inverse navbar-fixed-top" }, [
+    _vm._m(0, false, false),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "mobile-only-nav pull-right",
+        attrs: { id: "mobile_only_nav" }
+      },
+      [
+        _c("ul", { staticClass: "nav navbar-right top-nav pull-right" }, [
+          _vm._m(1, false, false),
+          _vm._v(" "),
+          _c("li", { staticClass: "dropdown auth-drp" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(_vm.user.name))])
+          ]),
+          _vm._v(" "),
+          _vm._m(2, false, false)
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      { staticClass: "navbar navbar-inverse navbar-fixed-top" },
-      [
-        _c("div", { staticClass: "mobile-only-brand pull-left" }, [
-          _c("div", { staticClass: "nav-header pull-left" }, [
-            _c("div", { staticClass: "logo-wrap" }, [
-              _c("a", { attrs: { href: "index.html" } }, [
-                _c("img", {
-                  staticClass: "brand-img",
-                  attrs: { src: "dist/img/logo.png", alt: "brand" }
-                }),
-                _vm._v(" "),
-                _c("span", { staticClass: "brand-text" }, [_vm._v("MediCom")])
-              ])
+    return _c("div", { staticClass: "mobile-only-brand pull-left" }, [
+      _c("div", { staticClass: "nav-header pull-left" }, [
+        _c("div", { staticClass: "logo-wrap" }, [
+          _c("a", { attrs: { href: "index.html" } }, [
+            _c("img", {
+              staticClass: "brand-img",
+              attrs: { src: "dist/img/logo.png", alt: "brand" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "brand-text" }, [_vm._v("MediCom")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "toggle-left-nav-btn inline-block ml-20 pull-left",
+          attrs: { id: "toggle_nav_btn", href: "javascript:void(0);" }
+        },
+        [_c("i", { staticClass: "zmdi zmdi-menu" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "mobile-only-view",
+          attrs: {
+            id: "toggle_mobile_search",
+            "data-toggle": "collapse",
+            "data-target": "#search_form",
+            href: "javascript:void(0);"
+          }
+        },
+        [_c("i", { staticClass: "zmdi zmdi-search" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "mobile-only-view",
+          attrs: { id: "toggle_mobile_nav", href: "javascript:void(0);" }
+        },
+        [_c("i", { staticClass: "zmdi zmdi-more" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { id: "open_right_sidebar", href: "#" } }, [
+        _c("i", { staticClass: "zmdi zmdi-settings top-nav-icon" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "dropdown auth-drp" }, [
+      _c(
+        "a",
+        {
+          staticClass: "dropdown-toggle pr-0",
+          attrs: { href: "#", "data-toggle": "dropdown" }
+        },
+        [
+          _c("img", {
+            staticClass: "user-auth-img img-circle",
+            attrs: { src: "dist/img/user1.png", alt: "user_auth" }
+          }),
+          _c("span", { staticClass: "user-online-status" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        {
+          staticClass: "dropdown-menu user-auth-dropdown",
+          attrs: {
+            "data-dropdown-in": "flipInX",
+            "data-dropdown-out": "flipOutX"
+          }
+        },
+        [
+          _c("li", [
+            _c("a", { attrs: { href: "#", disabled: "" } }, [
+              _c("i", { staticClass: "zmdi zmdi-account" }),
+              _c("span", [_vm._v("Profile")])
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "toggle-left-nav-btn inline-block ml-20 pull-left",
-              attrs: { id: "toggle_nav_btn", href: "javascript:void(0);" }
-            },
-            [_c("i", { staticClass: "zmdi zmdi-menu" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "mobile-only-view",
-              attrs: {
-                id: "toggle_mobile_search",
-                "data-toggle": "collapse",
-                "data-target": "#search_form",
-                href: "javascript:void(0);"
-              }
-            },
-            [_c("i", { staticClass: "zmdi zmdi-search" })]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "mobile-only-view",
-              attrs: { id: "toggle_mobile_nav", href: "javascript:void(0);" }
-            },
-            [_c("i", { staticClass: "zmdi zmdi-more" })]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "mobile-only-nav pull-right",
-            attrs: { id: "mobile_only_nav" }
-          },
-          [
-            _c("ul", { staticClass: "nav navbar-right top-nav pull-right" }, [
-              _c("li", [
-                _c("a", { attrs: { id: "open_right_sidebar", href: "#" } }, [
-                  _c("i", { staticClass: "zmdi zmdi-settings top-nav-icon" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "dropdown auth-drp" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Badry Abderrahmane")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "dropdown auth-drp" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-toggle pr-0",
-                    attrs: { href: "#", "data-toggle": "dropdown" }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "user-auth-img img-circle",
-                      attrs: { src: "dist/img/user1.png", alt: "user_auth" }
-                    }),
-                    _c("span", { staticClass: "user-online-status" })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass: "dropdown-menu user-auth-dropdown",
-                    attrs: {
-                      "data-dropdown-in": "flipInX",
-                      "data-dropdown-out": "flipOutX"
-                    }
-                  },
-                  [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", disabled: "" } }, [
-                        _c("i", { staticClass: "zmdi zmdi-account" }),
-                        _c("span", [_vm._v("Profile")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", disabled: "" } }, [
-                        _c("i", { staticClass: "zmdi zmdi-card" }),
-                        _c("span", [_vm._v("Mon balance")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", disabled: "" } }, [
-                        _c("i", { staticClass: "zmdi zmdi-email" }),
-                        _c("span", [_vm._v("Inbox")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#", disabled: "" } }, [
-                        _c("i", { staticClass: "zmdi zmdi-settings" }),
-                        _c("span", [_vm._v("Paramètres")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "divider" }),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "/logout" } }, [
-                        _c("i", { staticClass: "zmdi zmdi-power" }),
-                        _c("span", [_vm._v("Déconnexion")])
-                      ])
-                    ])
-                  ]
-                )
-              ])
+          _c("li", [
+            _c("a", { attrs: { href: "#", disabled: "" } }, [
+              _c("i", { staticClass: "zmdi zmdi-card" }),
+              _c("span", [_vm._v("Mon balance")])
             ])
-          ]
-        )
-      ]
-    )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#", disabled: "" } }, [
+              _c("i", { staticClass: "zmdi zmdi-email" }),
+              _c("span", [_vm._v("Inbox")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#", disabled: "" } }, [
+              _c("i", { staticClass: "zmdi zmdi-settings" }),
+              _c("span", [_vm._v("Paramètres")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "divider" }),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "/logout" } }, [
+              _c("i", { staticClass: "zmdi zmdi-power" }),
+              _c("span", [_vm._v("Déconnexion")])
+            ])
+          ])
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -80356,7 +80362,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -80367,6 +80373,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -80422,7 +80432,9 @@ var render = function() {
         _vm._v(" "),
         _vm._m(1, false, false),
         _vm._v(" "),
-        _vm._m(2, false, false)
+        _vm._m(2, false, false),
+        _vm._v(" "),
+        _vm._m(3, false, false)
       ])
     ])
   ])
@@ -80477,6 +80489,37 @@ var staticRenderFns = [
       ]),
       _vm._v(".")
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "alert alert-warning alert-dismissable alert-style-1" },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "close",
+            attrs: {
+              type: "button",
+              "data-dismiss": "alert",
+              "aria-hidden": "true"
+            }
+          },
+          [_vm._v("×")]
+        ),
+        _vm._v(" "),
+        _c("i", { staticClass: "zmdi zmdi-alert-circle-o" }),
+        _vm._v(
+          "Aidez nous à corriger toute anomalie en envoyant un imprimé écran de l'erreur et/ou mauvaise interaction."
+        ),
+        _c("br"),
+        _vm._v(" Vers l'adresse email suivante "),
+        _c("strong", [_vm._v("medimall.dev@gmail.com")])
+      ]
+    )
   }
 ]
 render._withStripped = true
