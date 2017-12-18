@@ -8,7 +8,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/` })" :class="$route.name == 'Tableau de bord' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="zmdi zmdi-landscape mr-20"></i>
             <span class="right-nav-text">Tableau de bord</span>
           </div>
           <div class="clearfix"></div>
@@ -19,18 +19,9 @@
         <i class="zmdi zmdi-more"></i>
       </li>
       <li>
-        <a style="cursor:pointer;" @click="$router.push({ path: `/clients` })" :class="$route.name == 'Clients' ? 'active':'' ">
-          <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
-            <span class="right-nav-text">Clients</span>
-          </div>
-          <div class="clearfix"></div>
-        </a>
-      </li>
-      <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/prospects` })" :class="$route.name == 'Prospects' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-users mr-20"></i>
             <span class="right-nav-text">Prospects</span>
           </div>
           <div class="clearfix"></div>
@@ -39,8 +30,17 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/devis` })" :class="$route.name == 'Devis' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-file-excel-o mr-20"></i>
             <span class="right-nav-text">Devis</span>
+          </div>
+          <div class="clearfix"></div>
+        </a>
+      </li>
+      <li>
+        <a style="cursor:pointer;" @click="$router.push({ path: `/clients` })" :class="$route.name == 'Clients' ? 'active':'' ">
+          <div class="pull-left">
+            <i class="fa fa-users mr-20"></i>
+            <span class="right-nav-text">Clients</span>
           </div>
           <div class="clearfix"></div>
         </a>
@@ -48,7 +48,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/commandes` })" :class="$route.name == 'Commandes' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-list-alt mr-20"></i>
             <span class="right-nav-text">Commandes</span>
           </div>
           <div class="clearfix"></div>
@@ -57,7 +57,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/factures` })" :class="$route.name == 'Factures' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-clipboard mr-20"></i>
             <span class="right-nav-text">Factures</span>
           </div>
           <div class="clearfix"></div>
@@ -70,7 +70,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/fournisseurs` })" :class="$route.name == 'Fournisseurs' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-building-o mr-20"></i>
             <span class="right-nav-text">Fournisseurs</span>
           </div>
           <div class="clearfix"></div>
@@ -79,7 +79,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/categories` })" :class="$route.name == 'Categories' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa  fa-filter mr-20"></i>
             <span class="right-nav-text">Catégories</span>
           </div>
           <div class="clearfix"></div>
@@ -88,7 +88,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/produits` })" :class="$route.name == 'Produits' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-shopping-basket mr-20"></i>
             <span class="right-nav-text">Produits</span>
           </div>
           <div class="clearfix"></div>
@@ -97,7 +97,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/bondecommandes` })" :class="$route.name == 'Bon de commandes' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-credit-card-alt mr-20"></i>
             <span class="right-nav-text">Bon de commandes</span>
           </div>
           <div class="clearfix"></div>
@@ -111,7 +111,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/rendezvous` })" :class="$route.name == 'Rendez-vous' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-calendar-o mr-20"></i>
             <span class="right-nav-text">Rendez-vous</span>
           </div>
           <div class="clearfix"></div>
@@ -120,7 +120,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/visites` })" :class="$route.name == 'Visites' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-calendar-o mr-20"></i>
             <span class="right-nav-text">Visites</span>
           </div>
           <div class="clearfix"></div>
@@ -129,7 +129,7 @@
       <li>
         <a style="cursor:pointer;" @click="$router.push({ path: `/calendrier` })" :class="$route.name == 'Calendrier' ? 'active':'' ">
           <div class="pull-left">
-            <i class="zmdi zmdi-flag mr-20"></i>
+            <i class="fa fa-calendar mr-20"></i>
             <span class="right-nav-text">Calendrier</span>
           </div>
           <div class="clearfix"></div>

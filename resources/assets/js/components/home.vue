@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="wrapper theme-1-active box-layout pimary-color-green">
-	  <global-navbar></global-navbar>
+	  <global-navbar :user="user"></global-navbar>
 	  <global-sidebar></global-sidebar>
 	  <global-optionbar></global-optionbar>
     <div class="right-sidebar-backdrop"></div>
@@ -18,8 +18,14 @@
 export default {
   data(){
     return {
-
+      user:'',
     }
+  },
+  created(){
+    axios.get('/wayway')
+      .then(response => {
+        this.user = response.data;
+    });
   }
 }
 </script>
