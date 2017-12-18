@@ -80005,6 +80005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.evs.forEach(function (element) {
         var color = 'rgba(234, 108, 65, 0.3)';
         var title = '';
+        var url = '';
         if (element.type == '1') {
           color = '#777';
         }
@@ -80016,10 +80017,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
         if (element.client) {
           title = element.client.name;
+          url = '/home#/visites/show/' + element.id;
         } else {
           title = element.prospect.name;
+          url = '/home#/rendezvous/show/' + element.id;
         }
-        list.push(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()({ url: 'clients', title: title, textColor: '#d9534f', start: moment(element.date, 'DD-MM-YYYY LT'), end: moment(element.date, 'DD-MM-YYYY LT'), allDay: true, color: color }, 'textColor', '#ffff'));
+        list.push(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()({ url: url, title: title, textColor: '#d9534f', start: moment(element.date, 'DD-MM-YYYY LT'), end: moment(element.date, 'DD-MM-YYYY LT'), allDay: true, color: color }, 'textColor', '#ffff'));
       });
       this.realEvents = list;
       this.mountCalendar();
@@ -80037,14 +80040,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // eventAfterRender: function(event, element, view) {
         //   element.append(event.title);
         // },
-        eventClick: function eventClick(calEvent, jsEvent, view) {
-          console.log('Event: ' + calEvent.title);
-          alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-          alert('View: ' + view.name);
-
-          // change the border color just for fun
-          $(this).css('border-color', 'red');
-        },
+        // eventClick: function(calEvent, jsEvent, view) {
+        //     console.log('Event: ' + calEvent.title);
+        //     alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        //     alert('View: ' + view.name);
+        //
+        //     // change the border color just for fun
+        //     $(this).css('border-color', 'red');
+        //
+        // },
         // eventMouseover: function (data, event, view) {
         //     var tooltip = '<div class="tooltiptopicevent tooltip tooltip-inner" style="width:auto;height:auto;position:absolute;z-index:10001;">10:00 AM ' + data.title + '</div>';
         // 		$("body").append(tooltip);

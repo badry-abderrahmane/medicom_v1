@@ -35,15 +35,18 @@ export default {
       this.evs.forEach(function(element) {
         let color = 'rgba(234, 108, 65, 0.3)';
         let title = '';
+        let url = '';
         if (element.type == '1') { color ='#777'}
         if (element.type == '2') { color ='#f0ad4e'}
         if (element.type == '3') { color ='#d9534f'}
         if (element.client) {
           title = element.client.name;
+          url = '/home#/visites/show/'+element.id;
         }else{
           title = element.prospect.name;
+          url = '/home#/rendezvous/show/'+element.id;
         }
-        list.push({ url:'clients',title: title,textColor:'#d9534f' ,start: moment(element.date,'DD-MM-YYYY LT') ,end: moment(element.date,'DD-MM-YYYY LT'),allDay: true,color: color, textColor:'#ffff'})
+        list.push({ url:url ,title: title,textColor:'#d9534f' ,start: moment(element.date,'DD-MM-YYYY LT') ,end: moment(element.date,'DD-MM-YYYY LT'),allDay: true,color: color, textColor:'#ffff'})
       });
       this.realEvents = list;
       this.mountCalendar();
@@ -61,15 +64,15 @@ export default {
         // eventAfterRender: function(event, element, view) {
         //   element.append(event.title);
         // },
-        eventClick: function(calEvent, jsEvent, view) {
-            console.log('Event: ' + calEvent.title);
-            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-            alert('View: ' + view.name);
-
-            // change the border color just for fun
-            $(this).css('border-color', 'red');
-
-        },
+        // eventClick: function(calEvent, jsEvent, view) {
+        //     console.log('Event: ' + calEvent.title);
+        //     alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        //     alert('View: ' + view.name);
+        //
+        //     // change the border color just for fun
+        //     $(this).css('border-color', 'red');
+        //
+        // },
         // eventMouseover: function (data, event, view) {
         //     var tooltip = '<div class="tooltiptopicevent tooltip tooltip-inner" style="width:auto;height:auto;position:absolute;z-index:10001;">10:00 AM ' + data.title + '</div>';
         // 		$("body").append(tooltip);
