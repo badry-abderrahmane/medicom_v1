@@ -4,26 +4,20 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-    .invoice-title h2, .invoice-title h3 {
-  display: inline-block;
-}
-
-.table > tbody > tr > .no-line {
-  border-top: none;
-}
-
-.table > thead > tr > .no-line {
-  border-bottom: none;
-}
-
-.table > tbody > tr > .thick-line {
-  border-top: 2px solid;
-}
+        .invoice-title h2, .invoice-title h3 {
+          display: inline-block;
+        }
+        .table > tbody > tr > .no-line {
+          border-top: none;
+        }
+        .table > thead > tr > .no-line {
+          border-bottom: none;
+        }
+        .table > tbody > tr > .thick-line {
+          border-top: 2px solid;
+        }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">">
-    <style media="screen">
-
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
@@ -32,7 +26,7 @@
     		<div class="invoice-title">
           <div class="row">
             <div class="col-md-3">
-              <img src="{{ asset('images/logoSociete.png') }}" alt="">
+              <br><img src="{{ asset('images/logoSociete.png') }}" alt="">
             </div>
             <div class="col-md-3">
               <div class="row">
