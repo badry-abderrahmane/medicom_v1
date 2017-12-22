@@ -51,6 +51,11 @@ Route::resource('visites', 'VisitesController');
 Route::resource('calendrier', 'CalendrierController');
 
 
+/**
+** Get Files
+**
+**/
+Route::get('pdf/devis/{id}', 'PdfmakerController@getDevis');
 
 /**
 ** Get Lists
