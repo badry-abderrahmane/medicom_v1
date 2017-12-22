@@ -35,21 +35,21 @@
         <div class="col-xs-12">
     		<div class="invoice-title">
           <img src="{{ asset('images/logoSociete.png') }}" alt="">
-          <h3 class="pull-right"><br><br><br>Devis #{{ $devi->id }}</h3>
+          <h3 class="pull-right"><br><br><br>Devis N°: {{ $devi->id }}</h3>
     		</div>
     		<hr>
     		<div class="row">
     			<div class="col-xs-6">
-    				<address>
+
     				<strong>Généré pour:</strong><br>
     					{{ $devi->prospect->name }}
-    				</address>
+
     			</div>
     			<div class="col-xs-6 text-right">
-    				<address>
+
         			<strong>Date de génération:</strong><br>
     					{{ $devi->updated_at }}
-    				</address>
+    				
     			</div>
     		</div>
 
