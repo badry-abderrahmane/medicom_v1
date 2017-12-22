@@ -34,25 +34,45 @@
     <div class="row">
         <div class="col-xs-12">
     		<div class="invoice-title">
-          <img src="{{ asset('images/logoSociete.png') }}" alt="">
-          <h3 class="pull-right"><br><br><br>Devis N°: {{ $devi->id }}</h3>
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{ asset('images/logoSociete.png') }}" alt="">
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <strong><br>Devis N°: <br></strong>
+                  <div class="well">
+                    {{ $devi->id }}
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <strong>Entreprise: <br></strong>
+                  <div class="well">
+                    HS Print Service
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12">
+                  <strong><br>Date de génération: <br></strong>
+                  <div class="well">
+                    {{ $devi->updated_at }}
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <strong>Généré pour: <br></strong>
+                  <div class="well">
+                    {{ $devi->prospect->name }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
     		</div>
-    		<hr>
-    		<div class="row">
-    			<div class="col-xs-6">
-
-    				<strong>Généré pour:</strong><br>
-    					{{ $devi->prospect->name }}
-
-    			</div>
-    			<div class="col-xs-6 text-right">
-
-        			<strong>Date de génération:</strong><br>
-    					{{ $devi->updated_at }}
-    				
-    			</div>
-    		</div>
-
     	</div>
     </div>
 
@@ -109,6 +129,15 @@
     			</div>
     		</div>
     	</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="well">
+          <strong>Cachet:</strong><br><br><br><br><br>
+        </div>
+      </div>
     </div>
 </div>
   </body>
