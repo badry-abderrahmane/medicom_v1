@@ -2,133 +2,125 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <style media="screen">
-        .invoice-title h2, .invoice-title h3 {
-          display: inline-block;
-        }
-        .table > tbody > tr > .no-line {
-          border-top: none;
-        }
-        .table > thead > tr > .no-line {
-          border-bottom: none;
-        }
-        .table > tbody > tr > .thick-line {
-          border-top: 2px solid;
-        }
+    <title>HS Print Devis N°: {{ $devi->id }} </title>
+    <style>
+    /* DivTable.com */
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.noborder{
+	border: 0;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.center{
+  text-align: center;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-    		<div class="invoice-title">
-          <div class="row">
-            <div class="col-md-3">
-              <br><img src="{{ asset('images/logoSociete.png') }}" alt="">
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <strong><br>Devis N°: <br></strong>
-                  <div class="well">
-                    {{ $devi->id }}
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <strong>Entreprise: <br></strong>
-                  <div class="well">
-                    HS Print Service
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-12">
-                  <strong><br>Date de génération: <br></strong>
-                  <div class="well">
-                    {{ $devi->updated_at }}
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <strong>Généré pour: <br></strong>
-                  <div class="well">
-                    {{ $devi->prospect->name }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
-    		</div>
-    	</div>
-    </div>
-
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="panel panel-default">
-    			<div class="panel-heading">
-    				<h3 class="panel-title"><strong>Récapitulatif de la commande</strong></h3>
-    			</div>
-    			<div class="panel-body">
-    				<div class="table-responsive">
-    					<table class="table table-condensed">
-    						<thead>
-                                <tr>
-        							<td><strong>Produit</strong></td>
-        							<td class="text-center"><strong>Prix Unité</strong></td>
-        							<td class="text-center"><strong>Quantité</strong></td>
-        							<td class="text-right"><strong>Totale (HT)</strong></td>
-                                </tr>
-    						</thead>
-    						<tbody>
-
-    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-                  @foreach ($devi->devisproduits as $dev)
-                    <tr>
-      								<td>{{ $dev->produit->name }}</td>
-      								<td class="text-center">{{ $dev->produit->prixVente }}</td>
-      								<td class="text-center">{{ $dev->quantite }}</td>
-      								<td class="text-right">{{ $dev->prixHT }}</td>
-      							</tr>
-                  @endforeach
-
-    							<tr>
-    								<td class="thick-line"></td>
-    								<td class="thick-line"></td>
-    								<td class="thick-line text-center"><strong>Totale (HT)</strong></td>
-    								<td class="thick-line text-right">{{ $devi->totalHT }} DH</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>TVA</strong></td>
-    								<td class="no-line text-right">20%</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Totale (TTC)</strong></td>
-    								<td class="no-line text-right">{{ $devi->totalTTC }} DH</td>
-    							</tr>
-    						</tbody>
-    					</table>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+    <div class="divTable">
+	<div class="divTableBody">
+		<div class="divTableRow">
+			<div class="divTableCell noborder"><img src="{{ asset('images/logoSociete.png') }}" alt=""></div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder center">
+        <h2>Devis N°: {{ $devi->id }}</h2>
+      </div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">
+        <strong>Entreprise: <br></strong>
         <div class="well">
-          <strong>Cachet:</strong><br><br><br><br><br>
+          HS Print Service
         </div>
       </div>
-    </div>
+			<div class="divTableCell">
+        <strong>Date de génération: <br></strong>
+          {{ $devi->updated_at }}
+      </div>
+			<div class="divTableCell">
+        <strong>Responsable: <br></strong>
+        {{ $devi->updated_at }}
+      </div>
+			<div class="divTableCell">
+        <strong>Généré pour: <br></strong>
+          {{ $devi->prospect->name }}
+      </div>
+		</div>
+    <br><br><br>
+		<div class="divTableRow">
+			<div class="divTableCell center"><strong>Produit</strong></div>
+			<div class="divTableCell center"><strong>Quantité</strong></div>
+			<div class="divTableCell center"><strong>Prix Unité</strong></div>
+			<div class="divTableCell center"><strong>Prix HT</strong></div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell">Oylo</div>
+			<div class="divTableCell center">10</div>
+			<div class="divTableCell center">100</div>
+			<div class="divTableCell center">1000</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell center"><strong>Totale HT</strong></div>
+			<div class="divTableCell center"><strong>15000</strong></div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell center"><strong>TVA</strong></div>
+			<div class="divTableCell center"><strong>20%</strong></div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell center"><strong>Totale TTC</strong></div>
+			<div class="divTableCell center"><strong>16000</strong></div>
+		</div>
+    <br><br><br>
+		<div class="divTableRow">
+			<div class="divTableCell  noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">Cachet:</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+		</div>
+		<div class="divTableRow">
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell noborder">&nbsp;</div>
+			<div class="divTableCell"><br><br><br><br><br><br></div>
+			<div class="divTableCell noborder">&nbsp;</div>
+		</div>
+	</div>
 </div>
+<!-- DivTable.com -->
   </body>
 </html>

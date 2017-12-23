@@ -16,8 +16,8 @@ class PdfmakerController extends Controller
       foreach ($devi->devisproduits as $deviproduit) {
         $deviproduit->produit;
       }
-      // $pdf = PDF::loadView('invoice.devis', ['devi' => $devi]);
-      // return $pdf->download('invoice.pdf');
-      return view('invoice.devis', ['devi' => $devi]);
+      $pdf = PDF::loadView('invoice.devis', ['devi' => $devi]);
+      return $pdf->download('invoice.pdf');
+      //return view('invoice.devis', ['devi' => $devi]);
     }
 }
