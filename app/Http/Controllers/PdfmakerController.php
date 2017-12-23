@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Devi;
-use \PDF;
+use \Excel;
 
 class PdfmakerController extends Controller
 {
@@ -16,9 +16,13 @@ class PdfmakerController extends Controller
       foreach ($devi->devisproduits as $deviproduit) {
         $deviproduit->produit;
       }
-      $pdf = PDF::loadView('invoice.devis', ['devi' => $devi]);
-      $pdf->set_option('enable_html5_parser', TRUE);
-      return $pdf->download('invoice.pdf');
+      $Filename = 'devis'.$devi->created_at;
+      $file = Excel::create($Filename, function($excel){
+            $excel->sheet('Liste', function($sheet){
+                
+            });
+        })->string('xls');
+        \Storage::disk('google')->put($Filename.'.xls',$file);
       //return view('invoice.devis', ['devi' => $devi]);
     }
 }

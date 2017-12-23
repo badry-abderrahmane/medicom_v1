@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => 'local',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => 'google',
 
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +62,13 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        'google' => [
+            'driver' => 'google',
+            'clientId' => '400485815453-a08rk4jv7bp1ebqmpt8uvsk1vjn358lb.apps.googleusercontent.com',
+            'clientSecret' => 'h1NI7o1mMZy5_Sw_46urJ3PX',
+            'refreshToken' => '1/TIv1yodFYpDpv1U_pfDhXeR6E0FcV-mDbkIpxTeg_QA',
+            'folderId' => '1jZo6byuMGBINN6kDsnqT-kRnAHIFau1O',
+        ],
     ],
 
 ];
