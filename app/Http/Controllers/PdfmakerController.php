@@ -17,6 +17,7 @@ class PdfmakerController extends Controller
         $deviproduit->produit;
       }
       $pdf = PDF::loadView('invoice.devis', ['devi' => $devi]);
+      $pdf->set_option('enable_html5_parser', TRUE);
       return $pdf->download('invoice.pdf');
       //return view('invoice.devis', ['devi' => $devi]);
     }
