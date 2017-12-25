@@ -12,7 +12,8 @@
         "intervention/image": "dev-master",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "nao-pon/flysystem-google-drive": "~1.1"
+        "nao-pon/flysystem-google-drive": "~1.1",
+        "elibyy/tcpdf-laravel": "5.5.*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

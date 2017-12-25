@@ -64,9 +64,9 @@ return [
         ],
         'google' => [
             'driver' => 'google',
-            'clientId' => '400485815453-a08rk4jv7bp1ebqmpt8uvsk1vjn358lb.apps.googleusercontent.com',
-            'clientSecret' => 'h1NI7o1mMZy5_Sw_46urJ3PX',
-            'refreshToken' => '1/TIv1yodFYpDpv1U_pfDhXeR6E0FcV-mDbkIpxTeg_QA',
+            'clientId' => '400485815453-favv58bul04va47bgj23e48gso21qjma.apps.googleusercontent.com',
+            'clientSecret' => '1gNw2YCEbHQZvrdEaRCmXhC0',
+            'refreshToken' => '1/_MJpCAtX4CS1-hzF_mP7fPSp8-lS-SZYioxo1rdzU5A',
             'folderId' => '1jZo6byuMGBINN6kDsnqT-kRnAHIFau1O',
         ],
     ],
