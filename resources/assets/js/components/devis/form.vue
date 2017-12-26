@@ -47,7 +47,7 @@
               </td>
               <td>
                 <div class="form-group">
-                  <input v-model="row.quantite" type="number" class="form-control" @change="countTotale(key)" required>
+                  <input v-model="row.quantite" class="form-control" @change="countTotale(key)" required>
                   <div class="help-block text-danger" v-if="row.quantite == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
@@ -61,13 +61,13 @@
               </td>
               <td>
                 <div class="form-group">
-                  <input v-model="row.prixHT" type="number" class="form-control" @change="countTotale(key)" step="0.1" required>
+                  <input v-model="row.prixHT" class="form-control" @change="countTotale(key)" step="0.1" required>
                   <div class="help-block text-danger" v-if="row.prixHT == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <input v-model="row.totalHT" type="number" class="form-control" disabled step="0.1" required>
+                  <input v-model="row.totalHT" class="form-control" disabled step="0.1" required>
                   <div class="help-block text-danger" v-if="row.totalHT == ''"> <i class="fa fa-exclamation-triangle"></i></div>
                 </div>
               </td>
@@ -267,6 +267,7 @@
         },
         insertPrix(key){
           this.rows[key].prixHT = this.rows[key].prix;
+          this.countTotale(key);
         }
       }
     }

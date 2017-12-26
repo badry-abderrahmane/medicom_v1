@@ -24,11 +24,10 @@
         </div>
         <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
           <thead>
-            <th width="25%">Produit</th>
+            <th width="45%">Produit</th>
             <th width="20%">Quantité</th>
-            <th width="17%">Prix</th>
-            <th width="17%">Prix(HT)</th>
-            <th width="17%">Totale(HT)</th>
+            <th width="20%">Prix(HT)</th>
+            <th width="20%">Totale(HT)</th>
           </thead>
           <tbody>
             <tr v-for="row,key in rows">
@@ -36,20 +35,19 @@
               <td> {{ row.quantite }} </td>
               <td> {{ row.prixHT }} </td>
               <td> {{ row.totalHT }} </td>
-              <td> {{ row.quantite }} </td>
             </tr>
             <tr>
-              <td colspan="3" style="visibility:hidden;"></td>
+              <td colspan="2" style="visibility:hidden;"></td>
               <td style="border-left: 2px solid;">Totale(HT)</td>
               <td style="border-left: 2px solid;">{{ devi.totalHT }}</td>
             </tr>
             <tr>
-              <td colspan="3" style="visibility:hidden;"></td>
+              <td colspan="2" style="visibility:hidden;"></td>
               <td style="border-left: 2px solid;">TVA</td>
               <td style="border-left: 2px solid;">20%</td>
             </tr>
             <tr>
-              <td colspan="3" style="visibility:hidden;border-left: 2px solid;"></td>
+              <td colspan="2" style="visibility:hidden;border-left: 2px solid;"></td>
               <td style="border-left: 2px solid;">Totale(TTC)</td>
               <td style="border-left: 2px solid;">{{ devi.totalTTC }}</td>
             </tr>
@@ -57,8 +55,8 @@
         </table>
         <div class="row"><br><br>
           <div class="col-md-6 col-sm-offset-4 col-sm-6">
-            <button class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button>
-            <button class="btn btn-warning"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;PDF</button>
+            <button class="btn btn-primary" @click="openPDF(devi.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button>
+            <button class="btn btn-warning" @click="openPDF(devi.id)"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;PDF</button>
             <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button>
           </div>
         </div>
@@ -87,6 +85,14 @@
             this.devi = response.data;
             this.rows = response.data.devisproduits;
         });
+      },
+      methods:{
+        openPDF(id){
+          var getUrl = window.location;
+          var url = getUrl.origin+'/pdf/devis/'+id;
+          var win = window.open(url, '_blank');
+          win.focus();
+        }
       }
     }
 </script>
