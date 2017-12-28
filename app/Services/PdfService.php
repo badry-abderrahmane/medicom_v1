@@ -118,22 +118,22 @@ class PdfService
           <thead>
            <tr style="background-color:#616161;color:#fff;">
             <td width="20" align="center"><b></b></td>
-            <td width="190" align="center"><b>Produit</b></td>
-            <td width="60" align="center"><b>Quantité</b></td>
-            <td width="90" align="center"> <b>Prix Unité (MAD)</b></td>
-            <td width="90" align="center"><b>PrixHT (MAD)</b></td>
-            <td width="90" align="center"><b>PrixHT (MAD)</b></td>
+            <td width="220" align="center"><b>Produit</b></td>
+            <td width="80" align="center"><b>Quantité</b></td>
+            <td width="100" align="center"> <b>Prix Unité (MAD)</b></td>
+            <td width="120" align="center"><b>PrixHT (MAD)</b></td>
+
            </tr>
           </thead>';
 
           foreach ($item->devisproduits as $key => $value) {
               $line = '<tr>
                <td width="20" align="center">'.($key+1).'</td>
-               <td width="190">'.$value->produit->name.'</td>
-               <td width="60" align="center">'.$value->quantite.'</td>
-               <td width="90" align="center">'.number_format($value->prixHT,2,'.',',').'</td>
-               <td width="90" align="center">'.number_format($value->totalHT,2,'.',',').'</td>
-               <td width="90" align="center">'.number_format($value->totalHT,2,'.',',').'</td>
+               <td width="220">'.$value->produit->name.'</td>
+               <td width="80" align="center">'.$value->quantite.'</td>
+               <td width="100" align="center">'.number_format($value->prixHT,2,'.',',').'</td>
+               <td width="120" align="center">'.number_format($value->totalHT,2,'.',',').'</td>
+
               </tr>
              ';
              $start = $start.$line;
