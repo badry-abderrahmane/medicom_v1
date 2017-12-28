@@ -29,6 +29,9 @@
         <button class="btn btn-success btn-block btn-outline btn-anim mt-30" @click="$router.push({ path: `/prospects/edit/`+prospect.id })">
           <i class="fa fa-pencil"></i>
           <span class="btn-text">Modifier les informations</span>
+        </button><button class="btn btn-danger btn-block btn-outline btn-anim mt-30" @click="convertProspect(prospect.id)">
+          <i class="fa fa-plus"></i>
+          <span class="btn-text">Ajouter à la liste des clients</span>
         </button><br>
       </div>
     </div>
@@ -37,7 +40,21 @@
 
 <script>
 export default {
-  props:["prospect"]
+  props:["prospect"],
+  methods:{
+    convertProspect(id){
+          var self = this;
+          axios.post('/convert/prospect/'+id)
+          .then(function (response) {
+            self.$store.dispatch('LOAD_CLIENT_LIST')
+            Event.$emit('publish-success-message', data.message);
+          })
+          .catch(function (error) {
+            self.$store.dispatch('LOAD_CLIENT_LIST')
+            Event.$emit('publish-danger-message', 'Le prospect existe déja dans la liste des clients');
+          });
+    }
+  }
 }
 </script>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Prospect;
+use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProspectRequest;
 use Illuminate\Support\Facades\Response;
@@ -42,5 +43,17 @@ class ProspectsController extends Controller
       {
           Prospect::destroy($id);
           return Response::json(['message' => 'Prospect bien supprimé'], 200);
+      }
+
+      public function convertProspect($id)
+      {
+          $prospect = Prospect::findOrfail($id);
+          $client = [];
+          $client['name'] = $prospect->name;
+          $client['phone'] = $prospect->phone;
+          $client['activite'] = $prospect->activite;
+          $client['adress'] = $prospect->adress;
+          $client = Client::create($client);
+          return Response::json(['message' => 'Prospect bien ajouté à la liste des clients'], 200);
       }
 }

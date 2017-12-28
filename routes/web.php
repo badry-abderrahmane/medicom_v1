@@ -28,6 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('clients', 'ClientsController');
 Route::resource('prospects', 'ProspectsController');
+Route::post('/convert/prospect/{id}', 'ProspectsController@convertProspect');
 
 Route::resource('devis', 'DevisController');
 Route::delete('/devisproduits/{id}', 'DevisController@destroyDevisproduit');
@@ -56,6 +57,9 @@ Route::resource('calendrier', 'CalendrierController');
 **
 **/
 Route::get('pdf/devis/{id}', 'PdfmakerController@getDevis');
+Route::get('pdf/facture/{id}', 'PdfmakerController@getFacture');
+Route::get('pdf/commande/{id}', 'PdfmakerController@getCommande');
+Route::get('pdf/bondecommande/{id}', 'PdfmakerController@getBondecommande');
 
 /**
 ** Get Lists

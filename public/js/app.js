@@ -64447,7 +64447,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64495,9 +64495,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["prospect"]
+  props: ["prospect"],
+  methods: {
+    convertProspect: function convertProspect(id) {
+      var self = this;
+      axios.post('/convert/prospect/' + id).then(function (response) {
+        self.$store.dispatch('LOAD_CLIENT_LIST');
+        Event.$emit('publish-success-message', data.message);
+      }).catch(function (error) {
+        self.$store.dispatch('LOAD_CLIENT_LIST');
+        Event.$emit('publish-danger-message', 'Le prospect existe déja dans la liste des clients');
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -64574,6 +64589,24 @@ var render = function() {
             _vm._v(" "),
             _c("span", { staticClass: "btn-text" }, [
               _vm._v("Modifier les informations")
+            ])
+          ]
+        ),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-danger btn-block btn-outline btn-anim mt-30",
+            on: {
+              click: function($event) {
+                _vm.convertProspect(_vm.prospect.id)
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-plus" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "btn-text" }, [
+              _vm._v("Ajouter à la liste des clients")
             ])
           ]
         ),
@@ -70672,7 +70705,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70774,6 +70807,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.commande = response.data;
       _this.rows = response.data.commandesproduits;
     });
+  },
+
+  methods: {
+    openPDF: function openPDF(id) {
+      var getUrl = window.location;
+      var url = getUrl.origin + '/pdf/commande/' + id;
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
   }
 });
 
@@ -70924,15 +70966,31 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6 col-sm-offset-4 col-sm-6" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-print" }),
-                _vm._v("  Imprimer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.commande.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-print" }), _vm._v("  Imprimer")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-warning" }, [
-                _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                _vm._v("  PDF")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.commande.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-file-pdf-o" }), _vm._v("  PDF")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -72220,7 +72278,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72322,6 +72380,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.facture = response.data;
       _this.rows = response.data.facturesproduits;
     });
+  },
+
+  methods: {
+    openPDF: function openPDF(id) {
+      var getUrl = window.location;
+      var url = getUrl.origin + '/pdf/facture/' + id;
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
   }
 });
 
@@ -72472,15 +72539,31 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6 col-sm-offset-4 col-sm-6" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-print" }),
-                _vm._v("  Imprimer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.facture.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-print" }), _vm._v("  Imprimer")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-warning" }, [
-                _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                _vm._v("  PDF")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.facture.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-file-pdf-o" }), _vm._v("  PDF")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -76797,7 +76880,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -76878,6 +76961,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.bondecommande = response.data;
       _this.rows = response.data.bondecommandesproduits;
     });
+  },
+
+  methods: {
+    openPDF: function openPDF(id) {
+      var getUrl = window.location;
+      var url = getUrl.origin + '/pdf/bondecommande/' + id;
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
   }
 });
 
@@ -76967,15 +77059,31 @@ var render = function() {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-6 col-sm-offset-4 col-sm-6" }, [
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _c("i", { staticClass: "fa fa-print" }),
-                _vm._v("  Imprimer")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.bondecommande.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-print" }), _vm._v("  Imprimer")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-warning" }, [
-                _c("i", { staticClass: "fa fa-file-pdf-o" }),
-                _vm._v("  PDF")
-              ]),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-warning",
+                  on: {
+                    click: function($event) {
+                      _vm.openPDF(_vm.bondecommande.id)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-file-pdf-o" }), _vm._v("  PDF")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
