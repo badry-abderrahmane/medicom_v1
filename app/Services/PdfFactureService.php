@@ -84,9 +84,9 @@ class PdfFactureService
       return '<br/>
         <table cellspacing="0" cellpadding="5" border="0">
             <tr>
-            <td width="250" align="center" style="border: 1px solid black;"><b>Accord client <br> Proposition expirant le :</b><i>&nbsp;'.Carbon::now()->addDays(29).'</i><br>Mention "Bon pour accord", date, signature</td>
+            <td width="250" align="center"></td>
             <td width="20" align="center"><b></b></td>
-            <td width="270" style="border: 1px solid black;"><u><i>Remarques et Cachet:<br /></i></u><br><br><br><br><br>*Cadre réservé à ne pas remplir avant la récéption.</td>
+            <td width="270" style="border: 1px solid black;"><u><i>Cachet:<br /></i></u><br><br><br><br><br>*Cadre réservé à ne pas remplir avant la récéption.</td>
             </tr>
 
         </table>
