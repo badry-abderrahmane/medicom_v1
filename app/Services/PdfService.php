@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use PDF;
+use Carbon\Carbon;
 use App\Services\PdfMakerService as XPDF;
 
 class PdfService
