@@ -13,6 +13,7 @@ use App\Services\PdfService;
 use App\Services\PdfCommandeService;
 use App\Services\PdfFactureService;
 use App\Services\PdfBondecommandeService;
+use App\Services\PdfBondelivraisonService;
 
 class PdfmakerController extends Controller
 {
