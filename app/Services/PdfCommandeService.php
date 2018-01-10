@@ -98,7 +98,7 @@ class PdfCommandeService
       return '
         <table cellspacing="0" cellpadding="5" border="0">
             <tr>
-            <td width="250" style="border: 1px solid black;" rowspan="3"><b>Coordonnées bancaires:</b><br><br><i><u>Banque:</u>&nbsp;&nbsp;&nbsp;CIH BANK Morocco.</i></td>
+            <td width="250" style="border: 1px solid black;" rowspan="3"><b>Coordonnées bancaires:</b><br><br><i><u>Banque:</u>&nbsp;&nbsp;&nbsp;BMCE BANK Maroc.</i></td>
             <td width="20" align="center"><b></b></td>
             <td width="140" align="center" style="border: 1px solid black;background-color:#616161;color:#fff;"> <b>Montant total HT (MAD)</b></td>
             <td width="130" align="center" style="border: 1px solid black;"><b><i>'.number_format($item->totalHT,2,'.',',').'</i></b></td>

@@ -38,6 +38,17 @@ class PdfmakerController extends Controller
       $pdf_maker = new PdfFactureService($facture);
     }
 
+    public function getBondelivraison($id)
+    {
+      $facture = Facture::findOrFail($id);
+      $facture->facturesproduits;
+      $facture->client;
+      foreach ($facture->facturesproduits as $factureproduit) {
+        $factureproduit->produit;
+      }
+      $pdf_maker = new PdfBondelivraisonService($facture);
+    }
+
     public function getCommande($id)
     {
       $commande = Commande::findOrFail($id);

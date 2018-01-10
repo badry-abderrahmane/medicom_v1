@@ -57,9 +57,10 @@
         </table>
         <div class="row"><br><br>
           <div class="col-md-6 col-sm-offset-4 col-sm-6">
-            <button class="btn btn-primary" @click="openPDF(facture.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button>
-            <button class="btn btn-warning" @click="openPDF(facture.id)"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;PDF</button>
-            <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button>
+            <button class="btn btn-primary" @click="openPDFBL(facture.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;BON DE LIVRAISON PDF</button>
+            <!-- <button class="btn btn-primary" @click="openPDF(facture.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button> -->
+            <button class="btn btn-warning" @click="openPDF(facture.id)"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;FACTURE PDF</button>
+            <!-- <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button> -->
           </div>
         </div>
       </div>
@@ -92,6 +93,12 @@ export default {
         openPDF(id){
           var getUrl = window.location;
           var url = getUrl.origin+'/pdf/facture/'+id;
+          var win = window.open(url, '_blank');
+          win.focus();
+        },
+        openPDFBL(id){
+          var getUrl = window.location;
+          var url = getUrl.origin+'/pdf/bondelivraison/'+id;
           var win = window.open(url, '_blank');
           win.focus();
         }
