@@ -57,6 +57,7 @@ Route::resource('calendrier', 'CalendrierController');
 **
 **/
 Route::get('pdf/devis/{id}', 'PdfmakerController@getDevis');
+Route::get('pdf/devissans/{id}', 'PdfmakerController@getDevisSansTotal');
 Route::get('pdf/facture/{id}', 'PdfmakerController@getFacture');
 Route::get('pdf/bondelivraison/{id}', 'PdfmakerController@getBondelivraison');
 Route::get('pdf/commande/{id}', 'PdfmakerController@getCommande');

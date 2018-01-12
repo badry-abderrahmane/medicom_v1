@@ -69150,7 +69150,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69256,6 +69256,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     openPDF: function openPDF(id) {
       var getUrl = window.location;
       var url = getUrl.origin + '/pdf/devis/' + id;
+      var win = window.open(url, '_blank');
+      win.focus();
+    },
+    openPDFSans: function openPDFSans(id) {
+      var getUrl = window.location;
+      var url = getUrl.origin + '/pdf/devissans/' + id;
       var win = window.open(url, '_blank');
       win.focus();
     }
@@ -69411,11 +69417,14 @@ var render = function() {
                   staticClass: "btn btn-primary",
                   on: {
                     click: function($event) {
-                      _vm.openPDF(_vm.devi.id)
+                      _vm.openPDFSans(_vm.devi.id)
                     }
                   }
                 },
-                [_c("i", { staticClass: "fa fa-print" }), _vm._v("  Imprimer")]
+                [
+                  _c("i", { staticClass: "fa fa-print" }),
+                  _vm._v("  Devis Sans Totale")
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -69428,15 +69437,9 @@ var render = function() {
                     }
                   }
                 },
-                [_c("i", { staticClass: "fa fa-file-pdf-o" }), _vm._v("  PDF")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-info", attrs: { disabled: "" } },
                 [
-                  _c("i", { staticClass: "fa fa-paper-plane" }),
-                  _vm._v("  Envoyer par email")
+                  _c("i", { staticClass: "fa fa-file-pdf-o" }),
+                  _vm._v("  Devis")
                 ]
               )
             ])

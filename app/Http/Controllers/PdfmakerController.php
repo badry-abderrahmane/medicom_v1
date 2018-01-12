@@ -14,6 +14,7 @@ use App\Services\PdfCommandeService;
 use App\Services\PdfFactureService;
 use App\Services\PdfBondecommandeService;
 use App\Services\PdfBondelivraisonService;
+use App\Services\PdfDevisSansTotalService;
 
 class PdfmakerController extends Controller
 {
@@ -26,6 +27,17 @@ class PdfmakerController extends Controller
         $deviproduit->produit;
       }
       $pdf_maker = new PdfService($devi);
+    }
+
+    public function getDevisSansTotal($id)
+    {
+      $devi = Devi::findOrFail($id);
+      $devi->devisproduits;
+      $devi->prospect;
+      foreach ($devi->devisproduits as $deviproduit) {
+        $deviproduit->produit;
+      }
+      $pdf_maker = new PdfDevisSansTotalService($devi);
     }
 
     public function getFacture($id)

@@ -55,9 +55,9 @@
         </table>
         <div class="row"><br><br>
           <div class="col-md-6 col-sm-offset-4 col-sm-6">
-            <button class="btn btn-primary" @click="openPDF(devi.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;Imprimer</button>
-            <button class="btn btn-warning" @click="openPDF(devi.id)"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;PDF</button>
-            <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button>
+            <button class="btn btn-primary" @click="openPDFSans(devi.id)"><i class="fa fa-print"></i>&nbsp;&nbsp;Devis Sans Totale</button>
+            <button class="btn btn-warning" @click="openPDF(devi.id)"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Devis</button>
+            <!-- <button class="btn btn-info" disabled><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;Envoyer par email</button> -->
           </div>
         </div>
       </div>
@@ -92,7 +92,13 @@
           var url = getUrl.origin+'/pdf/devis/'+id;
           var win = window.open(url, '_blank');
           win.focus();
-        }
+        },
+        openPDFSans(id){
+          var getUrl = window.location;
+          var url = getUrl.origin+'/pdf/devissans/'+id;
+          var win = window.open(url, '_blank');
+          win.focus();
+        },
       }
     }
 </script>
