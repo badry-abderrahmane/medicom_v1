@@ -21,9 +21,10 @@ class ProduitsController extends Controller
       public function store(ProduitRequest $request,UploadService $upload)
       {
           $file = $request->get('img');
-          $imgs = $upload->create($file,'images/products/');
-          $requestNew = $request;
-          $requestNew->img = $imgs;
+          if ($file) {
+            $imgs = $upload->create($file,'images/products/');
+            $requestNew = $request;
+            $requestNew->img = $imgs;
             Produit::forceCreate([
               'name'=> request('name'),
               'reference'=> request('reference'),
@@ -37,6 +38,22 @@ class ProduitsController extends Controller
               'img'=> $imgs,
               'note'=> request('note'),
             ]);
+          }else{
+            Produit::forceCreate([
+              'name'=> request('name'),
+              'reference'=> request('reference'),
+              'category_id'=> request('category_id'),
+              'fournisseur_id'=> request('fournisseur_id'),
+              'delaisLivraison'=> request('delaisLivraison'),
+              'prixFournisseur'=> request('prixFournisseur'),
+              'prixVente'=> request('prixVente'),
+              'quantiteMax'=> request('quantiteMax'),
+              'quantiteMin'=> request('quantiteMin'),
+              'img'=> 'No Image',
+              'note'=> request('note'),
+            ]);
+          }
+
           return Response::json(['message' => 'Produit bien ajouté'], 200);
       }
 
